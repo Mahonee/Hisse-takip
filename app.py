@@ -721,16 +721,16 @@ else:
                     f"""
                     <div id="{card_id}" style="background-color: #111827; border: 1.5px solid #1f2937; padding: 12px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid #1f2937; padding-bottom: 6px; flex-wrap: wrap; gap: 6px;">
-                            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                                <span style="font-size: 15px; font-weight: 800; color: #ffffff;">{d['Hisse']}</span>
-                                <span style="font-size: 13px; font-weight: 600; color: #d1d5db;">{d['Fiyat']} TL</span>
-                                <span style="font-size: 12px; font-weight: 700; color: {renk_cl};">({isaret}{d['Yuzde']})</span>
+                            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; min-width: 0; overflow: hidden;">
+                                <span style="font-size: 15px; font-weight: 800; color: #ffffff; white-space: nowrap;">{d['Hisse']}</span>
+                                <span style="font-size: 12px; font-weight: 600; color: #d1d5db; white-space: nowrap;">{d['Fiyat']} TL</span>
+                                <span style="font-size: 11px; font-weight: 700; color: {renk_cl}; white-space: nowrap;">({isaret}{d['Yuzde']})</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 6px;">
+                            <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
                                 <a href="?secilen_hisse={d['Hisse']}" target="_self" class="badge {yon_class}">
                                     {clean_yon}
                                 </a>
-                                <span style="font-size: 11px; color: #9ca3af;">📅 {d['Tarih']}</span>
+                                <span style="font-size: 11px; color: #9ca3af; white-space: nowrap;">📅 {d['Tarih']}</span>
                                 <a href="?silinecek_hisse={d['Hisse']}" onclick="
                                     const card = document.getElementById('{card_id}');
                                     if(card) {{
