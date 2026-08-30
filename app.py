@@ -5,6 +5,10 @@ import os
 import urllib.request
 import streamlit as st
 import streamlit.components.v1 as components
+from streamlit_autorefresh import st_autorefresh
+
+# Her 15 saniyede bir (15000 milisaniye) sayfayı otomatik olarak yeniler
+st_autorefresh(interval=15000, limit=None, key="canli_fiyat_yenileme")
 
 VERI_DOSYASI = "hisse_arsivi.json"
 BILDIRIM_DOSYASI = "bildirim_durumu.json"
@@ -199,9 +203,9 @@ st.markdown(
         background-color: rgba(239, 68, 68, 0.15);
         color: #f87171;
         border: 1px solid rgba(239, 68, 68, 0.3);
-        padding: 2px 6px;
+        padding: 2px 5px;
         border-radius: 6px;
-        font-size: 13px;
+        font-size: 11px;
         font-weight: 700;
         cursor: pointer;
         text-decoration: none !important;
@@ -284,7 +288,7 @@ def arama_temizle(key):
         st.session_state[key] = ""
 
 
-@st.cache_data(ttl=30, show_spinner=False)
+@st.cache_data(ttl=15, show_spinner=False)
 def fiyat_cek(hisse_kodu):
     if not hisse_kodu:
         return 0.0, 0.0
