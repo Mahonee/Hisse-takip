@@ -2,17 +2,32 @@ import concurrent.futures
 from datetime import datetime
 import json
 import os
-import random
 import urllib.request
 import streamlit as st
 import streamlit.components.v1 as components
 
 VERI_DOSYASI = "hisse_arsivi.json"
+BILDIRIM_DOSYASI = "bildirim_durumu.json"
 
 st.set_page_config(
-    page_title="Canlı Hisse ve Bölge Takip Paneli",
+    page_title="Canlı Hisse and Bölge Takip Paneli",
     page_icon="📈",
     layout="wide",
+)
+
+components.html(
+    """
+    <script>
+    const disableAutocomplete = () => {
+        const inputs = window.parent.document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.setAttribute('autocomplete', 'off');
+        });
+    };
+    setInterval(disableAutocomplete, 500);
+    </script>
+    """,
+    height=0,
 )
 
 st.markdown(
@@ -71,7 +86,8 @@ st.markdown(
         letter-spacing: 1px !important;
     }
     
-    [data-testid="stSidebar"] button {
+    [data-testid="stSidebar"] button,
+    .main div.stButton > button {
         background-color: #161b22 !important;
         color: #ffffff !important;
         border: 1.5px solid #ff7700 !important;
@@ -79,32 +95,14 @@ st.markdown(
         font-weight: 700 !important;
         box-shadow: 0 0 6px rgba(255, 119, 0, 0.35) !important;
         transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        white-space: nowrap !important;
     }
-    [data-testid="stSidebar"] button:hover {
+    [data-testid="stSidebar"] button:hover,
+    .main div.stButton > button:hover {
         background-color: #ff7700 !important;
         color: #0b0f19 !important;
         border-color: #ff7700 !important;
         box-shadow: 0 0 12px rgba(255, 119, 0, 0.8) !important;
-    }
-
-    /* Tablo içi hisse seçme butonlarını saf yazı gibi gösterir */
-    div[data-testid="column"] button {
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        color: #ffffff !important;
-        font-weight: 800 !important;
-        font-size: 15px !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        text-align: left !important;
-        min-height: unset !important;
-    }
-    div[data-testid="column"] button:hover {
-        background-color: transparent !important;
-        color: #ff7700 !important;
-        border: none !important;
-        box-shadow: none !important;
     }
 
     div[data-testid="stTextInput"]:has(input[aria-label="Hisse Ara"]) {
@@ -144,74 +142,88 @@ st.markdown(
     .badge-kisa { background-color: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
     .badge-orta { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
     .badge-test { background-color: rgba(156, 163, 175, 0.15); color: #d1d5db; border: 1px solid rgba(156, 163, 175, 0.3); }
-    .badge-yon-yukselis { background-color: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-    .badge-yon-dusus { background-color: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .badge-tarih { color: #9ca3af; font-size: 11px; font-weight: 600; }
-    .header-row {
-        background-color: #161e2e;
-        padding: 10px 14px;
-        border-radius: 8px;
-        color: #9ca3af;
+    
+    .badge-yon-yukselis { background-color: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); cursor: pointer; text-decoration: none; }
+    .badge-yon-dusus { background-color: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); cursor: pointer; text-decoration: none; }
+    .badge-yon-yukselis:hover, .badge-yon-dusus:hover { opacity: 0.8; }
+    
+    .delete-btn {
+        background-color: rgba(239, 68, 68, 0.15);
+        color: #f87171;
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        padding: 2px 6px;
+        border-radius: 6px;
+        font-size: 13px;
         font-weight: 700;
-        font-size: 11px;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        border: 1px solid #1f2937;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+    .delete-btn:hover {
+        background-color: rgba(239, 68, 68, 0.3);
+        color: #ffffff;
+    }
+
+    @keyframes pulse-blue {
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.8); }
+        70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+    .mavi-nokta-animasyon {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #3b82f6;
+        border-radius: 50%;
+        margin-left: 8px;
+        vertical-align: middle;
+        animation: pulse-blue 1.2s infinite;
+    }
+
+    @media (max-width: 768px) {
+        [data-testid="stSidebar"] {
+            width: 300px !important;
+        }
+        [data-testid="stSidebar"] .block-container {
+            padding-left: 0.4rem !important;
+            padding-right: 0.4rem !important;
+            padding-top: 1rem !important;
+        }
+        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 6px !important;
+            width: 100% !important;
+        }
+        [data-testid="stSidebar"] [data-testid="column"] {
+            width: 100% !important;
+            flex: none !important;
+            min-width: 0px !important;
+            max-width: 100% !important;
+        }
+        [data-testid="stSidebar"] input {
+            padding: 2px 2px !important;
+            font-size: 11px !important;
+            height: 30px !important;
+            min-height: 30px !important;
+        }
+        [data-testid="stSidebar"] p {
+            margin-bottom: 2px !important;
+            font-size: 11px !important;
+        }
+        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] button {
+            font-size: 11px !important;
+            padding-left: 2px !important;
+            padding-right: 2px !important;
+            letter-spacing: -0.5px !important;
+        }
     }
     </style>
 """,
     unsafe_allow_html=True,
-)
-
-components.html(
-    """
-    <script>
-        const fixInputsAndButtons = () => {
-            const doc = window.parent.document;
-            
-            doc.querySelectorAll('input').forEach(input => {
-                input.setAttribute('autocomplete', 'off');
-                input.setAttribute('autocorrect', 'off');
-                input.setAttribute('spellcheck', 'false');
-            });
-
-            doc.querySelectorAll('button').forEach(btn => {
-                if (btn.innerText.includes('ARAMAYI TEMİZLE')) {
-                    btn.style.backgroundColor = '#161b22';
-                    btn.style.color = '#ffffff';
-                    btn.style.border = '1.5px solid #ff7700';
-                    btn.style.borderRadius = '8px';
-                    btn.style.fontWeight = '700';
-                    btn.style.fontSize = '12px';
-                    btn.style.letterSpacing = '1px';
-                    btn.style.boxShadow = '0 0 6px rgba(255, 119, 0, 0.35)';
-                    btn.style.width = '100%';
-                    btn.style.maxWidth = '280px';
-                    btn.style.height = '38px';
-                    btn.style.transition = 'background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease';
-                    
-                    if (!btn.hasAttribute('data-hover-fixed')) {
-                        btn.setAttribute('data-hover-fixed', 'true');
-                        btn.onmouseover = () => {
-                            btn.style.backgroundColor = '#ff7700';
-                            btn.style.color = '#0b0f19';
-                            btn.style.boxShadow = '0 0 12px rgba(255, 119, 0, 0.8)';
-                        };
-                        btn.onmouseout = () => {
-                            btn.style.backgroundColor = '#161b22';
-                            btn.style.color = '#ffffff';
-                            btn.style.boxShadow = '0 0 6px rgba(255, 119, 0, 0.35)';
-                        };
-                    }
-                }
-            });
-        };
-        fixInputsAndButtons();
-        setInterval(fixInputsAndButtons, 500);
-    </script>
-""",
-    height=0,
-    width=0,
 )
 
 
@@ -233,6 +245,24 @@ def arsiv_kaydet(arsiv):
         pass
 
 
+def bildirim_durumu_yukle():
+    if os.path.exists(BILDIRIM_DOSYASI):
+        try:
+            with open(BILDIRIM_DOSYASI, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {"son_kiran_sayisi": 0}
+
+
+def bildirim_durumu_kaydet(durum):
+    try:
+        with open(BILDIRIM_DOSYASI, "w", encoding="utf-8") as f:
+            json.dump(durum, f, ensure_ascii=False, indent=4)
+    except Exception:
+        pass
+
+
 def arama_temizle(key):
     if key in st.session_state:
         st.session_state[key] = ""
@@ -244,8 +274,11 @@ def fiyat_cek(hisse_kodu):
         return 0.0, 0.0
     try:
         url = f"https://query1.finance.yahoo.com/v8/finance/chart/{hisse_kodu}.IS?interval=1m"
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=1.5) as response:
+        req = urllib.request.Request(
+            url, 
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        )
+        with urllib.request.urlopen(req, timeout=2.5) as response:
             data = json.loads(response.read().decode())
             results = data.get("chart", {}).get("result")
             if not results:
@@ -263,15 +296,15 @@ def fiyat_cek(hisse_kodu):
 
 def parse_dizi_deger(val):
     if isinstance(val, list):
-        items = [str(x) for x in val if str(x).strip() != ""]
+        items = [str(x) for x in val if str(x).strip() != "" and str(x).strip() != "-"]
         return items if items else []
     elif isinstance(val, str) and ("," in val or "|" in val):
         delim = "|" if "|" in val else ","
-        items = [x.strip() for x in val.split(delim) if x.strip() != ""]
+        items = [x.strip() for x in val.split(delim) if x.strip() != "" and x.strip() != "-"]
         return items if items else []
     else:
         v = str(val).strip()
-        return [v] if v and v not in ["None", "-"] else []
+        return [v] if v and v not in ["None", "-", ""] else []
 
 
 def akilli_formatla(ham_deger, guncel_fiyat=0):
@@ -284,50 +317,59 @@ def akilli_formatla(ham_deger, guncel_fiyat=0):
     if not sadece_rakam:
         return ham_deger
     if len(sadece_rakam) <= 2:
-        tam_kisim = "0"
+        sade_rakim = "0"
         ondalik = sadece_rakam.zfill(2)
     else:
-        tam_kisim = sadece_rakam[:-2]
+        sade_rakim = sadece_rakam[:-2]
         ondalik = sadece_rakam[-2:]
     try:
-        tam_kisim_int = int(tam_kisim)
+        tam_kisim_int = int(sade_rakim)
         tam_kisim_formatli = f"{tam_kisim_int:,}".replace(",", ".")
     except Exception:
-        tam_kisim_formatli = tam_kisim
+        tam_kisim_formatli = sade_rakim
     return f"{tam_kisim_formatli},{ondalik}"
 
 
-def on_fiyat_change(key):
-    if key in st.session_state:
-        val = st.session_state[key]
-        if val:
-            st.session_state[key] = akilli_formatla(val, 0)
+query_params = st.query_params
 
+silme_hedefi = query_params.get("silinecek_hisse")
+if silme_hedefi:
+    GuncelArsiv = arsiv_yukle()
+    if silme_hedefi in GuncelArsiv:
+        del GuncelArsiv[silme_hedefi]
+        arsiv_kaydet(GuncelArsiv)
+    st.query_params.clear()
+    st.rerun()
+
+if "secilen_hisse" in query_params:
+    st.session_state["secilen_hisse_hedef"] = query_params["secilen_hisse"]
+    st.query_params.clear()
 
 arsiv = arsiv_yukle()
 
-st.title("📈 Canlı Hisse ve Bölge Takip Paneli")
+st.title("📈 Canlı Hisse and Bölge Takip Paneli")
 st.markdown("---")
 
-with st.sidebar:
+def form_icerigini_olustur():
     st.subheader("🎯 Hisse Ekle / Güncelle")
 
-    if "rastgele_input_id" not in st.session_state:
-        st.session_state["rastgele_input_id"] = "hisse_giris_input"
+    input_key = "hisse_giris_input"
+    if input_key not in st.session_state:
+        st.session_state[input_key] = ""
 
     if "secilen_hisse_hedef" in st.session_state and st.session_state["secilen_hisse_hedef"]:
-        st.session_state[st.session_state["rastgele_input_id"]] = st.session_state["secilen_hisse_hedef"]
+        hedef_hisse = st.session_state["secilen_hisse_hedef"]
+        st.session_state[input_key] = hedef_hisse
         st.session_state["secilen_hisse_hedef"] = ""
 
     hisse_input = (
         st.text_input(
-            "Hisse Kodu", key=st.session_state["rastgele_input_id"], placeholder=""
+            "Hisse Kodu", key=input_key, placeholder=""
         )
         .strip()
         .upper()
     )
     existing = arsiv.get(hisse_input, {})
-
 
     def get_val_list(key):
         v = existing.get(key, ["", "", ""])
@@ -345,20 +387,24 @@ with st.sidebar:
             return parts[:3]
         return ["", "", ""]
 
-
     def get_single_val(key, default=""):
         v = existing.get(key, default)
         if isinstance(v, list):
             return v[0] if v else default
         return str(v) if v is not None else default
 
+    yon_state_key = "secilen_yon"
+    son_hisse_key = "son_yuklenen_hisse"
 
-    if "son_yuklenen_hisse" not in st.session_state:
-        st.session_state["son_yuklenen_hisse"] = ""
+    if son_hisse_key not in st.session_state:
+        st.session_state[son_hisse_key] = ""
 
-    if hisse_input != st.session_state["son_yuklenen_hisse"]:
-        st.session_state["secilen_yon"] = get_single_val("yon", "▲ Yükseliş")
-        st.session_state["son_yuklenen_hisse"] = hisse_input
+    if hisse_input != st.session_state[son_hisse_key]:
+        st.session_state[yon_state_key] = get_single_val("yon", "▲ Yükseliş")
+        st.session_state[son_hisse_key] = hisse_input
+
+    if yon_state_key not in st.session_state:
+        st.session_state[yon_state_key] = "▲ Yükseliş"
 
     anlik_fiyat_degeri = 0.0
     if hisse_input:
@@ -375,9 +421,9 @@ with st.sidebar:
             isaret = "+" if onizleme_yuzde > 0 else ""
             st.markdown(
                 f"""
-                    <div style="background-color: #1f2937; padding: 10px; border-radius: 8px; border: 1.5px solid #ff7700; text-align: center; margin-bottom: 10px; box-shadow: 0 0 6px rgba(255, 119, 0, 0.35);">
-                        <span style="font-size: 22px; font-weight: 800; color: #f8fafc;">{onizleme_fiyat:.2f} TL</span><br>
-                        <span style="font-size: 13px; font-weight: 700; color: {renk_bg};">{isaret}%{onizleme_yuzde:.2f}</span>
+                    <div style="background-color: #1f2937; padding: 8px; border-radius: 8px; border: 1.5px solid #ff7700; text-align: center; margin-bottom: 8px; box-shadow: 0 0 6px rgba(255, 119, 0, 0.35);">
+                        <span style="font-size: 20px; font-weight: 800; color: #f8fafc;">{onizleme_fiyat:.2f} TL</span><br>
+                        <span style="font-size: 12px; font-weight: 700; color: {renk_bg};">{isaret}%{onizleme_yuzde:.2f}</span>
                     </div>
                 """,
                 unsafe_allow_html=True,
@@ -386,159 +432,69 @@ with st.sidebar:
             st.warning("⚠️ Fiyat yükleniyor veya kod hatalı.")
 
     st.markdown(
-        "<p style='color:#ffffff; font-weight:bold; margin-bottom:5px;'>Öngörülen Yön</p>",
+        "<p style='color:#ffffff; font-weight:bold; margin-bottom:2px;'>Öngörülen Yön</p>",
         unsafe_allow_html=True,
     )
     col_b1, col_b2 = st.columns(2)
 
+    is_yukselis_aktif = st.session_state.get(yon_state_key, "▲ Yükseliş") == "▲ Yükseliş"
+
     with col_b1:
-        if st.button("▲ Yükseliş", use_container_width=True):
-            st.session_state["secilen_yon"] = "▲ Yükseliş"
+        if st.button("▲ Yükseliş", key=f"btn_yuk_{hisse_input}", use_container_width=True, type="primary" if is_yukselis_aktif else "secondary"):
+            st.session_state[yon_state_key] = "▲ Yükseliş"
+            st.rerun()
 
     with col_b2:
-        if st.button("▼ Düşüş", use_container_width=True):
-            st.session_state["secilen_yon"] = "▼ Düşüş"
+        if st.button("▼ Düşüş", key=f"btn_dus_{hisse_input}", use_container_width=True, type="primary" if not is_yukselis_aktif else "secondary"):
+            st.session_state[yon_state_key] = "▼ Düşüş"
+            st.rerun()
 
     mor_defaults = get_val_list("mor")
     st.markdown(
-        "<p style='color: #c084fc; font-weight: bold; margin-top:10px;'>💜 Mor Alarm Seviyesi</p>",
+        "<p style='color: #c084fc; font-weight: bold; margin-top:6px;'>💜 Mor Alarm Seviyesi</p>",
         unsafe_allow_html=True,
     )
     m1, m2, m3 = st.columns(3)
-    mor_1 = m1.text_input(
-        "M1",
-        value=mor_defaults[0],
-        placeholder="1",
-        key=f"m1_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"m1_{hisse_input}",),
-    )
-    mor_2 = m2.text_input(
-        "M2",
-        value=mor_defaults[1],
-        placeholder="2",
-        key=f"m2_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"m2_{hisse_input}",),
-    )
-    mor_3 = m3.text_input(
-        "M3",
-        value=mor_defaults[2],
-        placeholder="3",
-        key=f"m3_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"m3_{hisse_input}",),
-    )
+    mor_1 = m1.text_input("M1", value=mor_defaults[0], placeholder="1", key=f"m1_{hisse_input}", label_visibility="collapsed")
+    mor_2 = m2.text_input("M2", value=mor_defaults[1], placeholder="2", key=f"m2_{hisse_input}", label_visibility="collapsed")
+    mor_3 = m3.text_input("M3", value=mor_defaults[2], placeholder="3", key=f"m3_{hisse_input}", label_visibility="collapsed")
 
     turuncu_defaults = get_val_list("turuncu")
     st.markdown(
-        "<p style='color: #fbbf24; font-weight: bold; margin-top:10px;'>💛 Sarı / Kısa Vade</p>",
+        "<p style='color: #fbbf24; font-weight: bold; margin-top:6px;'>💛 Sarı / Kısa Vade</p>",
         unsafe_allow_html=True,
     )
     s1, s2, s3 = st.columns(3)
-    sari_1 = s1.text_input(
-        "S1",
-        value=turuncu_defaults[0],
-        placeholder="1",
-        key=f"s1_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"s1_{hisse_input}",),
-    )
-    sari_2 = s2.text_input(
-        "S2",
-        value=turuncu_defaults[1],
-        placeholder="2",
-        key=f"s2_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"s2_{hisse_input}",),
-    )
-    sari_3 = s3.text_input(
-        "S3",
-        value=turuncu_defaults[2],
-        placeholder="3",
-        key=f"s3_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"s3_{hisse_input}",),
-    )
+    sari_1 = s1.text_input("S1", value=turuncu_defaults[0], placeholder="1", key=f"s1_{hisse_input}", label_visibility="collapsed")
+    sari_2 = s2.text_input("S2", value=turuncu_defaults[1], placeholder="2", key=f"s2_{hisse_input}", label_visibility="collapsed")
+    sari_3 = s3.text_input("S3", value=turuncu_defaults[2], placeholder="3", key=f"s3_{hisse_input}", label_visibility="collapsed")
 
     mavi_defaults = get_val_list("mavi")
     st.markdown(
-        "<p style='color: #60a5fa; font-weight: bold; margin-top:10px;'>💙 Mavi / Orta Bölge</p>",
+        "<p style='color: #60a5fa; font-weight: bold; margin-top:6px;'>💙 Mavi / Orta Bölge</p>",
         unsafe_allow_html=True,
     )
     mv1, mv2, mv3 = st.columns(3)
-    mavi_1 = mv1.text_input(
-        "MV1",
-        value=mavi_defaults[0],
-        placeholder="1",
-        key=f"mv1_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"mv1_{hisse_input}",),
-    )
-    mavi_2 = mv2.text_input(
-        "MV2",
-        value=mavi_defaults[1],
-        placeholder="2",
-        key=f"mv2_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"mv2_{hisse_input}",),
-    )
-    mavi_3 = mv3.text_input(
-        "MV3",
-        value=mavi_defaults[2],
-        placeholder="3",
-        key=f"mv3_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"mv3_{hisse_input}",),
-    )
+    mavi_1 = mv1.text_input("MV1", value=mavi_defaults[0], placeholder="1", key=f"mv1_{hisse_input}", label_visibility="collapsed")
+    mavi_2 = mv2.text_input("MV2", value=mavi_defaults[1], placeholder="2", key=f"mv2_{hisse_input}", label_visibility="collapsed")
+    mavi_3 = mv3.text_input("MV3", value=mavi_defaults[2], placeholder="3", key=f"mv3_{hisse_input}", label_visibility="collapsed")
 
     gri_defaults = get_val_list("gri")
     st.markdown(
-        "<p style='color: #d1d5db; font-weight: bold; margin-top:10px;'>🤍 Gri Test Bölgesi</p>",
+        "<p style='color: #d1d5db; font-weight: bold; margin-top:6px;'>🤍 Gri Test Bölgesi</p>",
         unsafe_allow_html=True,
     )
     g1, g2, g3 = st.columns(3)
-    gri_1 = g1.text_input(
-        "G1",
-        value=gri_defaults[0],
-        placeholder="1",
-        key=f"g1_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"g1_{hisse_input}",),
-    )
-    gri_2 = g2.text_input(
-        "G2",
-        value=gri_defaults[1] if len(gri_defaults) > 1 else "",
-        placeholder="2",
-        key=f"g2_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"g2_{hisse_input}",),
-    )
-    gri_3 = g3.text_input(
-        "G3",
-        value=gri_defaults[2] if len(gri_defaults) > 2 else "",
-        placeholder="3",
-        key=f"g3_{hisse_input}",
-        label_visibility="collapsed",
-        on_change=on_fiyat_change,
-        args=(f"g3_{hisse_input}",),
-    )
+    gri_1 = g1.text_input("G1", value=gri_defaults[0], placeholder="1", key=f"g1_{hisse_input}", label_visibility="collapsed")
+    gri_2 = g2.text_input("G2", value=gri_defaults[1] if len(gri_defaults) > 1 else "", placeholder="2", key=f"g2_{hisse_input}", label_visibility="collapsed")
+    gri_3 = g3.text_input("G3", value=gri_defaults[2] if len(gri_defaults) > 2 else "", placeholder="3", key=f"g3_{hisse_input}", label_visibility="collapsed")
 
-    if st.button("KAYDET / GÜNCELLE", use_container_width=True):
+    st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
+    if st.button("KAYDET / GÜNCELLE", key=f"btn_kaydet_{hisse_input}", use_container_width=True):
         if hisse_input:
+            current_arsiv = arsiv_yukle()
             bugun = datetime.now().strftime("%d.%m.%Y")
-            arsiv[hisse_input] = {
+            current_arsiv[hisse_input] = {
                 "mor": [
                     akilli_formatla(mor_1, anlik_fiyat_degeri),
                     akilli_formatla(mor_2, anlik_fiyat_degeri),
@@ -559,12 +515,18 @@ with st.sidebar:
                     akilli_formatla(gri_2, anlik_fiyat_degeri),
                     akilli_formatla(gri_3, anlik_fiyat_degeri),
                 ],
-                "yon": st.session_state.get("secilen_yon", "▲ Yükseliş"),
+                "yon": st.session_state.get(yon_state_key, "▲ Yükseliş"),
                 "tarih": bugun,
             }
-            arsiv_kaydet(arsiv)
+            arsiv_kaydet(current_arsiv)
             st.success(f"'{hisse_input}' kaydedildi ve güncellendi!")
             st.rerun()
+
+with st.sidebar:
+    @st.fragment
+    def sidebar_render():
+        form_icerigini_olustur()
+    sidebar_render()
 
 if not arsiv:
     st.info("Sol menüyü kullanarak ilk hissenizi ekleyin.")
@@ -576,7 +538,6 @@ else:
     hisseler = list(arsiv.keys())
     fiyat_sonuclari = {}
     
-    # Eşzamanlı (multi-threaded) istek havuzu ile hız artırıldı (max_workers=10)
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         futures = {executor.submit(fiyat_cek, h): h for h in hisseler}
         for future in concurrent.futures.as_completed(futures):
@@ -591,7 +552,7 @@ else:
 
         if isinstance(val, dict):
             alarm = parse_dizi_deger(val.get("mor", []))
-            yon = val.get("yon", "▲ Yükseliş")
+            yon = val.get("yon", "▲ Yükseliş").replace("-Aktif", "")
             turuncu_v = parse_dizi_deger(val.get("turuncu", []))
             mavi_v = parse_dizi_deger(val.get("mavi", []))
             gri_v = parse_dizi_deger(val.get("gri", []))
@@ -613,10 +574,11 @@ else:
         is_kiran = False
 
         if is_alarmli and fiyat > 0:
-            alarmli_sayisi += 1
             if any(fiyat >= af for af in alarm_floats):
                 is_kiran = True
                 kiran_sayisi += 1
+            else:
+                alarmli_sayisi += 1
 
         data_rows.append({
             "Hisse": hisse,
@@ -629,7 +591,7 @@ else:
             "Yuzde": f"%{yuzde:.2f}".replace(".", ","),
             "YuzdeVal": yuzde,
             "Alarm": alarm,
-            "Yon": str(yon),
+            "Yon": str(yon).replace("-Aktif", ""),
             "Turuncu": turuncu_v,
             "Mavi": mavi_v,
             "Gri": gri_v,
@@ -640,8 +602,9 @@ else:
 
     c1, c2 = st.columns(2)
     c1.metric("🚨 Alarmlı Hisseler", alarmli_sayisi)
-    c2.metric("⚡ Alarmı Kıranlar", kiran_sayisi)
-    st.markdown("<br>", unsafe_allow_html=True)
+    
+    bildirim_verisi = bildirim_durumu_yukle()
+    son_kiran_sayisi = bildirim_verisi.get("son_kiran_sayisi", 0)
 
     sekmeler = [
         "📈 Tüm Hisseler",
@@ -650,6 +613,29 @@ else:
         "⚡ Alarmı Kıranlar",
     ]
     secilen_tab = st.tabs(sekmeler)
+
+    with secilen_tab[3]:
+        if son_kiran_sayisi != kiran_sayisi:
+            bildirim_verisi["son_kiran_sayisi"] = kiran_sayisi
+            bildirim_durumu_kaydet(bildirim_verisi)
+            son_kiran_sayisi = kiran_sayisi
+
+    gosterilecek_mavi_isik = kiran_sayisi > son_kiran_sayisi
+    mavi_nokta_html = '<span class="mavi-nokta-animasyon"></span>' if gosterilecek_mavi_isik else ''
+    
+    c2.markdown(
+        f"""
+        <div style="font-size: 14px; color: #9ca3af; margin-bottom: 4px; font-weight: 600;">
+            ⚡ Alarmı Kıranlar {mavi_nokta_html}
+        </div>
+        <div style="font-size: 28px; font-weight: 800; color: #ffffff;">
+            {kiran_sayisi}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    st.markdown("<br>", unsafe_allow_html=True)
 
     def render_tab_icerigi(secilen_sekme_adi):
         arama_key = f"arama_{secilen_sekme_adi}"
@@ -667,6 +653,7 @@ else:
             use_container_width=True,
             on_click=arama_temizle,
             args=(arama_key,),
+            type="secondary",
         )
         st.markdown('</div></div>', unsafe_allow_html=True)
 
@@ -676,45 +663,9 @@ else:
             "📈 Tüm Hisseler",
         ]
 
-        if is_alarm_tab:
-            st.markdown(
-                """
-                    <div class="header-row">
-                        <div style="display: grid; grid-template-columns: 1.4fr 1.2fr 1.3fr 1.3fr 1.3fr 0.9fr 0.9fr 0.5fr; align-items: center; text-align: left;">
-                            <div>HİSSE / FİYAT</div>
-                            <div>ALARM</div>
-                            <div>KISA VADE</div>
-                            <div>ORTA / SON</div>
-                            <div>TEST EDİLEBİR</div>
-                            <div>DURUM</div>
-                            <div>TARİH</div>
-                            <div style="text-align: right;">İŞLEM</div>
-                        </div>
-                    </div>
-                """,
-                unsafe_allow_html=True,
-            )
-        else:
-            st.markdown(
-                """
-                    <div class="header-row">
-                        <div style="display: grid; grid-template-columns: 1.5fr 1.5fr 1.5fr 1.5fr 1fr 1fr 0.6fr; align-items: center; text-align: left;">
-                            <div>HİSSE / FİYAT</div>
-                            <div>KISA VADE</div>
-                            <div>ORTA / SON</div>
-                            <div>TEST EDİLEBİR</div>
-                            <div>DURUM</div>
-                            <div>TARİH</div>
-                            <div style="text-align: right;">İŞLEM</div>
-                        </div>
-                    </div>
-                """,
-                unsafe_allow_html=True,
-            )
-
         def kutu_html_uret(liste, css_class):
             if not liste:
-                return '<span class="badge badge-test">-</span>'
+                return f'<div class="badge-container"><span class="badge {css_class}">-</span></div>'
             html = '<div class="badge-container">'
             for item in liste:
                 html += f'<span class="badge {css_class}">{item}</span>'
@@ -746,6 +697,7 @@ else:
 
             if kosul_saglandi:
                 gosterilen_sayi += 1
+                
                 renk_cl = (
                     "#34d399"
                     if d["YuzdeVal"] > 0
@@ -754,72 +706,55 @@ else:
                     else "#9ca3af"
                 )
                 isaret = "+" if d["YuzdeVal"] > 0 else ""
-                yon_class = (
-                    "badge-yon-yukselis"
-                    if "Yükseliş" in d["Yon"] or "Yukarı" in d["Yon"]
-                    else "badge-yon-dusus"
-                )
 
-                if is_alarm_tab:
-                    col1, col_alarm, col2, col3, col4, col5, col6, col7 = st.columns(
-                        [1.4, 1.2, 1.3, 1.3, 1.3, 0.9, 0.9, 0.5]
-                    )
-                else:
-                    col1, col2, col3, col4, col5, col6, col7 = st.columns(
-                        [1.5, 1.5, 1.5, 1.5, 1, 1, 0.6]
-                    )
+                alarm_html = kutu_html_uret(d["Alarm"], "badge-mor") if is_alarm_tab else ""
+                kisa_html = kutu_html_uret(d["Turuncu"], "badge-kisa")
+                orta_html = kutu_html_uret(d["Mavi"], "badge-orta")
+                test_html = kutu_html_uret(d["Gri"], "badge-test")
 
-                with col1:
-                    if st.button(f"{d['Hisse']}", key=f"sec_{secilen_sekme_adi}_{d['Hisse']}"):
-                        st.session_state["secilen_hisse_hedef"] = d["Hisse"]
-                        st.rerun()
-                    st.markdown(
-                        f"""
-                                <div style="line-height: 1.2; margin-top: -8px;">
-                                    <span style="font-size: 13px; font-weight: 600; color: #d1d5db;">{d['Fiyat']} TL</span> 
-                                    <span style="font-size: 12px; font-weight: 700; color: {renk_cl};">({isaret}{d['Yuzde']})</span>
-                                </div>
-                            """,
-                        unsafe_allow_html=True,
-                    )
+                yon_class = "badge-yon-yukselis" if "Yükseliş" in d["Yon"] else "badge-yon-dusus"
+                clean_yon = d['Yon'].replace("-Aktif", "")
+                
+                card_id = f"card_{d['Hisse']}_{secilen_sekme_adi.replace(' ', '_')}"
 
-                if is_alarm_tab:
-                    with col_alarm:
-                        st.markdown(
-                            kutu_html_uret(d["Alarm"], "badge-mor"), unsafe_allow_html=True
-                        )
-
-                with col2:
-                    st.markdown(
-                        kutu_html_uret(d["Turuncu"], "badge-kisa"), unsafe_allow_html=True
-                    )
-                with col3:
-                    st.markdown(
-                        kutu_html_uret(d["Mavi"], "badge-orta"), unsafe_allow_html=True
-                    )
-                with col4:
-                    st.markdown(
-                        kutu_html_uret(d["Gri"], "badge-test"), unsafe_allow_html=True
-                    )
-                with col5:
-                    st.markdown(
-                        f'<span class="badge {yon_class}">{d["Yon"]}</span>',
-                        unsafe_allow_html=True,
-                    )
-                with col6:
-                    st.markdown(
-                        f'<span class="badge-tarih">📅 {d["Tarih"]}</span>',
-                        unsafe_allow_html=True,
-                    )
-                with col7:
-                    if st.button("🗑️", key=f"del_{secilen_sekme_adi}_{d['Hisse']}"):
-                        del arsiv[d["Hisse"]]
-                        arsiv_kaydet(arsiv)
-                        st.rerun()
-
-                st.markdown(
-                    "<hr style='margin: 8px 0; border-color: #1f2937;'>",
-                    unsafe_allow_html=True,
+                st.html(
+                    f"""
+                    <div id="{card_id}" style="background-color: #111827; border: 1.5px solid #1f2937; padding: 12px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid #1f2937; padding-bottom: 6px; flex-wrap: wrap; gap: 6px;">
+                            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                                <span style="font-size: 15px; font-weight: 800; color: #ffffff;">{d['Hisse']}</span>
+                                <span style="font-size: 13px; font-weight: 600; color: #d1d5db;">{d['Fiyat']} TL</span>
+                                <span style="font-size: 12px; font-weight: 700; color: {renk_cl};">({isaret}{d['Yuzde']})</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <a href="?secilen_hisse={d['Hisse']}" target="_self" class="badge {yon_class}">
+                                    {clean_yon}
+                                </a>
+                                <span style="font-size: 11px; color: #9ca3af;">📅 {d['Tarih']}</span>
+                                <a href="?silinecek_hisse={d['Hisse']}" onclick="
+                                    const card = document.getElementById('{card_id}');
+                                    if(card) {{
+                                        card.style.transition = 'all 0.15s ease-in';
+                                        card.style.transform = 'scale(0.85)';
+                                        card.style.opacity = '0';
+                                        setTimeout(() => {{
+                                            window.location.href = '?silinecek_hisse={d['Hisse']}';
+                                        }}, 130);
+                                    }}
+                                    event.preventDefault();
+                                " class="delete-btn" title="Sil">
+                                    🗑️
+                                </a>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; font-size: 12px;">
+                            {f'<div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">ALARM</span>{alarm_html}</div>' if is_alarm_tab else ''}
+                            <div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">KISA VADE</span>{kisa_html}</div>
+                            <div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">ORTA / SON</span>{orta_html}</div>
+                            <div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">TEST EDİLEBİR</span>{test_html}</div>
+                        </div>
+                    </div>
+                    """
                 )
 
         if gosterilen_sayi == 0:
