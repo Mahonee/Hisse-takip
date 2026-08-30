@@ -10,7 +10,7 @@ VERI_DOSYASI = "hisse_arsivi.json"
 BILDIRIM_DOSYASI = "bildirim_durumu.json"
 
 st.set_page_config(
-    page_title="Canlı Hisse and Bölge Takip Paneli",
+    page_title="Canlı Hisse ve Bölge Takip Paneli",
     page_icon="📈",
     layout="wide",
 )
@@ -25,6 +25,36 @@ components.html(
         });
     };
     setInterval(disableAutocomplete, 500);
+
+    document.addEventListener('click', function(e) {
+        const target = e.target.closest('.badge-yon-yukselis, .badge-yon-dusus');
+        if (target) {
+            setTimeout(() => {
+                const doc = window.parent.document;
+                const expandBtn = doc.querySelector('[data-testid="collapsedControl"]');
+                if (expandBtn) {
+                    expandBtn.click();
+                    return;
+                }
+                const sidebar = doc.querySelector('[data-testid="stSidebar"]');
+                if (sidebar && sidebar.getAttribute('aria-expanded') === 'false') {
+                    const altBtn = doc.querySelector('button[kind="header"], header button');
+                    if (altBtn) {
+                        altBtn.click();
+                        return;
+                    }
+                }
+                const toggleButtons = doc.querySelectorAll('button');
+                for (let btn of toggleButtons) {
+                    const svg = btn.querySelector('svg');
+                    if (svg && (btn.getAttribute('aria-label')?.includes('sidebar') || btn.getAttribute('kind') === 'header' || btn.className.includes('collapsed'))) {
+                        btn.click();
+                        break;
+                    }
+                }
+            }, 50);
+        }
+    });
     </script>
     """,
     height=0,
@@ -59,6 +89,21 @@ st.markdown(
         background-color: #111827;
         border-right: 1px solid #1f2937;
     }
+    
+    @media (max-width: 768px) {
+        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 6px !important;
+        }
+        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+            width: 33.333% !important;
+            flex: 1 1 auto !important;
+            min-width: 0 !important;
+        }
+    }
+
     [data-testid="stSidebar"] label, 
     [data-testid="stSidebar"] .stMarkdown, 
     [data-testid="stSidebar"] h1, 
@@ -94,7 +139,7 @@ st.markdown(
         border-radius: 8px !important;
         font-weight: 700 !important;
         box-shadow: 0 0 6px rgba(255, 119, 0, 0.35) !important;
-        transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        transition: background-color 0.05s ease, color 0.05s ease, border-color 0.05s ease;
         white-space: nowrap !important;
     }
     [data-testid="stSidebar"] button:hover,
@@ -102,7 +147,7 @@ st.markdown(
         background-color: #ff7700 !important;
         color: #0b0f19 !important;
         border-color: #ff7700 !important;
-        box-shadow: 0 0 12px rgba(255, 119, 0, 0.8) !important;
+        box-shadow: 0 0 10px rgba(255, 119, 0, 0.8) !important;
     }
 
     div[data-testid="stTextInput"]:has(input[aria-label="Hisse Ara"]) {
@@ -129,7 +174,9 @@ st.markdown(
     .badge-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 4px;
+        gap: 6px;
+        align-items: center;
+        overflow-x: visible;
     }
     .badge {
         display: inline-block;
@@ -137,14 +184,15 @@ st.markdown(
         border-radius: 6px;
         font-size: 11px;
         font-weight: 700;
+        white-space: nowrap;
     }
     .badge-mor { background-color: rgba(192, 132, 252, 0.15); color: #c084fc; border: 1px solid rgba(192, 132, 252, 0.3); }
     .badge-kisa { background-color: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
     .badge-orta { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
     .badge-test { background-color: rgba(156, 163, 175, 0.15); color: #d1d5db; border: 1px solid rgba(156, 163, 175, 0.3); }
     
-    .badge-yon-yukselis { background-color: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); cursor: pointer; text-decoration: none; }
-    .badge-yon-dusus { background-color: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); cursor: pointer; text-decoration: none; }
+    .badge-yon-yukselis { background-color: rgba(16, 185, 129, 0.15); color: #34d399 !important; border: 1px solid rgba(16, 185, 129, 0.3); cursor: pointer; text-decoration: none !important; }
+    .badge-yon-dusus { background-color: rgba(239, 68, 68, 0.15); color: #f87171 !important; border: 1px solid rgba(239, 68, 68, 0.3); cursor: pointer; text-decoration: none !important; }
     .badge-yon-yukselis:hover, .badge-yon-dusus:hover { opacity: 0.8; }
     
     .delete-btn {
@@ -156,70 +204,38 @@ st.markdown(
         font-size: 13px;
         font-weight: 700;
         cursor: pointer;
-        text-decoration: none;
+        text-decoration: none !important;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         line-height: 1;
+        border-bottom: none !important;
+        box-shadow: none !important;
     }
     .delete-btn:hover {
         background-color: rgba(239, 68, 68, 0.3);
         color: #ffffff;
+        border-bottom: none !important;
     }
 
     @keyframes pulse-blue {
-        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.8); }
-        70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
-        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        0% { transform: scale(0.95) translate3d(0,0,0); opacity: 1; box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.9); }
+        70% { transform: scale(1.1) translate3d(0,0,0); opacity: 0.8; box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+        100% { transform: scale(0.95) translate3d(0,0,0); opacity: 1; box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
     }
     .mavi-nokta-animasyon {
         display: inline-block;
-        width: 12px;
-        height: 12px;
+        width: 11px;
+        height: 11px;
         background-color: #3b82f6;
         border-radius: 50%;
         margin-left: 8px;
         vertical-align: middle;
-        animation: pulse-blue 1.2s infinite;
-    }
-
-    @media (max-width: 768px) {
-        [data-testid="stSidebar"] {
-            width: 300px !important;
-        }
-        [data-testid="stSidebar"] .block-container {
-            padding-left: 0.4rem !important;
-            padding-right: 0.4rem !important;
-            padding-top: 1rem !important;
-        }
-        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] {
-            display: grid !important;
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 6px !important;
-            width: 100% !important;
-        }
-        [data-testid="stSidebar"] [data-testid="column"] {
-            width: 100% !important;
-            flex: none !important;
-            min-width: 0px !important;
-            max-width: 100% !important;
-        }
-        [data-testid="stSidebar"] input {
-            padding: 2px 2px !important;
-            font-size: 11px !important;
-            height: 30px !important;
-            min-height: 30px !important;
-        }
-        [data-testid="stSidebar"] p {
-            margin-bottom: 2px !important;
-            font-size: 11px !important;
-        }
-        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] button {
-            font-size: 11px !important;
-            padding-left: 2px !important;
-            padding-right: 2px !important;
-            letter-spacing: -0.5px !important;
-        }
+        animation: pulse-blue 1s infinite ease-in-out !important;
+        -webkit-animation: pulse-blue 1s infinite ease-in-out !important;
+        will-change: transform, opacity;
+        transform: translate3d(0,0,0);
+        -webkit-transform: translate3d(0,0,0);
     }
     </style>
 """,
@@ -252,7 +268,7 @@ def bildirim_durumu_yukle():
                 return json.load(f)
         except Exception:
             pass
-    return {"son_kiran_sayisi": 0}
+    return {"son_okunan_kiran": 0}
 
 
 def bildirim_durumu_kaydet(durum):
@@ -268,7 +284,7 @@ def arama_temizle(key):
         st.session_state[key] = ""
 
 
-@st.cache_data(ttl=20, show_spinner=False)
+@st.cache_data(ttl=30, show_spinner=False)
 def fiyat_cek(hisse_kodu):
     if not hisse_kodu:
         return 0.0, 0.0
@@ -278,7 +294,7 @@ def fiyat_cek(hisse_kodu):
             url, 
             headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
         )
-        with urllib.request.urlopen(req, timeout=2.5) as response:
+        with urllib.request.urlopen(req, timeout=1.5) as response:
             data = json.loads(response.read().decode())
             results = data.get("chart", {}).get("result")
             if not results:
@@ -296,15 +312,17 @@ def fiyat_cek(hisse_kodu):
 
 def parse_dizi_deger(val):
     if isinstance(val, list):
-        items = [str(x) for x in val if str(x).strip() != "" and str(x).strip() != "-"]
+        items = [str(x).strip() for x in val if str(x).strip() != "" and str(x).strip() != "-"]
         return items if items else []
-    elif isinstance(val, str) and ("," in val or "|" in val):
-        delim = "|" if "|" in val else ","
-        items = [x.strip() for x in val.split(delim) if x.strip() != "" and x.strip() != "-"]
-        return items if items else []
-    else:
-        v = str(val).strip()
-        return [v] if v and v not in ["None", "-", ""] else []
+    elif isinstance(val, str):
+        if "," in val or "|" in val:
+            delim = "|" if "|" in val else ","
+            items = [x.strip() for x in val.split(delim) if x.strip() != "" and x.strip() != "-"]
+            return items if items else []
+        else:
+            v = val.strip()
+            return [v] if v and v not in ["None", "-", ""] else []
+    return []
 
 
 def akilli_formatla(ham_deger, guncel_fiyat=0):
@@ -316,12 +334,14 @@ def akilli_formatla(ham_deger, guncel_fiyat=0):
     sadece_rakam = "".join([c for c in ham_deger if c.isdigit()])
     if not sadece_rakam:
         return ham_deger
-    if len(sadece_rakam) <= 2:
-        sade_rakim = "0"
-        ondalik = sadece_rakam.zfill(2)
-    else:
+    
+    if len(sadece_rakam) >= 3:
         sade_rakim = sadece_rakam[:-2]
         ondalik = sadece_rakam[-2:]
+    else:
+        sade_rakim = sadece_rakam
+        ondalik = "00"
+        
     try:
         tam_kisim_int = int(sade_rakim)
         tam_kisim_formatli = f"{tam_kisim_int:,}".replace(",", ".")
@@ -347,7 +367,7 @@ if "secilen_hisse" in query_params:
 
 arsiv = arsiv_yukle()
 
-st.title("📈 Canlı Hisse and Bölge Takip Paneli")
+st.title("📈 Canlı Hisse ve Bölge Takip Paneli")
 st.markdown("---")
 
 def form_icerigini_olustur():
@@ -476,7 +496,7 @@ def form_icerigini_olustur():
     )
     mv1, mv2, mv3 = st.columns(3)
     mavi_1 = mv1.text_input("MV1", value=mavi_defaults[0], placeholder="1", key=f"mv1_{hisse_input}", label_visibility="collapsed")
-    mavi_2 = mv2.text_input("MV2", value=mavi_defaults[1], placeholder="2", key=f"mv2_{hisse_input}", label_visibility="collapsed")
+    mavi_2 = mv2.text_input("MV2", value=mavi_defaults[1], placeholder="2", key=f"mv12_{hisse_input}", label_visibility="collapsed")
     mavi_3 = mv3.text_input("MV3", value=mavi_defaults[2], placeholder="3", key=f"mv3_{hisse_input}", label_visibility="collapsed")
 
     gri_defaults = get_val_list("gri")
@@ -520,6 +540,27 @@ def form_icerigini_olustur():
             }
             arsiv_kaydet(current_arsiv)
             st.success(f"'{hisse_input}' kaydedildi ve güncellendi!")
+            
+            components.html(
+                """
+                <script>
+                const doc = window.parent.document;
+                const closeBtn = doc.querySelector('[data-testid="collapsedControl"]');
+                const sidebar = doc.querySelector('[data-testid="stSidebar"]');
+                if (sidebar && sidebar.getAttribute('aria-expanded') === 'true') {
+                    const toggleBtns = doc.querySelectorAll('button');
+                    for (let btn of toggleBtns) {
+                        const ariaLabel = btn.getAttribute('aria-label') || '';
+                        if (ariaLabel.includes('sidebar') || ariaLabel.includes('Collapse')) {
+                            btn.click();
+                            break;
+                        }
+                    }
+                }
+                </script>
+                """,
+                height=0,
+            )
             st.rerun()
 
 with st.sidebar:
@@ -538,7 +579,7 @@ else:
     hisseler = list(arsiv.keys())
     fiyat_sonuclari = {}
     
-    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
         futures = {executor.submit(fiyat_cek, h): h for h in hisseler}
         for future in concurrent.futures.as_completed(futures):
             h = futures[future]
@@ -564,7 +605,8 @@ else:
         alarm_floats = []
         for a in alarm:
             try:
-                f_val = float(str(a).replace(".", "").replace(",", "."))
+                clean_str = str(a).replace(".", "").replace(",", ".")
+                f_val = float(clean_str)
                 if f_val > 0:
                     alarm_floats.append(f_val)
             except Exception:
@@ -603,30 +645,16 @@ else:
     c1, c2 = st.columns(2)
     c1.metric("🚨 Alarmlı Hisseler", alarmli_sayisi)
     
-    bildirim_verisi = bildirim_durumu_yukle()
-    son_kiran_sayisi = bildirim_verisi.get("son_kiran_sayisi", 0)
+    bildirim_durumu = bildirim_durumu_yukle()
+    son_okunan = bildirim_durumu.get("son_okunan_kiran", 0)
 
-    sekmeler = [
-        "📈 Tüm Hisseler",
-        "📋 Hisseler",
-        "🚨 Alarmlı Hisseler",
-        "⚡ Alarmı Kıranlar",
-    ]
-    secilen_tab = st.tabs(sekmeler)
-
-    with secilen_tab[3]:
-        if son_kiran_sayisi != kiran_sayisi:
-            bildirim_verisi["son_kiran_sayisi"] = kiran_sayisi
-            bildirim_durumu_kaydet(bildirim_verisi)
-            son_kiran_sayisi = kiran_sayisi
-
-    gosterilecek_mavi_isik = kiran_sayisi > son_kiran_sayisi
+    gosterilecek_mavi_isik = kiran_sayisi > son_okunan
     mavi_nokta_html = '<span class="mavi-nokta-animasyon"></span>' if gosterilecek_mavi_isik else ''
-    
+
     c2.markdown(
         f"""
-        <div style="font-size: 14px; color: #9ca3af; margin-bottom: 4px; font-weight: 600;">
-            ⚡ Alarmı Kıranlar {mavi_nokta_html}
+        <div style="font-size: 14px; color: #9ca3af; margin-bottom: 4px; font-weight: 600; display: flex; align-items: center;">
+            <span>⚡ Alarmı Kıranlar</span> {mavi_nokta_html}
         </div>
         <div style="font-size: 28px; font-weight: 800; color: #ffffff;">
             {kiran_sayisi}
@@ -637,129 +665,142 @@ else:
     
     st.markdown("<br>", unsafe_allow_html=True)
 
-    def render_tab_icerigi(secilen_sekme_adi):
-        arama_key = f"arama_{secilen_sekme_adi}"
-        
-        arama_kriteri = (
-            st.text_input("Hisse Ara", key=arama_key, placeholder="Hisse Ara...")
-            .strip()
-            .upper()
-        )
+    tab1, tab2, tab3, tab4 = st.tabs([
+        "📈 Tüm Hisseler",
+        "📋 Hisseler",
+        "🚨 Alarmlı Hisseler",
+        "⚡ Alarmı Kıranlar"
+    ])
 
-        st.markdown('<div class="clear-btn-wrapper"><div class="clear-btn-container">', unsafe_allow_html=True)
-        st.button(
-            "🧹 ARAMAYI TEMİZLE",
-            key=f"btn_clear_{secilen_sekme_adi}",
-            use_container_width=True,
-            on_click=arama_temizle,
-            args=(arama_key,),
-            type="secondary",
-        )
-        st.markdown('</div></div>', unsafe_allow_html=True)
+    sekmeler = [
+        ("📈 Tüm Hisseler", tab1, 0),
+        ("📋 Hisseler", tab2, 1),
+        ("🚨 Alarmlı Hisseler", tab3, 2),
+        ("⚡ Alarmı Kıranlar", tab4, 3)
+    ]
 
-        is_alarm_tab = secilen_sekme_adi in [
-            "🚨 Alarmlı Hisseler",
-            "⚡ Alarmı Kıranlar",
-            "📈 Tüm Hisseler",
-        ]
+    for sekme_adi, sekme_nesnesi, sekme_index in sekmeler:
+        with sekme_nesnesi:
+            if sekme_adi == "⚡ Alarmı Kıranlar":
+                if son_okunan != kiran_sayisi:
+                    bildirim_durumu["son_okunan_kiran"] = kiran_sayisi
+                    bildirim_durumu_kaydet(bildirim_durumu)
 
-        def kutu_html_uret(liste, css_class):
-            if not liste:
-                return f'<div class="badge-container"><span class="badge {css_class}">-</span></div>'
-            html = '<div class="badge-container">'
-            for item in liste:
-                html += f'<span class="badge {css_class}">{item}</span>'
-            html += "</div>"
-            return html
+            arama_key = f"arama_{sekme_adi}"
+            
+            arama_kriteri = (
+                st.text_input("Hisse Ara", key=arama_key, placeholder="Hisse Ara...")
+                .strip()
+                .upper()
+            )
 
-        gosterilen_sayi = 0
-        for d in data_rows:
-            kosul_saglandi = False
-            if secilen_sekme_adi == "📈 Tüm Hisseler":
-                kosul_saglandi = True
-            elif secilen_sekme_adi == "📋 Hisseler" and not d["is_alarmli"]:
-                kosul_saglandi = True
-            elif (
-                secilen_sekme_adi == "🚨 Alarmlı Hisseler"
-                and d["is_alarmli"]
-                and not d["is_kiran"]
-            ):
-                kosul_saglandi = True
-            elif (
-                secilen_sekme_adi == "⚡ Alarmı Kıranlar"
-                and d["is_alarmli"]
-                and d["is_kiran"]
-            ):
-                kosul_saglandi = True
+            st.markdown('<div class="clear-btn-wrapper"><div class="clear-btn-container">', unsafe_allow_html=True)
+            st.button(
+                "🧹 ARAMAYI TEMİZLE",
+                key=f"btn_clear_{sekme_adi}",
+                use_container_width=True,
+                on_click=arama_temizle,
+                args=(arama_key,),
+                type="secondary",
+            )
+            st.markdown('</div></div>', unsafe_allow_html=True)
 
-            if arama_kriteri and arama_kriteri not in d["Hisse"]:
+            is_alarm_tab = sekme_adi in [
+                "📈 Tüm Hisseler",
+                "🚨 Alarmlı Hisseler",
+                "⚡ Alarmı Kıranlar",
+            ]
+
+            def kutu_html_uret(liste, css_class):
+                temiz_liste = [str(x).strip() for x in liste if str(x).strip() not in ["", "-", "None"]]
+                if not temiz_liste:
+                    return f'<div class="badge-container"><span class="badge {css_class}">-</span></div>'
+                html = '<div class="badge-container">'
+                for item in temiz_liste:
+                    html += f'<span class="badge {css_class}">{item}</span>'
+                html += '</div>'
+                return html
+
+            gosterilen_sayi = 0
+            for d in data_rows:
                 kosul_saglandi = False
+                if sekme_adi == "📈 Tüm Hisseler":
+                    kosul_saglandi = True
+                elif sekme_adi == "📋 Hisseler" and not d["is_alarmli"]:
+                    kosul_saglandi = True
+                elif (
+                    sekme_adi == "🚨 Alarmlı Hisseler"
+                    and d["is_alarmli"]
+                    and not d["is_kiran"]
+                ):
+                    kosul_saglandi = True
+                elif (
+                    sekme_adi == "⚡ Alarmı Kıranlar"
+                    and d["is_alarmli"]
+                    and d["is_kiran"]
+                ):
+                    kosul_saglandi = True
 
-            if kosul_saglandi:
-                gosterilen_sayi += 1
-                
-                renk_cl = (
-                    "#34d399"
-                    if d["YuzdeVal"] > 0
-                    else "#f87171"
-                    if d["YuzdeVal"] < 0
-                    else "#9ca3af"
-                )
-                isaret = "+" if d["YuzdeVal"] > 0 else ""
+                if arama_kriteri and arama_kriteri not in d["Hisse"]:
+                    kosul_saglandi = False
 
-                alarm_html = kutu_html_uret(d["Alarm"], "badge-mor") if is_alarm_tab else ""
-                kisa_html = kutu_html_uret(d["Turuncu"], "badge-kisa")
-                orta_html = kutu_html_uret(d["Mavi"], "badge-orta")
-                test_html = kutu_html_uret(d["Gri"], "badge-test")
+                if kosul_saglandi:
+                    gosterilen_sayi += 1
+                    
+                    renk_cl = (
+                        "#34d399"
+                        if d["YuzdeVal"] > 0
+                        else "#f87171"
+                        if d["YuzdeVal"] < 0
+                        else "#9ca3af"
+                    )
+                    isaret = "+" if d["YuzdeVal"] > 0 else ""
 
-                yon_class = "badge-yon-yukselis" if "Yükseliş" in d["Yon"] else "badge-yon-dusus"
-                clean_yon = d['Yon'].replace("-Aktif", "")
-                
-                card_id = f"card_{d['Hisse']}_{secilen_sekme_adi.replace(' ', '_')}"
+                    alarm_html = kutu_html_uret(d["Alarm"], "badge-mor") if is_alarm_tab else ""
+                    kisa_html = kutu_html_uret(d["Turuncu"], "badge-kisa")
+                    orta_html = kutu_html_uret(d["Mavi"], "badge-orta")
+                    test_html = kutu_html_uret(d["Gri"], "badge-test")
 
-                st.html(
-                    f"""
-                    <div id="{card_id}" style="background-color: #111827; border: 1.5px solid #1f2937; padding: 12px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid #1f2937; padding-bottom: 6px; flex-wrap: wrap; gap: 6px;">
-                            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; min-width: 0; overflow: hidden;">
-                                <span style="font-size: 15px; font-weight: 800; color: #ffffff; white-space: nowrap;">{d['Hisse']}</span>
-                                <span style="font-size: 12px; font-weight: 600; color: #d1d5db; white-space: nowrap;">{d['Fiyat']} TL</span>
-                                <span style="font-size: 11px; font-weight: 700; color: {renk_cl}; white-space: nowrap;">({isaret}{d['Yuzde']})</span>
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
-                                <a href="?secilen_hisse={d['Hisse']}" target="_self" class="badge {yon_class}">
-                                    {clean_yon}
-                                </a>
-                                <span style="font-size: 11px; color: #9ca3af; white-space: nowrap;">📅 {d['Tarih']}</span>
-                                <a href="?silinecek_hisse={d['Hisse']}" onclick="
-                                    const card = document.getElementById('{card_id}');
-                                    if(card) {{
-                                        card.style.transition = 'all 0.15s ease-in';
-                                        card.style.transform = 'scale(0.85)';
-                                        card.style.opacity = '0';
-                                        setTimeout(() => {{
-                                            window.location.href = '?silinecek_hisse={d['Hisse']}';
-                                        }}, 130);
-                                    }}
-                                    event.preventDefault();
-                                " class="delete-btn" title="Sil">
-                                    🗑️
-                                </a>
-                            </div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; font-size: 12px;">
-                            {f'<div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">ALARM</span>{alarm_html}</div>' if is_alarm_tab else ''}
-                            <div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">KISA VADE</span>{kisa_html}</div>
-                            <div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">ORTA / SON</span>{orta_html}</div>
-                            <div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">TEST EDİLEBİR</span>{test_html}</div>
-                        </div>
-                    </div>
-                    """
-                )
+                    yon_class = "badge-yon-yukselis" if "Yükseliş" in d["Yon"] else "badge-yon-dusus"
+                    clean_yon = d['Yon'].replace("-Aktif", "")
+                    
+                    card_id = f"card_{d['Hisse']}_{sekme_index}"
+                    card_border_style = "border: 1.5px solid #1f2937;"
 
-        if gosterilen_sayi == 0:
-            st.info("Aradığınız kriterlere uygun hisse bulunamadı.")
+                    alarm_bolumu_html = f'<div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">ALARM</span>{alarm_html}</div>' if is_alarm_tab else ''
 
-    for idx, tab_adi in enumerate(sekmeler):
-        with secilen_tab[idx]:
-            render_tab_icerigi(tab_adi)
+                    link_url = f"?secilen_hisse={d['Hisse']}&tab={sekme_index}"
+                    sil_url = f"?silinecek_hisse={d['Hisse']}&tab={sekme_index}"
+                    
+                    onclick_sil = (
+                        f"const card = document.getElementById('{card_id}');"
+                        f"if(card) {{ card.style.transform = 'scaleY(0)'; card.style.opacity = '0'; card.style.margin = '0'; card.style.padding = '0'; "
+                        f"setTimeout(() => {{ window.location.href = '{sil_url}'; }}, 100); }}"
+                        f"event.preventDefault();"
+                    )
+
+                    kart_html = (
+                        f'<div id="{card_id}" style="background-color: #111827; {card_border_style} padding: 12px; border-radius: 10px; margin-bottom: 15px; transition: all 0.15s ease-out; transform-origin: top center;">'
+                        f'<div class="hisse-card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid #1f2937; padding-bottom: 6px; flex-wrap: wrap; gap: 6px;">'
+                        f'<div style="display: flex; align-items: center; gap: 6px; flex-wrap: nowrap; min-width: 0; overflow: hidden;">'
+                        f'<span style="font-size: 15px; font-weight: 800; color: #ffffff; white-space: nowrap;">{d["Hisse"]}</span>'
+                        f'<span style="font-size: 12px; font-weight: 600; color: #d1d5db; white-space: nowrap;">{d["Fiyat"]} TL</span>'
+                        f'<span style="font-size: 11px; font-weight: 700; color: {renk_cl}; white-space: nowrap;">({isaret}{d["Yuzde"]})</span>'
+                        f'</div>'
+                        f'<div class="hisse-card-actions" style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">'
+                        f'<a href="{link_url}" target="_self" class="badge {yon_class}" onclick="sessionStorage.setItem(\'hedefHisse\', \'{d["Hisse"]}\');">{clean_yon}</a>'
+                        f'<span style="font-size: 11px; color: #9ca3af; white-space: nowrap;">📅 {d["Tarih"]}</span>'
+                        f'<a href="{sil_url}" onclick="{onclick_sil}" class="delete-btn" title="Sil">🗑️</a>'
+                        f'</div></div>'
+                        f'<div class="hisse-grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; font-size: 12px;">'
+                        f'{alarm_bolumu_html}'
+                        f'<div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">KISA VADE</span>{kisa_html}</div>'
+                        f'<div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">ORTA / SON</span>{orta_html}</div>'
+                        f'<div><span style="color: #9ca3af; font-weight:600; display:block; margin-bottom:2px;">TEST EDİLEBİR</span>{test_html}</div>'
+                        f'</div></div>'
+                    )
+
+                    st.markdown(kart_html, unsafe_allow_html=True)
+
+            if gosterilen_sayi == 0:
+                st.info("Aradığınız kriterlere uygun hisse bulunamadı.")
