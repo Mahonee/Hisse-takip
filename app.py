@@ -25,7 +25,6 @@ components.html(
     meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
     window.parent.document.head.appendChild(meta);
     
-    // Mobil cihazlarda parmakla zoom yapmayı (pinch-to-zoom) tamamen engelle
     window.parent.document.addEventListener('touchstart', function(event) {
         if (event.touches.length > 1) {
             event.preventDefault();
@@ -122,7 +121,6 @@ st.markdown(
         --gri: #95a5a6;
     }
 
-    /* Üst boşluğu daraltma ama Streamlit'in orijinal sol menü/header butonunu görünür tutma */
     .block-container {
         padding-top: 1rem !important;
         padding-bottom: 0rem !important;
@@ -680,6 +678,19 @@ if "secilen_hisse" in query_params:
 
 arsiv = arsiv_yukle()
 
+# Canlı fiyatları önceden toplu çekelim ki kopyalama metninde güncel fiyatlar eksiksiz yer alsın
+anlik_fiyatlar_cache = {}
+if arsiv:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+        futures = {executor.submit(fiyat_cek, h): h for h in arsiv.keys()}
+        for future in concurrent.futures.as_completed(futures):
+            h = futures[future]
+            try:
+                f, y = future.result()
+                anlik_fiyatlar_cache[h] = (f, y)
+            except Exception:
+                anlik_fiyatlar_cache[h] = (None, None)
+
 tum_hisseler_metin = ""
 if arsiv:
     tmp_list = []
@@ -691,7 +702,16 @@ if arsiv:
         h_mavi = ", ".join([str(x) for x in h_val.get("mavi", []) if str(x).strip() and str(x).strip() != "-"])
         h_gri = ", ".join([str(x) for x in h_val.get("gri", []) if str(x).strip() and str(x).strip() != "-"])
         
-        satir = f"Hisse: {h_kodu} | Yön: {h_yon} | Tarih: {h_tarih}\nAlarm: [{h_mor}] | Kısa: [{h_turuncu}] | Orta: [{h_mavi}] | Test: [{h_gri}]\n"
+        fiyat_val, yuzde_val = anlik_fiyatlar_cache.get(h_kodu, (None, None))
+        if fiyat_val is not None:
+            fiyat_str = f"{fiyat_val:,.2f} TL".replace(",", "X").replace(".", ",").replace("X", ".")
+            yuzde_isaret = "+" if yuzde_val > 0 else ""
+            yuzde_str = f"({yuzde_isaret}%{yuzde_val:.2f})".replace(".", ",")
+            h_guncel_fiyat_bilgi = f"Fiyat: {fiyat_str} {yuzde_str}"
+        else:
+            h_guncel_fiyat_bilgi = "Fiyat: Veri Yok"
+
+        satir = f"Hisse: {h_kodu} | {h_guncel_fiyat_bilgi} | Yön: {h_yon} | Tarih: {h_tarih}\nAlarm: [{h_mor}] | Kısa: [{h_turuncu}] | Orta: [{h_mavi}] | Test: [{h_gri}]\n"
         tmp_list.append(satir)
     tum_hisseler_metin = "\n".join(tmp_list)
 
@@ -946,17 +966,7 @@ else:
     alarmli_sayisi = 0
     kiran_sayisi = 0
 
-    hisseler = list(arsiv.keys())
-    fiyat_sonuclari = {}
-    
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
-        futures = {executor.submit(fiyat_cek, h): h for h in hisseler}
-        for future in concurrent.futures.as_completed(futures):
-            h = futures[future]
-            try:
-                fiyat_sonuclari[h] = future.result()
-            except Exception:
-                fiyat_sonuclari[h] = (None, None)
+    fiyat_sonuclari = anlik_fiyatlar_cache
 
     for hisse, val in arsiv.items():
         fiyat, yuzde = fiyat_sonuclari.get(hisse, (None, None))
