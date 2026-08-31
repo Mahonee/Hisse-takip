@@ -929,6 +929,19 @@ def form_icerigini_olustur():
                 "tarih": bugun,
             }
             arsiv_kaydet(current_arsiv)
+            
+            # Form alanlarını ve session state'i tamamen sıfırla
+            keys_to_clear = [
+                input_key, son_hisse_key, yon_state_key,
+                f"m1_{hisse_input}", f"m2_{hisse_input}", f"m3_{hisse_input}",
+                f"s1_{hisse_input}", f"s2_{hisse_input}", f"s3_{hisse_input}",
+                f"mv1_{hisse_input}", f"mv12_{hisse_input}", f"mv3_{hisse_input}",
+                f"g1_{hisse_input}", f"g2_{hisse_input}", f"g3_{hisse_input}"
+            ]
+            for k in keys_to_clear:
+                if k in st.session_state:
+                    del st.session_state[k]
+
             st.success(f"'{hisse_input}' kaydedildi ve güncellendi!")
             
             components.html(
