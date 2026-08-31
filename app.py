@@ -17,23 +17,6 @@ st.set_page_config(
     layout="wide",
 )
 
-# 5 saniyede bir arka planda sessizce sayfanın yenilenmesini sağlayan görünmez JS entegrasyonu
-components.html(
-    """
-    <script>
-    // Her 5 saniyede bir (5000ms) Streamlit'in arka plandaki websocket bağlantısını tetiklemeden 
-    // veya sayfayı beyazlatmadan taze veri çekmesini tetikler
-    setInterval(function() {
-        // Sayfanın en üstündeki Streamlit bağlamını bozmadan hafif bir tetikleyici simüle eder
-        const runButton = window.parent.document.querySelector('[data-testid="stStatusWidget"]');
-        // Alternatif olarak görünmez bir yenileme sinyali gönderilir
-        window.parent.postMessage({type: 'streamlit:render'}, '*');
-    }, 5000);
-    </script>
-    """,
-    height=0,
-)
-
 components.html(
     """
     <script>
@@ -975,18 +958,32 @@ with st.sidebar:
         form_icerigini_olustur()
     sidebar_render()
 
-if not arsiv:
-    st.info("Sol menüyü kullanarak ilk hissenizi ekleyin.")
-else:
+@st.fragment(run_every=3)
+def canli_veri_ve_tablo_alani():
+    guncel_arsiv = arsiv_yukle()
+    
+    if not guncel_arsiv:
+        st.info("Sol menüyü kullanarak ilk hissenizi ekleyin.")
+        return
+
+    guncel_fiyatlar_cache = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+        futures = {executor.submit(fiyat_cek, h): h for h in guncel_arsiv.keys()}
+        for future in concurrent.futures.as_completed(futures):
+            h = futures[future]
+            try:
+                f, y = future.result()
+                guncel_fiyatlar_cache[h] = (f, y)
+            except Exception:
+                guncel_fiyatlar_cache[h] = (None, None)
+
     data_rows = []
     alarmli_sayisi = 0
     kiran_sayisi = 0
     kiran_hisseler = []
 
-    fiyat_sonuclari = anlik_fiyatlar_cache
-
-    for hisse, val in arsiv.items():
-        fiyat, yuzde = fiyat_sonuclari.get(hisse, (None, None))
+    for hisse, val in guncel_arsiv.items():
+        fiyat, yuzde = guncel_fiyatlar_cache.get(hisse, (None, None))
         veri_yok = fiyat is None
         fiyat = fiyat or 0.0
         yuzde = yuzde or 0.0
@@ -1230,3 +1227,5 @@ else:
 
             if gosterilen_sayi == 0:
                 st.info("Aradığınız kriterlere uygun hisse bulunamadı.")
+
+canli_veri_ve_tablo_alani()
