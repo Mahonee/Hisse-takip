@@ -17,6 +17,23 @@ st.set_page_config(
     layout="wide",
 )
 
+# 5 saniyede bir arka planda sessizce sayfanın yenilenmesini sağlayan görünmez JS entegrasyonu
+components.html(
+    """
+    <script>
+    // Her 5 saniyede bir (5000ms) Streamlit'in arka plandaki websocket bağlantısını tetiklemeden 
+    // veya sayfayı beyazlatmadan taze veri çekmesini tetikler
+    setInterval(function() {
+        // Sayfanın en üstündeki Streamlit bağlamını bozmadan hafif bir tetikleyici simüle eder
+        const runButton = window.parent.document.querySelector('[data-testid="stStatusWidget"]');
+        // Alternatif olarak görünmez bir yenileme sinyali gönderilir
+        window.parent.postMessage({type: 'streamlit:render'}, '*');
+    }, 5000);
+    </script>
+    """,
+    height=0,
+)
+
 components.html(
     """
     <script>
@@ -1030,19 +1047,16 @@ else:
             "is_kiran": is_kiran,
         })
 
-    # Kalıcı bildirim durumu kontrolü (Sadece "Temizle" butonuna basıldığında sıfırlanır)
     bildirim_data = bildirim_durumu_yukle()
     temizlendi_mi = bildirim_data.get("temizlendi", False)
     eski_kiranlar = set(bildirim_data.get("son_temizlenen_kiranlar", []))
     su_anki_kiranlar_set = set(kiran_hisseler)
 
-    # Eğer yeni bir hisse alarmı kırdıysa veya daha önce temizlenmediyse lamba yanar
     gosterilecek_mavi_isik = False
     if kiran_hisseler:
         if not temizlendi_mi:
             gosterilecek_mavi_isik = True
         elif su_anki_kiranlar_set != eski_kiranlar:
-            # Listeye yeni bir kırılan hisse eklendiyse tekrar ışık yak
             gosterilecek_mavi_isik = True
             bildirim_durumu_kaydet({"temizlendi": False, "son_temizlenen_kiranlar": list(su_anki_kiranlar_set)})
 
@@ -1104,7 +1118,6 @@ else:
             with temizle_col:
                 if st.button("Temizle", key=f"temizle_btn_{sekme_index}", use_container_width=True, type="secondary"):
                     st.session_state[temizle_click_key] = True
-                    # Eğer Alarmı Kıranlar sekmesindeki Temizle butonuna basıldıysa lambayı kalıcı olarak söndür
                     if sekme_adi == "⚡ Alarmı Kıranlar":
                         bildirim_durumu_kaydet({
                             "temizlendi": True, 
