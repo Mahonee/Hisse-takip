@@ -582,7 +582,7 @@ def bildirim_durumu_yukle():
                 return json.load(f)
         except Exception:
             pass
-    return {"son_okunan_kiran": 0}
+    return {"temizlendi": False, "son_temizlenen_kiranlar": []}
 
 
 def bildirim_durumu_kaydet(durum):
@@ -678,7 +678,6 @@ if "secilen_hisse" in query_params:
 
 arsiv = arsiv_yukle()
 
-# Canlı fiyatları önceden toplu çekelim ki kopyalama metninde güncel fiyatlar eksiksiz yer alsın
 anlik_fiyatlar_cache = {}
 if arsiv:
     with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
@@ -965,6 +964,7 @@ else:
     data_rows = []
     alarmli_sayisi = 0
     kiran_sayisi = 0
+    kiran_hisseler = []
 
     fiyat_sonuclari = anlik_fiyatlar_cache
 
@@ -1002,6 +1002,7 @@ else:
             if any(fiyat >= af for af in alarm_floats):
                 is_kiran = True
                 kiran_sayisi += 1
+                kiran_hisseler.append(hisse)
             else:
                 alarmli_sayisi += 1
         elif is_alarmli:
@@ -1029,9 +1030,22 @@ else:
             "is_kiran": is_kiran,
         })
 
-    bildirim_durumu = bildirim_durumu_yukle()
-    son_okunan = bildirim_durumu.get("son_okunan_kiran", 0)
-    gosterilecek_mavi_isik = kiran_sayisi > son_okunan
+    # Kalıcı bildirim durumu kontrolü (Sadece "Temizle" butonuna basıldığında sıfırlanır)
+    bildirim_data = bildirim_durumu_yukle()
+    temizlendi_mi = bildirim_data.get("temizlendi", False)
+    eski_kiranlar = set(bildirim_data.get("son_temizlenen_kiranlar", []))
+    su_anki_kiranlar_set = set(kiran_hisseler)
+
+    # Eğer yeni bir hisse alarmı kırdıysa veya daha önce temizlenmediyse lamba yanar
+    gosterilecek_mavi_isik = False
+    if kiran_hisseler:
+        if not temizlendi_mi:
+            gosterilecek_mavi_isik = True
+        elif su_anki_kiranlar_set != eski_kiranlar:
+            # Listeye yeni bir kırılan hisse eklendiyse tekrar ışık yak
+            gosterilecek_mavi_isik = True
+            bildirim_durumu_kaydet({"temizlendi": False, "son_temizlenen_kiranlar": list(su_anki_kiranlar_set)})
+
     mavi_nokta_html = '<span class="mavi-nokta-animasyon"></span>' if gosterilecek_mavi_isik else ''
 
     st.markdown(
@@ -1070,11 +1084,6 @@ else:
 
     for sekme_adi, sekme_nesnesi, sekme_index in sekmeler:
         with sekme_nesnesi:
-            if sekme_adi == "⚡ Alarmı Kıranlar":
-                if son_okunan != kiran_sayisi:
-                    bildirim_durumu["son_okunan_kiran"] = kiran_sayisi
-                    bildirim_durumu_kaydet(bildirim_durumu)
-
             arama_key = f"arama_{sekme_adi}"
             temizle_click_key = f"temizle_tiklandi_{sekme_index}"
 
@@ -1095,6 +1104,12 @@ else:
             with temizle_col:
                 if st.button("Temizle", key=f"temizle_btn_{sekme_index}", use_container_width=True, type="secondary"):
                     st.session_state[temizle_click_key] = True
+                    # Eğer Alarmı Kıranlar sekmesindeki Temizle butonuna basıldıysa lambayı kalıcı olarak söndür
+                    if sekme_adi == "⚡ Alarmı Kıranlar":
+                        bildirim_durumu_kaydet({
+                            "temizlendi": True, 
+                            "son_temizlenen_kiranlar": kiran_hisseler
+                        })
                     st.rerun()
 
             is_alarm_tab = sekme_adi in [
