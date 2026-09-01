@@ -10,6 +10,7 @@ import streamlit.components.v1 as components
 
 VERI_DOSYASI = "hisse_arsivi.json"
 BILDIRIM_DOSYASI = "bildirim_durumu.json"
+SIFRE_KORUMASI = "1111"  # Buradan istediğin şifreyi belirleyebilirsin
 
 st.set_page_config(
     page_title="Canlı Hisse and Bölge Takip Paneli",
@@ -247,20 +248,6 @@ st.markdown(
         color: var(--metin) !important;
         letter-spacing: 0.2px;
     }
-    
-    @media (max-width: 768px) {
-        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            gap: 6px !important;
-        }
-        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
-            width: 50% !important;
-            flex: 1 1 auto !important;
-            min-width: 0 !important;
-        }
-    }
 
     [data-testid="stSidebar"] label, 
     [data-testid="stSidebar"] .stMarkdown {
@@ -338,19 +325,15 @@ st.markdown(
         border-color: var(--altin-parlak) !important;
         box-shadow: var(--neon-golge-hover) !important;
     }
-    [data-testid="stSidebar"] button[kind="primary"] {
-        background-color: rgba(255, 122, 26, 0.18) !important;
-        color: var(--altin-parlak) !important;
-        border-color: var(--altin-parlak) !important;
-        box-shadow: var(--neon-golge-hover) !important;
-    }
 
     div[data-testid="stTextInput"]:has(input[aria-label="Hisse Ara"]) input {
         border: 1.5px solid var(--altin) !important;
-        border-radius: 6px !important;
+        border-radius: 8px !important;
         box-shadow: var(--neon-golge) !important;
         background-color: var(--yuzey-alt) !important;
         color: var(--metin) !important;
+        height: 34px !important;
+        min-height: 34px !important;
     }
     div[data-testid="stTextInput"]:has(input[aria-label="Hisse Ara"]) input:focus {
         border-color: var(--altin-parlak) !important;
@@ -755,7 +738,7 @@ st.markdown(
     """
     <div class="baslik-kapsayici">
         <div>
-            <h1 style="margin: 0; padding: 0; font-size: 1.7rem;">Canlı Hisse ve Bölge Takip Paneli</h1>
+            <h1 style="margin: 0; padding: 0; font-size: 1.7rem;">Canlı Hisse and Bölge Takip Paneli</h1>
         </div>
     </div>
     """,
@@ -1199,6 +1182,73 @@ def canli_veri_ve_tablo_alani():
 
     for sekme_adi, sekme_nesnesi, sekme_index in sekmeler:
         with sekme_nesnesi:
+            
+            if sekme_adi == "⭐ Hisselerim":
+                if "hisselerim_giris_yapildi" not in st.session_state:
+                    st.session_state["hisselerim_giris_yapildi"] = False
+
+                if not st.session_state["hisselerim_giris_yapildi"]:
+                    st.markdown(
+                        """
+                        <style>
+                        div[data-testid="stForm"] {
+                            background: linear-gradient(145deg, #15171b, #0c0d10) !important;
+                            border: 1.5px solid #ff7a1a !important;
+                            border-radius: 12px !important;
+                            padding: 16px 18px !important;
+                            max-width: 280px !important;
+                            margin: 0 auto !important;
+                            box-shadow: 0 0 12px rgba(255, 122, 26, 0.25) !important;
+                        }
+                        div[data-testid="stForm"] div[data-testid="stTextInput"] button {
+                            display: none !important;
+                        }
+                        div[data-testid="stForm"] input {
+                            background-color: #1a1c21 !important;
+                            color: #e9e6df !important;
+                            border: 1.5px solid #ff7a1a !important;
+                            border-radius: 6px !important;
+                            text-align: center !important;
+                            font-size: 13px !important;
+                            box-shadow: 0 0 6px rgba(255, 122, 26, 0.45) !important;
+                        }
+                        div[data-testid="stForm"] button {
+                            width: 100% !important;
+                            background-color: #1a1c21 !important;
+                            color: #e9e6df !important;
+                            border: 1.5px solid #ff7a1a !important;
+                            border-radius: 6px !important;
+                            font-weight: 600 !important;
+                            font-size: 12px !important;
+                            cursor: pointer !important;
+                            box-shadow: 0 0 6px rgba(255, 122, 26, 0.45) !important;
+                        }
+                        </style>
+                        """,
+                        unsafe_allow_html=True,
+                    )
+
+                    with st.form("hisselerim_sifre_formu"):
+                        st.markdown(
+                            """
+                            <div style="text-align: center;">
+                                <div style="font-size: 20px; margin-bottom: 4px; filter: drop-shadow(0 0 5px rgba(255, 122, 26, 0.6));">🔒</div>
+                                <div style="font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700; color: #e9e6df; letter-spacing: 0.6px; margin-bottom: 12px;">ŞİFRE GİRİŞİ</div>
+                            </div>
+                            """,
+                            unsafe_allow_html=True
+                        )
+                        girilen_sifre = st.text_input("Şifre", type="password", placeholder="", label_visibility="collapsed")
+                        submitted = st.form_submit_button("GİRİŞ YAP", use_container_width=True)
+
+                        if submitted:
+                            if girilen_sifre == SIFRE_KORUMASI:
+                                st.session_state["hisselerim_giris_yapildi"] = True
+                                st.rerun()
+                            else:
+                                st.error("Hatalı şifre!")
+                    continue
+
             arama_key = f"arama_{sekme_adi}"
             temizle_click_key = f"temizle_tiklandi_{sekme_index}"
 
@@ -1334,7 +1384,7 @@ def canli_veri_ve_tablo_alani():
                         f'<div class="hisse-grid-icerik">'
                         f'{alarm_bolumu_html}'
                         f'<div><span class="grup-etiket">KISA VADE</span>{kisa_html}</div>'
-                        f'<div><span class="grup-etiket">ORTA / SON</span>{orta_html}</div>'
+                        f'<div><span class="grup-etiket">ORTA BÖLGE</span>{orta_html}</div>'
                         f'<div><span class="grup-etiket">TEST EDİLEBİR</span>{test_html}</div>'
                         f'</div></div>'
                     )
