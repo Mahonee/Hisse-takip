@@ -248,6 +248,20 @@ st.markdown(
         color: var(--metin) !important;
         letter-spacing: 0.2px;
     }
+    
+    @media (max-width: 768px) {
+        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+            gap: 6px !important;
+        }
+        [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+            width: 50% !important;
+            flex: 1 1 auto !important;
+            min-width: 0 !important;
+        }
+    }
 
     [data-testid="stSidebar"] label, 
     [data-testid="stSidebar"] .stMarkdown {
@@ -325,19 +339,29 @@ st.markdown(
         border-color: var(--altin-parlak) !important;
         box-shadow: var(--neon-golge-hover) !important;
     }
+    [data-testid="stSidebar"] button[kind="primary"] {
+        background-color: rgba(255, 122, 26, 0.18) !important;
+        color: var(--altin-parlak) !important;
+        border-color: var(--altin-parlak) !important;
+        box-shadow: var(--neon-golge-hover) !important;
+    }
 
-    div[data-testid="stTextInput"]:has(input[aria-label="Hisse Ara"]) input {
+    div[data-testid="stTextInput"]:has(input[aria-label="Hisse Ara"]) input,
+    div[data-testid="stTextInput"]:has(input[aria-label="Şifre"]) input {
         border: 1.5px solid var(--altin) !important;
-        border-radius: 8px !important;
+        border-radius: 12px !important;
         box-shadow: var(--neon-golge) !important;
         background-color: var(--yuzey-alt) !important;
         color: var(--metin) !important;
-        height: 34px !important;
-        min-height: 34px !important;
     }
-    div[data-testid="stTextInput"]:has(input[aria-label="Hisse Ara"]) input:focus {
+    div[data-testid="stTextInput"]:has(input[aria-label="Hisse Ara"]) input:focus,
+    div[data-testid="stTextInput"]:has(input[aria-label="Şifre"]) input:focus {
         border-color: var(--altin-parlak) !important;
         box-shadow: var(--neon-golge-hover) !important;
+    }
+    
+    div[data-testid="stTextInput"]:has(input[aria-label="Şifre"]) button {
+        display: none !important;
     }
 
     div.stButton > button[kind="secondary"] {
@@ -560,6 +584,37 @@ st.markdown(
         margin-left: 6px;
         vertical-align: middle;
         animation: pulse-altin 1.4s infinite ease-in-out !important;
+    }
+
+    /* Şık Giriş Paneli Tasarımı */
+    .giris-kutu-dis {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 10px;
+    }
+    .giris-kutu-ic {
+        background: linear-gradient(145deg, #15171b, #0c0d10);
+        border: 1.5px solid var(--altin);
+        border-radius: 20px;
+        padding: 40px 30px;
+        width: 100%;
+        max-width: 420px;
+        box-shadow: 0 0 25px rgba(255, 122, 26, 0.35);
+        text-align: center;
+    }
+    .giris-ikon-kapsayici {
+        font-size: 48px;
+        margin-bottom: 12px;
+        filter: drop-shadow(0 0 10px rgba(255, 122, 26, 0.6));
+    }
+    .giris-baslik {
+        font-family: 'Fraunces', serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--metin);
+        letter-spacing: 1px;
+        margin-bottom: 24px;
     }
     </style>
 """,
