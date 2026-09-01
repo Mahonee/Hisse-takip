@@ -63,7 +63,7 @@ components.html(
     setInterval(disableAutocomplete, 500);
 
     document.addEventListener('click', function(e) {
-        const target = e.target.closest('.badge-yon-yukselis, .badge-yon-dusus');
+        const target = e.target.closest('.badge-yon-yukselis, .badge-yon-dusus, .badge-yon-beklemede');
         if (target) {
             setTimeout(() => {
                 const doc = window.parent.document;
@@ -256,7 +256,7 @@ st.markdown(
             gap: 6px !important;
         }
         [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
-            width: 33.333% !important;
+            width: 50% !important;
             flex: 1 1 auto !important;
             min-width: 0 !important;
         }
@@ -425,7 +425,7 @@ st.markdown(
     }
     .hisse-kimlik {
         display: flex;
-        align-items: baseline;
+        align-items: center;
         gap: 8px;
         flex-wrap: nowrap;
         min-width: 0;
@@ -512,8 +512,35 @@ st.markdown(
     
     .badge-yon-yukselis { background-color: rgba(46, 204, 113, 0.22); color: var(--yesil) !important; border: 1.5px solid var(--yesil); box-shadow: 0 0 6px rgba(46, 204, 113, 0.6); cursor: pointer; text-decoration: none !important; }
     .badge-yon-dusus { background-color: rgba(231, 76, 60, 0.22); color: var(--kirmizi) !important; border: 1.5px solid var(--kirmizi); box-shadow: 0 0 6px rgba(231, 76, 60, 0.6); cursor: pointer; text-decoration: none !important; }
-    .badge-yon-yukselis:hover, .badge-yon-dusus:hover { opacity: 0.9; }
+    .badge-yon-beklemede { background-color: rgba(149, 165, 166, 0.22); color: var(--gri) !important; border: 1.5px solid var(--gri); box-shadow: 0 0 6px rgba(149, 165, 166, 0.6); cursor: pointer; text-decoration: none !important; }
+    .badge-yon-yukselis:hover, .badge-yon-dusus:hover, .badge-yon-beklemede:hover { opacity: 0.9; }
     
+    .favori-btn {
+        background-color: transparent;
+        color: var(--gri);
+        border: none;
+        padding: 0;
+        margin-right: 2px;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        box-shadow: none;
+        text-decoration: none !important;
+    }
+    .favori-btn.aktif {
+        color: var(--sari);
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .favori-btn:hover {
+        color: var(--altin-parlak);
+        background-color: transparent;
+        box-shadow: none;
+    }
+
     .delete-btn {
         background-color: transparent;
         color: var(--metin-soluk);
@@ -582,7 +609,7 @@ def bildirim_durumu_yukle():
                 return json.load(f)
         except Exception:
             pass
-    return {"temizlendi": False, "son_temizlenen_kiranlar": []}
+    return {"temizlendi": False, "son_kiran_sayisi": 0, "son_temizlenen_kiranlar": []}
 
 
 def bildirim_durumu_kaydet(durum):
@@ -668,6 +695,16 @@ if silme_hedefi:
     GuncelArsiv = arsiv_yukle()
     if silme_hedefi in GuncelArsiv:
         del GuncelArsiv[silme_hedefi]
+        arsiv_kaydet(GuncelArsiv)
+    st.query_params.clear()
+    st.rerun()
+
+favori_hedefi = query_params.get("favori_hisse")
+if favori_hedefi:
+    GuncelArsiv = arsiv_yukle()
+    if favori_hedefi in GuncelArsiv:
+        su_anki_fav = GuncelArsiv[favori_hedefi].get("favori", False)
+        GuncelArsiv[favori_hedefi]["favori"] = not su_anki_fav
         arsiv_kaydet(GuncelArsiv)
     st.query_params.clear()
     st.rerun()
@@ -847,17 +884,21 @@ def form_icerigini_olustur():
     )
     col_b1, col_b2 = st.columns(2)
 
-    is_yukselis_aktif = st.session_state.get(yon_state_key, "▲ Yükseliş") == "▲ Yükseliş"
+    secili_yon = st.session_state.get(yon_state_key, "▲ Yükseliş")
 
     with col_b1:
-        if st.button("▲ Yükseliş", key=f"btn_yuk_{hisse_input}", use_container_width=True, type="primary" if is_yukselis_aktif else "secondary"):
+        if st.button("▲ Yükseliş", key=f"btn_yuk_{hisse_input}", use_container_width=True, type="primary" if secili_yon == "▲ Yükseliş" else "secondary"):
             st.session_state[yon_state_key] = "▲ Yükseliş"
             st.rerun()
 
     with col_b2:
-        if st.button("▼ Düşüş", key=f"btn_dus_{hisse_input}", use_container_width=True, type="primary" if not is_yukselis_aktif else "secondary"):
+        if st.button("▼ Düşüş", key=f"btn_dus_{hisse_input}", use_container_width=True, type="primary" if secili_yon == "▼ Düşüş" else "secondary"):
             st.session_state[yon_state_key] = "▼ Düşüş"
             st.rerun()
+
+    if st.button("⏳ Beklemede", key=f"btn_bek_{hisse_input}", use_container_width=True, type="primary" if secili_yon == "⏳ Beklemede" else "secondary"):
+        st.session_state[yon_state_key] = "⏳ Beklemede"
+        st.rerun()
 
     mor_defaults = get_val_list("mor")
     st.markdown(
@@ -904,6 +945,7 @@ def form_icerigini_olustur():
         if hisse_input:
             current_arsiv = arsiv_yukle()
             bugun = datetime.now().strftime("%d.%m.%Y")
+            eski_favori = current_arsiv.get(hisse_input, {}).get("favori", False)
             current_arsiv[hisse_input] = {
                 "mor": [
                     akilli_formatla(mor_1, anlik_fiyat_degeri),
@@ -927,10 +969,11 @@ def form_icerigini_olustur():
                 ],
                 "yon": st.session_state.get(yon_state_key, "▲ Yükseliş"),
                 "tarih": bugun,
+                "favori": eski_favori,
+                "tetiklenen_seviyeler": []
             }
             arsiv_kaydet(current_arsiv)
             
-            # Form alanlarını ve session state'i tamamen sıfırla
             keys_to_clear = [
                 input_key, son_hisse_key, yon_state_key,
                 f"m1_{hisse_input}", f"m2_{hisse_input}", f"m3_{hisse_input}",
@@ -994,6 +1037,7 @@ def canli_veri_ve_tablo_alani():
     alarmli_sayisi = 0
     kiran_sayisi = 0
     kiran_hisseler = []
+    arsiv_guncellendi = False
 
     for hisse, val in guncel_arsiv.items():
         fiyat, yuzde = guncel_fiyatlar_cache.get(hisse, (None, None))
@@ -1008,9 +1052,13 @@ def canli_veri_ve_tablo_alani():
             mavi_v = parse_dizi_deger(val.get("mavi", []))
             gri_v = parse_dizi_deger(val.get("gri", []))
             tarih_v = val.get("tarih", datetime.now().strftime("%d.%m.%Y"))
+            favori_v = val.get("favori", False)
+            ham_tetiklenenler = val.get("tetiklenen_seviyeler", [])
         else:
             alarm, yon, turuncu_v, mavi_v, gri_v = [], "▲ Yükseliş", [], [], []
             tarih_v = datetime.now().strftime("%d.%m.%Y")
+            favori_v = False
+            ham_tetiklenenler = []
 
         alarm_floats = []
         for a in alarm:
@@ -1022,18 +1070,46 @@ def canli_veri_ve_tablo_alani():
             except Exception:
                 pass
 
+        tetiklenenler = []
+        for t in ham_tetiklenenler:
+            try:
+                tetiklenenler.append(float(t))
+            except Exception:
+                pass
+
         is_alarmli = len(alarm_floats) > 0
         is_kiran = False
+        yeni_tetiklenenler = list(tetiklenenler)
 
         if is_alarmli and not veri_yok and fiyat > 0:
-            if any(fiyat >= af for af in alarm_floats):
+            for af in alarm_floats:
+                if fiyat >= af:
+                    is_kiran = True
+                    if af not in yeni_tetiklenenler:
+                        yeni_tetiklenenler.append(af)
+                else:
+                    if af in yeni_tetiklenenler:
+                        yeni_tetiklenenler.remove(af)
+            
+            if len(yeni_tetiklenenler) > 0:
                 is_kiran = True
+
+            if set(tetiklenenler) != set(yeni_tetiklenenler):
+                guncel_arsiv[hisse]["tetiklenen_seviyeler"] = yeni_tetiklenenler
+                arsiv_guncellendi = True
+
+            if is_kiran:
                 kiran_sayisi += 1
                 kiran_hisseler.append(hisse)
             else:
                 alarmli_sayisi += 1
         elif is_alarmli:
-            alarmli_sayisi += 1
+            if len(tetiklenenler) > 0:
+                is_kiran = True
+                kiran_sayisi += 1
+                kiran_hisseler.append(hisse)
+            else:
+                alarmli_sayisi += 1
 
         fiyat_metni = (
             "Veri Yok"
@@ -1055,20 +1131,33 @@ def canli_veri_ve_tablo_alani():
             "Tarih": str(tarih_v),
             "is_alarmli": is_alarmli,
             "is_kiran": is_kiran,
+            "favori": favori_v,
         })
+
+    if arsiv_guncellendi:
+        arsiv_kaydet(guncel_arsiv)
 
     bildirim_data = bildirim_durumu_yukle()
     temizlendi_mi = bildirim_data.get("temizlendi", False)
-    eski_kiranlar = set(bildirim_data.get("son_temizlenen_kiranlar", []))
-    su_anki_kiranlar_set = set(kiran_hisseler)
+    eski_kiran_sayisi = bildirim_data.get("son_kiran_sayisi", 0)
 
     gosterilecek_mavi_isik = False
-    if kiran_hisseler:
-        if not temizlendi_mi:
-            gosterilecek_mavi_isik = True
-        elif su_anki_kiranlar_set != eski_kiranlar:
-            gosterilecek_mavi_isik = True
-            bildirim_durumu_kaydet({"temizlendi": False, "son_temizlenen_kiranlar": list(su_anki_kiranlar_set)})
+    
+    if kiran_sayisi > eski_kiran_sayisi:
+        gosterilecek_mavi_isik = True
+        bildirim_durumu_kaydet({
+            "temizlendi": False, 
+            "son_kiran_sayisi": kiran_sayisi, 
+            "son_temizlenen_kiranlar": kiran_hisseler
+        })
+    elif kiran_sayisi == eski_kiran_sayisi and not temizlendi_mi:
+        gosterilecek_mavi_isik = True
+    else:
+        bildirim_durumu_kaydet({
+            "temizlendi": temizlendi_mi, 
+            "son_kiran_sayisi": kiran_sayisi, 
+            "son_temizlenen_kiranlar": kiran_hisseler
+        })
 
     mavi_nokta_html = '<span class="mavi-nokta-animasyon"></span>' if gosterilecek_mavi_isik else ''
 
@@ -1092,18 +1181,20 @@ def canli_veri_ve_tablo_alani():
         unsafe_allow_html=True,
     )
 
-    tab1, tab2, tab3, tab4 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "Tüm Hisseler",
         "Hisseler",
         "Alarmlı Hisseler",
-        "Alarmı Kıranlar"
+        "Alarmı Kıranlar",
+        "Hisselerim"
     ])
 
     sekmeler = [
         ("📈 Tüm Hisseler", tab1, 0),
         ("📋 Hisseler", tab2, 1),
         ("🚨 Alarmlı Hisseler", tab3, 2),
-        ("⚡ Alarmı Kıranlar", tab4, 3)
+        ("⚡ Alarmı Kıranlar", tab4, 3),
+        ("⭐ Hisselerim", tab5, 4)
     ]
 
     for sekme_adi, sekme_nesnesi, sekme_index in sekmeler:
@@ -1131,6 +1222,7 @@ def canli_veri_ve_tablo_alani():
                     if sekme_adi == "⚡ Alarmı Kıranlar":
                         bildirim_durumu_kaydet({
                             "temizlendi": True, 
+                            "son_kiran_sayisi": kiran_sayisi,
                             "son_temizlenen_kiranlar": kiran_hisseler
                         })
                     st.rerun()
@@ -1139,6 +1231,7 @@ def canli_veri_ve_tablo_alani():
                 "📈 Tüm Hisseler",
                 "🚨 Alarmlı Hisseler",
                 "⚡ Alarmı Kıranlar",
+                "⭐ Hisselerim",
             ]
 
             def kutu_html_uret(liste, css_class):
@@ -1171,6 +1264,8 @@ def canli_veri_ve_tablo_alani():
                     and d["is_kiran"]
                 ):
                     kosul_saglandi = True
+                elif sekme_adi == "⭐ Hisselerim" and d["favori"]:
+                    kosul_saglandi = True
 
                 if arama_kriteri and arama_kriteri not in d["Hisse"]:
                     kosul_saglandi = False
@@ -1192,8 +1287,15 @@ def canli_veri_ve_tablo_alani():
                     orta_html = kutu_html_uret(d["Mavi"], "badge-orta")
                     test_html = kutu_html_uret(d["Gri"], "badge-test")
 
-                    yon_class = "badge-yon-yukselis" if "Yükseliş" in d["Yon"] else "badge-yon-dusus"
-                    clean_yon = d['Yon'].replace("-Aktif", "")
+                    yon_val = d["Yon"]
+                    if "Düşüş" in yon_val:
+                        yon_class = "badge-yon-dusus"
+                    elif "Beklemede" in yon_val:
+                        yon_class = "badge-yon-beklemede"
+                    else:
+                        yon_class = "badge-yon-yukselis"
+                        
+                    clean_yon = yon_val.replace("-Aktif", "")
 
                     hisse_guvenli = html.escape(d["Hisse"])
                     fiyat_guvenli = html.escape(d["Fiyat"])
@@ -1201,6 +1303,9 @@ def canli_veri_ve_tablo_alani():
                     yon_guvenli = html.escape(clean_yon)
                     tarih_guvenli = html.escape(d["Tarih"])
                     hisse_url = urllib.parse.quote(d["Hisse"])
+
+                    favori_aktif_class = " aktif" if d["favori"] else ""
+                    favori_ikon = "★" if d["favori"] else "☆"
 
                     alarm_bolumu_html = f'<div><span class="grup-etiket">ALARM</span>{alarm_html}</div>' if is_alarm_tab else ''
 
@@ -1217,6 +1322,7 @@ def canli_veri_ve_tablo_alani():
                         f'<div class="hisse-karti">'
                         f'<div class="hisse-karti-ust">'
                         f'<div class="hisse-kimlik">'
+                        f'<a href="?favori_hisse={hisse_url}" target="_self" class="favori-btn{favori_aktif_class}" title="Favori">{favori_ikon}</a>'
                         f'<span class="hisse-kod">{hisse_guvenli}</span>'
                         f'{fiyat_satiri}'
                         f'</div>'
