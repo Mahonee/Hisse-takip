@@ -13,7 +13,7 @@ BILDIRIM_DOSYASI = "bildirim_durumu.json"
 SIFRE_KORUMASI = "1111"  # Buradan istediğin şifreyi belirleyebilirsin
 
 st.set_page_config(
-    page_title="Canlı Hisse and Bölge Takip Paneli",
+    page_title="Canlı Hisse ve Bölge Takip Paneli",
     page_icon="📈",
     layout="wide",
 )
@@ -100,7 +100,7 @@ components.html(
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
 
     :root {
         --zemin: #0c0d10;
@@ -120,6 +120,7 @@ st.markdown(
         --sari: #f1c40f;
         --mavi: #3498db;
         --gri: #95a5a6;
+        --pembe: #fd79a8;
     }
 
     .block-container {
@@ -142,9 +143,9 @@ st.markdown(
         margin-bottom: 4px;
     }
     .baslik-kapsayici h1 {
-        font-family: 'Fraunces', serif !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.2px;
+        font-family: 'Cinzel', serif !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.8px;
     }
 
     [data-testid="InputInstructions"], 
@@ -236,7 +237,7 @@ st.markdown(
         font-family: 'Inter', sans-serif;
     }
     h1, h2, h3, .baslik-kapsayici h1 {
-        font-family: 'Fraunces', serif !important;
+        font-family: 'Cinzel', serif !important;
     }
     [data-testid="stSidebar"] {
         background-color: var(--yuzey) !important;
@@ -300,11 +301,11 @@ st.markdown(
         gap: 6px;
     }
     .istatistik-deger {
-        font-family: 'Fraunces', serif;
-        font-size: 26px;
-        font-weight: 600;
+        font-family: 'Cinzel', serif;
+        font-size: 24px;
+        font-weight: 700;
         color: var(--metin);
-        letter-spacing: 0.2px;
+        letter-spacing: 0.4px;
     }
 
     [data-testid="stSidebar"] .stTextInput > div > div > input {
@@ -439,12 +440,12 @@ st.markdown(
         overflow: hidden;
     }
     .hisse-kod {
-        font-family: 'Fraunces', serif;
+        font-family: 'Cinzel', serif;
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 700;
         color: var(--metin);
         white-space: nowrap;
-        letter-spacing: 0.2px;
+        letter-spacing: 0.4px;
     }
     .hisse-fiyat {
         font-size: 12.5px;
@@ -468,23 +469,34 @@ st.markdown(
         color: var(--metin-soluk);
         white-space: nowrap;
     }
-    .hisse-grid-icerik {
+    
+    .hisse-grid-icerik-5 {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 8px;
+        font-size: 12px;
+    }
+    .hisse-grid-icerik-4 {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 8px;
         font-size: 12px;
     }
     @media (max-width: 600px) {
-        .hisse-grid-icerik {
+        .hisse-grid-icerik-5 {
+            grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+            gap: 4px !important;
+        }
+        .hisse-grid-icerik-4 {
             grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
             gap: 4px !important;
         }
-        .hisse-grid-icerik span.badge {
-            font-size: 9.5px !important;
-            padding: 2px 4px !important;
+        .hisse-grid-icerik-5 span.badge, .hisse-grid-icerik-4 span.badge {
+            font-size: 9px !important;
+            padding: 2px 3px !important;
         }
         .grup-etiket {
-            font-size: 9.5px !important;
+            font-size: 9px !important;
         }
     }
     .grup-etiket {
@@ -516,6 +528,7 @@ st.markdown(
     .badge-kisa { background-color: rgba(241, 196, 15, 0.22); color: var(--sari); border: 1.5px solid var(--sari); box-shadow: 0 0 5px rgba(241, 196, 15, 0.45); }
     .badge-orta { background-color: rgba(52, 152, 219, 0.22); color: var(--mavi); border: 1.5px solid var(--mavi); box-shadow: 0 0 5px rgba(52, 152, 219, 0.45); }
     .badge-test { background-color: rgba(149, 165, 166, 0.22); color: var(--gri); border: 1.5px solid var(--gri); box-shadow: 0 0 5px rgba(149, 165, 166, 0.45); }
+    .badge-beklenti { background-color: rgba(232, 67, 147, 0.22); color: var(--pembe); border: 1.5px solid var(--pembe); box-shadow: 0 0 5px rgba(232, 67, 147, 0.45); }
     
     .badge-yon-yukselis { background-color: rgba(46, 204, 113, 0.22); color: var(--yesil) !important; border: 1.5px solid var(--yesil); box-shadow: 0 0 6px rgba(46, 204, 113, 0.6); cursor: pointer; text-decoration: none !important; }
     .badge-yon-dusus { background-color: rgba(231, 76, 60, 0.22); color: var(--kirmizi) !important; border: 1.5px solid var(--kirmizi); box-shadow: 0 0 6px rgba(231, 76, 60, 0.6); cursor: pointer; text-decoration: none !important; }
@@ -586,7 +599,6 @@ st.markdown(
         animation: pulse-altin 1.4s infinite ease-in-out !important;
     }
 
-    /* Şık Giriş Paneli Tasarımı */
     .giris-kutu-dis {
         display: flex;
         justify-content: center;
@@ -609,7 +621,7 @@ st.markdown(
         filter: drop-shadow(0 0 10px rgba(255, 122, 26, 0.6));
     }
     .giris-baslik {
-        font-family: 'Fraunces', serif;
+        font-family: 'Cinzel', serif;
         font-size: 22px;
         font-weight: 700;
         color: var(--metin);
@@ -775,6 +787,7 @@ if arsiv:
         h_turuncu = ", ".join([str(x) for x in h_val.get("turuncu", []) if str(x).strip() and str(x).strip() != "-"])
         h_mavi = ", ".join([str(x) for x in h_val.get("mavi", []) if str(x).strip() and str(x).strip() != "-"])
         h_gri = ", ".join([str(x) for x in h_val.get("gri", []) if str(x).strip() and str(x).strip() != "-"])
+        h_beklenti = ", ".join([str(x) for x in h_val.get("beklenti", []) if str(x).strip() and str(x).strip() != "-"])
         
         fiyat_val, yuzde_val = anlik_fiyatlar_cache.get(h_kodu, (None, None))
         if fiyat_val is not None:
@@ -785,7 +798,7 @@ if arsiv:
         else:
             h_guncel_fiyat_bilgi = "Fiyat: Veri Yok"
 
-        satir = f"Hisse: {h_kodu} | {h_guncel_fiyat_bilgi} | Yön: {h_yon} | Tarih: {h_tarih}\nAlarm: [{h_mor}] | Kısa: [{h_turuncu}] | Orta: [{h_mavi}] | Test: [{h_gri}]\n"
+        satir = f"Hisse: {h_kodu} | {h_guncel_fiyat_bilgi} | Yön: {h_yon} | Tarih: {h_tarih}\nAlarm: [{h_mor}] | Kısa: [{h_turuncu}] | Orta/Son: [{h_mavi}] | Test: [{h_gri}] | Beklenti: [{h_beklenti}]\n"
         tmp_list.append(satir)
     tum_hisseler_metin = "\n".join(tmp_list)
 
@@ -793,7 +806,7 @@ st.markdown(
     """
     <div class="baslik-kapsayici">
         <div>
-            <h1 style="margin: 0; padding: 0; font-size: 1.7rem;">Canlı Hisse and Bölge Takip Paneli</h1>
+            <h1 style="margin: 0; padding: 0; font-size: 1.6rem;">Canlı Hisse ve Bölge Takip Paneli</h1>
         </div>
     </div>
     """,
@@ -907,7 +920,7 @@ def form_icerigini_olustur():
             st.markdown(
                 f"""
                     <div style="background-color: #1a1c21; padding: 10px; border-radius: 6px; border: 1.5px solid #ff7a1a; box-shadow: 0 0 6px rgba(255, 122, 26, 0.45); text-align: center; margin-bottom: 10px;">
-                        <span style="font-family: 'Fraunces', serif; font-size: 19px; font-weight: 600; color: #e9e6df;">{onizleme_fiyat:.2f} TL</span><br>
+                        <span style="font-family: 'Cinzel', serif; font-size: 19px; font-weight: 700; color: #e9e6df;">{onizleme_fiyat:.2f} TL</span><br>
                         <span style="font-size: 12px; font-weight: 600; color: {renk_bg};">{isaret}%{onizleme_yuzde:.2f}</span>
                     </div>
                 """,
@@ -960,7 +973,7 @@ def form_icerigini_olustur():
 
     mavi_defaults = get_val_list("mavi")
     st.markdown(
-        "<p style='color: #3498db; font-weight: 600; font-size:12.5px; margin-top:8px;'>Mavi / Orta Bölge</p>",
+        "<p style='color: #3498db; font-weight: 600; font-size:12.5px; margin-top:8px;'>Mavi / Orta/Son</p>",
         unsafe_allow_html=True,
     )
     mv1, mv2, mv3 = st.columns(3)
@@ -977,6 +990,16 @@ def form_icerigini_olustur():
     gri_1 = g1.text_input("G1", value=gri_defaults[0], placeholder="1", key=f"g1_{hisse_input}", label_visibility="collapsed", autocomplete="off")
     gri_2 = g2.text_input("G2", value=gri_defaults[1] if len(gri_defaults) > 1 else "", placeholder="2", key=f"g2_{hisse_input}", label_visibility="collapsed", autocomplete="off")
     gri_3 = g3.text_input("G3", value=gri_defaults[2] if len(gri_defaults) > 2 else "", placeholder="3", key=f"g3_{hisse_input}", label_visibility="collapsed", autocomplete="off")
+
+    beklenti_defaults = get_val_list("beklenti")
+    st.markdown(
+        "<p style='color: #fd79a8; font-weight: 600; font-size:12.5px; margin-top:8px;'>Beklenti Bölgesi</p>",
+        unsafe_allow_html=True,
+    )
+    bk1, bk2, bk3 = st.columns(3)
+    beklenti_1 = bk1.text_input("BK1", value=beklenti_defaults[0], placeholder="1", key=f"bk1_{hisse_input}", label_visibility="collapsed", autocomplete="off")
+    beklenti_2 = bk2.text_input("BK2", value=beklenti_defaults[1], placeholder="2", key=f"bk2_{hisse_input}", label_visibility="collapsed", autocomplete="off")
+    beklenti_3 = bk3.text_input("BK3", value=beklenti_defaults[2], placeholder="3", key=f"bk3_{hisse_input}", label_visibility="collapsed", autocomplete="off")
 
     st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
     if st.button("KAYDET / GÜNCELLE", key=f"btn_kaydet_{hisse_input}", use_container_width=True):
@@ -1005,6 +1028,11 @@ def form_icerigini_olustur():
                     akilli_formatla(gri_2, anlik_fiyat_degeri),
                     akilli_formatla(gri_3, anlik_fiyat_degeri),
                 ],
+                "beklenti": [
+                    akilli_formatla(beklenti_1, anlik_fiyat_degeri),
+                    akilli_formatla(beklenti_2, anlik_fiyat_degeri),
+                    akilli_formatla(beklenti_3, anlik_fiyat_degeri),
+                ],
                 "yon": st.session_state.get(yon_state_key, "▲ Yükseliş"),
                 "tarih": bugun,
                 "favori": eski_favori,
@@ -1017,7 +1045,8 @@ def form_icerigini_olustur():
                 f"m1_{hisse_input}", f"m2_{hisse_input}", f"m3_{hisse_input}",
                 f"s1_{hisse_input}", f"s2_{hisse_input}", f"s3_{hisse_input}",
                 f"mv1_{hisse_input}", f"mv12_{hisse_input}", f"mv3_{hisse_input}",
-                f"g1_{hisse_input}", f"g2_{hisse_input}", f"g3_{hisse_input}"
+                f"g1_{hisse_input}", f"g2_{hisse_input}", f"g3_{hisse_input}",
+                f"bk1_{hisse_input}", f"bk2_{hisse_input}", f"bk3_{hisse_input}"
             ]
             for k in keys_to_clear:
                 if k in st.session_state:
@@ -1089,11 +1118,12 @@ def canli_veri_ve_tablo_alani():
             turuncu_v = parse_dizi_deger(val.get("turuncu", []))
             mavi_v = parse_dizi_deger(val.get("mavi", []))
             gri_v = parse_dizi_deger(val.get("gri", []))
+            beklenti_v = parse_dizi_deger(val.get("beklenti", []))
             tarih_v = val.get("tarih", datetime.now().strftime("%d.%m.%Y"))
             favori_v = val.get("favori", False)
             ham_tetiklenenler = val.get("tetiklenen_seviyeler", [])
         else:
-            alarm, yon, turuncu_v, mavi_v, gri_v = [], "▲ Yükseliş", [], [], []
+            alarm, yon, turuncu_v, mavi_v, gri_v, beklenti_v = [], "▲ Yükseliş", [], [], [], []
             tarih_v = datetime.now().strftime("%d.%m.%Y")
             favori_v = False
             ham_tetiklenenler = []
@@ -1166,6 +1196,7 @@ def canli_veri_ve_tablo_alani():
             "Turuncu": turuncu_v,
             "Mavi": mavi_v,
             "Gri": gri_v,
+            "Beklenti": beklenti_v,
             "Tarih": str(tarih_v),
             "is_alarmli": is_alarmli,
             "is_kiran": is_kiran,
@@ -1288,7 +1319,7 @@ def canli_veri_ve_tablo_alani():
                             """
                             <div style="text-align: center;">
                                 <div style="font-size: 20px; margin-bottom: 4px; filter: drop-shadow(0 0 5px rgba(255, 122, 26, 0.6));">🔒</div>
-                                <div style="font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700; color: #e9e6df; letter-spacing: 0.6px; margin-bottom: 12px;">ŞİFRE GİRİŞİ</div>
+                                <div style="font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; color: #e9e6df; letter-spacing: 0.6px; margin-bottom: 12px;">ŞİFRE GİRİŞİ</div>
                             </div>
                             """,
                             unsafe_allow_html=True
@@ -1391,6 +1422,7 @@ def canli_veri_ve_tablo_alani():
                     kisa_html = kutu_html_uret(d["Turuncu"], "badge-kisa")
                     orta_html = kutu_html_uret(d["Mavi"], "badge-orta")
                     test_html = kutu_html_uret(d["Gri"], "badge-test")
+                    beklenti_html = kutu_html_uret(d["Beklenti"], "badge-beklenti")
 
                     yon_val = d["Yon"]
                     if "Düşüş" in yon_val:
@@ -1413,6 +1445,7 @@ def canli_veri_ve_tablo_alani():
                     favori_ikon = "★" if d["favori"] else "☆"
 
                     alarm_bolumu_html = f'<div><span class="grup-etiket">ALARM</span>{alarm_html}</div>' if is_alarm_tab else ''
+                    grid_class = "hisse-grid-icerik-5" if is_alarm_tab else "hisse-grid-icerik-4"
 
                     fiyat_satiri = (
                         f'<span class="hisse-fiyat" style="font-style: italic;">Veri Yok</span>'
@@ -1436,11 +1469,12 @@ def canli_veri_ve_tablo_alani():
                         f'<span class="hisse-tarih">{tarih_guvenli}</span>'
                         f'<a href="?silinecek_hisse={hisse_url}" target="_self" class="delete-btn" title="Sil">🗑️</a>'
                         f'</div></div>'
-                        f'<div class="hisse-grid-icerik">'
+                        f'<div class="{grid_class}">'
                         f'{alarm_bolumu_html}'
                         f'<div><span class="grup-etiket">KISA VADE</span>{kisa_html}</div>'
-                        f'<div><span class="grup-etiket">ORTA BÖLGE</span>{orta_html}</div>'
+                        f'<div><span class="grup-etiket">ORTA/SON</span>{orta_html}</div>'
                         f'<div><span class="grup-etiket">TEST EDİLEBİR</span>{test_html}</div>'
+                        f'<div><span class="grup-etiket">BEKLENTİ BÖLGESİ</span>{beklenti_html}</div>'
                         f'</div></div>'
                     )
 
