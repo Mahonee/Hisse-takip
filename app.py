@@ -215,7 +215,7 @@ st.markdown(
         min-height: 100dvh !important;
         max-height: 100dvh !important;
         overflow-y: auto !important;
-        padding-bottom: 250px !important;
+        padding-bottom: 320px !important;
         -webkit-overflow-scrolling: touch !important;
     }
 }
