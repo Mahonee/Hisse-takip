@@ -583,6 +583,60 @@ st.markdown(
         box-shadow: 0 0 12px rgba(231, 76, 60, 0.8);
     }
 
+    div[class*="st-key-yildiz_pill_kutusu"] {
+        margin-bottom: 6px;
+    }
+    div[class*="st-key-yildiz_pill_kutusu"] [data-testid="stHorizontalBlock"] {
+        gap: 4px !important;
+        margin-bottom: 4px !important;
+    }
+    div[class*="st-key-yildiz_pill_kutusu"] [data-testid="stColumn"] {
+        width: auto !important;
+        flex: 0 0 auto !important;
+        min-width: 0 !important;
+    }
+    div[class*="st-key-yildiz_pill_kutusu"] div.stButton {
+        width: auto !important;
+        display: inline-block !important;
+    }
+    div[class*="st-key-yildiz_pill_kutusu"] div.stButton > button {
+        height: 24px !important;
+        min-height: 24px !important;
+        width: auto !important;
+        min-width: 0 !important;
+        padding: 0px 8px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        border-radius: 4px !important;
+        border: 1.5px solid var(--altin) !important;
+        color: var(--altin) !important;
+        background-color: var(--yuzey-alt) !important;
+        box-shadow: var(--neon-golge) !important;
+        letter-spacing: 0px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    div[class*="st-key-yildiz_pill_kutusu"] div.stButton > button p {
+        white-space: nowrap !important;
+        overflow: visible !important;
+        margin: 0 !important;
+    }
+    div[class*="st-key-yildiz_pill_kutusu"] div.stButton > button:hover {
+        border-color: var(--altin-parlak) !important;
+        color: var(--altin-parlak) !important;
+        background-color: rgba(255, 122, 26, 0.12) !important;
+        box-shadow: var(--neon-golge-hover) !important;
+    }
+    div[class*="st-key-yildiz_pill_kutusu"] div.stButton > button[kind="primary"] {
+        background-color: rgba(255, 122, 26, 0.18) !important;
+        color: var(--altin-parlak) !important;
+        border-color: var(--altin-parlak) !important;
+        box-shadow: var(--neon-golge-hover) !important;
+    }
+
     @keyframes pulse-altin {
         0% { transform: scale(0.95); opacity: 1; box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.7); }
         70% { transform: scale(1.1); opacity: 0.8; box-shadow: 0 0 0 8px rgba(255, 122, 26, 0); }
@@ -783,6 +837,7 @@ if arsiv:
     for h_kodu, h_val in arsiv.items():
         h_yon = h_val.get("yon", "-").replace("-Aktif", "")
         h_tarih = h_val.get("tarih", "-")
+        h_yildiz = h_val.get("yildiz", 0)
         h_mor = ", ".join([str(x) for x in h_val.get("mor", []) if str(x).strip() and str(x).strip() != "-"])
         h_turuncu = ", ".join([str(x) for x in h_val.get("turuncu", []) if str(x).strip() and str(x).strip() != "-"])
         h_mavi = ", ".join([str(x) for x in h_val.get("mavi", []) if str(x).strip() and str(x).strip() != "-"])
@@ -798,7 +853,7 @@ if arsiv:
         else:
             h_guncel_fiyat_bilgi = "Fiyat: Veri Yok"
 
-        satir = f"Hisse: {h_kodu} | {h_guncel_fiyat_bilgi} | Yön: {h_yon} | Tarih: {h_tarih}\nAlarm: [{h_mor}] | Kısa: [{h_turuncu}] | Orta/Son: [{h_mavi}] | Test: [{h_gri}] | Beklenti: [{h_beklenti}]\n"
+        satir = f"Hisse: {h_kodu} | Yıldız: {h_yildiz} | {h_guncel_fiyat_bilgi} | Yön: {h_yon} | Tarih: {h_tarih}\nAlarm: [{h_mor}] | Kısa: [{h_turuncu}] | Orta/Son: [{h_mavi}] | Test: [{h_gri}] | Beklenti: [{h_beklenti}]\n"
         tmp_list.append(satir)
     tum_hisseler_metin = "\n".join(tmp_list)
 
@@ -892,6 +947,7 @@ def form_icerigini_olustur():
         return str(v) if v is not None else default
 
     yon_state_key = "secilen_yon"
+    yildiz_state_key = "secilen_yildiz_form"
     son_hisse_key = "son_yuklenen_hisse"
 
     if son_hisse_key not in st.session_state:
@@ -899,10 +955,14 @@ def form_icerigini_olustur():
 
     if hisse_input != st.session_state[son_hisse_key]:
         st.session_state[yon_state_key] = get_single_val("yon", "▲ Yükseliş")
+        st.session_state[yildiz_state_key] = int(existing.get("yildiz", 0))
         st.session_state[son_hisse_key] = hisse_input
 
     if yon_state_key not in st.session_state:
         st.session_state[yon_state_key] = "▲ Yükseliş"
+
+    if yildiz_state_key not in st.session_state:
+        st.session_state[yildiz_state_key] = 0
 
     anlik_fiyat_degeri = 0.0
     if hisse_input:
@@ -950,6 +1010,31 @@ def form_icerigini_olustur():
     if st.button("⏳ Beklemede", key=f"btn_bek_{hisse_input}", use_container_width=True, type="primary" if secili_yon == "⏳ Beklemede" else "secondary"):
         st.session_state[yon_state_key] = "⏳ Beklemede"
         st.rerun()
+
+    st.markdown(
+        "<p style='color:#f1c40f; font-weight:600; font-size:12.5px; margin-top:8px; margin-bottom:2px;'>Yıldız Derecesi</p>",
+        unsafe_allow_html=True,
+    )
+    secili_yildiz = st.session_state.get(yildiz_state_key, 0)
+    with st.container(key=f"yildiz_pill_kutusu_form_{hisse_input}"):
+        y_col1, y_col2, y_col3, y_col4, y_col_bosluk = st.columns([1, 1, 1, 1, 6])
+        with y_col1:
+            if st.button("★", key=f"form_y1_{hisse_input}", use_container_width=False, type="primary" if secili_yildiz == 1 else "secondary"):
+                st.session_state[yildiz_state_key] = 0 if secili_yildiz == 1 else 1
+                st.rerun()
+        with y_col2:
+            if st.button("★★", key=f"form_y2_{hisse_input}", use_container_width=False, type="primary" if secili_yildiz == 2 else "secondary"):
+                st.session_state[yildiz_state_key] = 0 if secili_yildiz == 2 else 2
+                st.rerun()
+        with y_col3:
+            if st.button("★★★", key=f"form_y3_{hisse_input}", use_container_width=False, type="primary" if secili_yildiz == 3 else "secondary"):
+                st.session_state[yildiz_state_key] = 0 if secili_yildiz == 3 else 3
+                st.rerun()
+        with y_col4:
+            if st.button("★★★★", key=f"form_y4_{hisse_input}", use_container_width=False, type="primary" if secili_yildiz == 4 else "secondary"):
+                st.session_state[yildiz_state_key] = 0 if secili_yildiz == 4 else 4
+                st.rerun()
+
 
     mor_defaults = get_val_list("mor")
     st.markdown(
@@ -1034,6 +1119,7 @@ def form_icerigini_olustur():
                     akilli_formatla(beklenti_3, anlik_fiyat_degeri),
                 ],
                 "yon": st.session_state.get(yon_state_key, "▲ Yükseliş"),
+                "yildiz": st.session_state.get(yildiz_state_key, 0),
                 "tarih": bugun,
                 "favori": eski_favori,
                 "tetiklenen_seviyeler": []
@@ -1041,7 +1127,7 @@ def form_icerigini_olustur():
             arsiv_kaydet(current_arsiv)
             
             keys_to_clear = [
-                input_key, son_hisse_key, yon_state_key,
+                input_key, son_hisse_key, yon_state_key, yildiz_state_key,
                 f"m1_{hisse_input}", f"m2_{hisse_input}", f"m3_{hisse_input}",
                 f"s1_{hisse_input}", f"s2_{hisse_input}", f"s3_{hisse_input}",
                 f"mv1_{hisse_input}", f"mv12_{hisse_input}", f"mv3_{hisse_input}",
@@ -1115,6 +1201,7 @@ def canli_veri_ve_tablo_alani():
         if isinstance(val, dict):
             alarm = parse_dizi_deger(val.get("mor", []))
             yon = val.get("yon", "▲ Yükseliş").replace("-Aktif", "")
+            yildiz = int(val.get("yildiz", 0))
             turuncu_v = parse_dizi_deger(val.get("turuncu", []))
             mavi_v = parse_dizi_deger(val.get("mavi", []))
             gri_v = parse_dizi_deger(val.get("gri", []))
@@ -1123,7 +1210,7 @@ def canli_veri_ve_tablo_alani():
             favori_v = val.get("favori", False)
             ham_tetiklenenler = val.get("tetiklenen_seviyeler", [])
         else:
-            alarm, yon, turuncu_v, mavi_v, gri_v, beklenti_v = [], "▲ Yükseliş", [], [], [], []
+            alarm, yon, yildiz, turuncu_v, mavi_v, gri_v, beklenti_v = [], "▲ Yükseliş", 0, [], [], [], []
             tarih_v = datetime.now().strftime("%d.%m.%Y")
             favori_v = False
             ham_tetiklenenler = []
@@ -1193,6 +1280,7 @@ def canli_veri_ve_tablo_alani():
             "VeriYok": veri_yok,
             "Alarm": alarm,
             "Yon": str(yon).replace("-Aktif", ""),
+            "Yildiz": yildiz,
             "Turuncu": turuncu_v,
             "Mavi": mavi_v,
             "Gri": gri_v,
@@ -1336,10 +1424,15 @@ def canli_veri_ve_tablo_alani():
                     continue
 
             arama_key = f"arama_{sekme_adi}"
+            yildiz_filtre_key = f"yildiz_filtre_{sekme_index}"
             temizle_click_key = f"temizle_tiklandi_{sekme_index}"
+
+            if yildiz_filtre_key not in st.session_state:
+                st.session_state[yildiz_filtre_key] = 0
 
             if st.session_state.get(temizle_click_key, False):
                 st.session_state[arama_key] = ""
+                st.session_state[yildiz_filtre_key] = 0
                 st.session_state[temizle_click_key] = False
 
             arama_col, temizle_col = st.columns([5, 2])
@@ -1363,6 +1456,29 @@ def canli_veri_ve_tablo_alani():
                         })
                     st.rerun()
 
+            # "Hisseler" sekmesine özel zarif yıldız butonları
+            if sekme_adi == "📋 Hisseler":
+                secili_yildiz_filtre = st.session_state.get(yildiz_filtre_key, 0)
+                with st.container(key=f"yildiz_pill_kutusu_{sekme_index}"):
+                    ya1, ya2, ya3, ya4, ya_bosluk = st.columns([1, 1, 1, 1, 6])
+                    with ya1:
+                        if st.button("★", key=f"y1_btn_{sekme_index}", use_container_width=False, type="primary" if secili_yildiz_filtre == 1 else "secondary"):
+                            st.session_state[yildiz_filtre_key] = 0 if secili_yildiz_filtre == 1 else 1
+                            st.rerun()
+                    with ya2:
+                        if st.button("★★", key=f"y2_btn_{sekme_index}", use_container_width=False, type="primary" if secili_yildiz_filtre == 2 else "secondary"):
+                            st.session_state[yildiz_filtre_key] = 0 if secili_yildiz_filtre == 2 else 2
+                            st.rerun()
+                    with ya3:
+                        if st.button("★★★", key=f"y3_btn_{sekme_index}", use_container_width=False, type="primary" if secili_yildiz_filtre == 3 else "secondary"):
+                            st.session_state[yildiz_filtre_key] = 0 if secili_yildiz_filtre == 3 else 3
+                            st.rerun()
+                    with ya4:
+                        if st.button("★★★★", key=f"y4_btn_{sekme_index}", use_container_width=False, type="primary" if secili_yildiz_filtre == 4 else "secondary"):
+                            st.session_state[yildiz_filtre_key] = 0 if secili_yildiz_filtre == 4 else 4
+                            st.rerun()
+
+
             is_alarm_tab = sekme_adi in [
                 "📈 Tüm Hisseler",
                 "🚨 Alarmlı Hisseler",
@@ -1382,6 +1498,8 @@ def canli_veri_ve_tablo_alani():
 
             gosterilen_sayi = 0
             kartlar_html = []
+            secili_yildiz_filtre = st.session_state.get(yildiz_filtre_key, 0)
+
             for d in data_rows:
                 kosul_saglandi = False
                 if sekme_adi == "📈 Tüm Hisseler":
@@ -1405,6 +1523,10 @@ def canli_veri_ve_tablo_alani():
 
                 if arama_kriteri and arama_kriteri not in d["Hisse"]:
                     kosul_saglandi = False
+
+                if sekme_adi == "📋 Hisseler" and secili_yildiz_filtre > 0:
+                    if d["Yildiz"] != secili_yildiz_filtre:
+                        kosul_saglandi = False
 
                 if kosul_saglandi:
                     gosterilen_sayi += 1
@@ -1444,6 +1566,9 @@ def canli_veri_ve_tablo_alani():
                     favori_aktif_class = " aktif" if d["favori"] else ""
                     favori_ikon = "★" if d["favori"] else "☆"
 
+                    yildiz_metin = "★" * d["Yildiz"] if d["Yildiz"] > 0 else ""
+                    yildiz_html = f'<span style="color:#f1c40f; font-size:12px;">{yildiz_metin}</span>' if yildiz_metin else ""
+
                     alarm_bolumu_html = f'<div><span class="grup-etiket">ALARM</span>{alarm_html}</div>' if is_alarm_tab else ''
                     grid_class = "hisse-grid-icerik-5" if is_alarm_tab else "hisse-grid-icerik-4"
 
@@ -1465,6 +1590,7 @@ def canli_veri_ve_tablo_alani():
                         f'{fiyat_satiri}'
                         f'</div>'
                         f'<div class="hisse-aksiyonlar">'
+                        f'{yildiz_html}'
                         f'<a href="?secilen_hisse={hisse_url}&tab={sekme_index}" target="_self" class="badge {yon_class}">{yon_guvenli}</a>'
                         f'<span class="hisse-tarih">{tarih_guvenli}</span>'
                         f'<a href="?silinecek_hisse={hisse_url}" target="_self" class="delete-btn" title="Sil">🗑️</a>'
