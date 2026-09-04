@@ -1530,10 +1530,12 @@ def form_icerigini_olustur():
     if hisse_input:
         current_arsiv = arsiv_yukle()
         bugun = datetime.now().strftime("%d.%m.%Y")
-        eski_favori = current_arsiv.get(
-            hisse_input,
-            {}
-        ).get("favori", False)
+        eski_favori = current_arsiv.get(hisse_input, {}).get("favori", False)
+        
+        # Buraya kendi kayıt kodlarını ekleyip arsiv_kaydet(arsiv) fonksiyonunu çağırabilirsin
+        # Örnek:
+        # current_arsiv[hisse_input] = {...}
+        # arsiv_kaydet(current_arsiv)
         
         # Buradan sonraki kayıt işlemlerin (arsiv_kaydet çağrısı vb.) 
         # aynı hizada içeride devam etmeli
