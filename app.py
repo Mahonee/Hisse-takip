@@ -1657,6 +1657,9 @@ def form_icerigini_olustur():
             st.success(
                 f"'{hisse_input}' kaydedildi ve güncellendi!"
             )
+            
+            import time
+            time.sleep(2) # GitHub API'nin veriyi işlemesine 2 saniye tanıyoruz
 
             st.rerun()
 
