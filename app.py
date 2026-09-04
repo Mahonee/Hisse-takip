@@ -31,46 +31,50 @@ def arsiv_yukle():
   return {}
 
 
-# Arşiv Verilerini Kaydetme ve Kesin GitHub Senkronizasyonu
 def arsiv_kaydet(arsiv):
-    # 1. Önce her durumda yerel dosyaya kaydet
+    # 1. Önce yerel dosyaya kaydet
     try:
         with open(VERI_DOSYASI, "w", encoding="utf-8") as f:
             json.dump(arsiv, f, ensure_ascii=False, indent=4)
-        st.success("Yerel olarak kaydedildi.")
     except Exception as e:
         st.error(f"Yerel kayıt hatası: {e}")
+        return
 
-    # 2. GitHub'a gönderme adımı
+    # 2. GitHub API ile senkronizasyon
     try:
-        if "GITHUB_TOKEN" in st.secrets and "GITHUB_REPO" in st.secrets:
-            g = Github(st.secrets["GITHUB_TOKEN"])
-            repo = g.get_repo(st.secrets["GITHUB_REPO"])
-            file_path = VERI_DOSYASI
-            updated_content = json.dumps(arsiv, ensure_ascii=False, indent=4)
-            branch_name = "main"
+        token = st.secrets.get("GITHUB_TOKEN")
+        repo_name = st.secrets.get("GITHUB_REPO")
+        
+        if not token or not repo_name:
+            st.error("Secrets içinde GITHUB_TOKEN veya GITHUB_REPO bulunamadı!")
+            return
 
-            try:
-                contents = repo.get_contents(file_path, ref=branch_name)
-                repo.update_file(
-                    path=contents.path,
-                    message="Otomatik hisse güncellemesi",
-                    content=updated_content,
-                    sha=contents.sha,
-                    branch=branch_name
-                )
-            except Exception:
-                repo.create_file(
-                    path=file_path,
-                    message="İlk hisseler.json oluşturma",
-                    content=updated_content,
-                    branch=branch_name
-                )
-            st.success("GitHub'a başarıyla senkronize edildi!")
-        else:
-            st.warning("GitHub secrets bilgileri bulunamadı!")
+        g = Github(token)
+        repo = g.get_repo(repo_name)
+        file_path = VERI_DOSYASI
+        updated_content = json.dumps(arsiv, ensure_ascii=False, indent=4)
+        branch_name = "main"
+
+        try:
+            contents = repo.get_contents(file_path, ref=branch_name)
+            repo.update_file(
+                path=contents.path,
+                message="Otomatik hisse güncellemesi (Streamlit)",
+                content=updated_content,
+                sha=contents.sha,
+                branch=branch_name
+            )
+        except Exception:
+            repo.create_file(
+                path=file_path,
+                message="İlk hisseler.json oluşturma (Streamlit)",
+                content=updated_content,
+                branch=branch_name
+            )
+            
+        st.success("GitHub'a başarıyla senkronize edildi!")
     except Exception as e:
-        st.error(f"GitHub bağlantı hatası: {str(e)}")
+        st.error(f"GitHub senkronizasyon hatası: {str(e)}")
         import traceback
         st.code(traceback.format_exc())
 
