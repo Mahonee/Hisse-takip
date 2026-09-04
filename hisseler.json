@@ -1,0 +1,3810 @@
+{
+    "KTLEV": {
+        "mor": [
+            "57,35",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "49,68",
+            "47,44",
+            ""
+        ],
+        "gri": [
+            "47,44",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "57,35",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": true,
+        "tetiklenen_seviyeler": []
+    },
+    "TRHOL": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "2937,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "2610,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "3000,00",
+            "3120,00",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "DUNYH": {
+        "mor": [
+            "160,80",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "134,60",
+            "148,90",
+            ""
+        ],
+        "mavi": [
+            "125,20",
+            "129,00",
+            ""
+        ],
+        "gri": [
+            "114,40",
+            "125,20",
+            ""
+        ],
+        "beklenti": [
+            "148,90",
+            "152,50",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": true,
+        "tetiklenen_seviyeler": []
+    },
+    "GMTAS": {
+        "mor": [
+            "47,90",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "44,76",
+            "",
+            ""
+        ],
+        "mavi": [
+            "43,80",
+            "43,40",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BIGTK": {
+        "mor": [
+            "375,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "352,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "340,00",
+            "300,00",
+            ""
+        ],
+        "gri": [
+            "360,75",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KCAER": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "15,79",
+            "",
+            ""
+        ],
+        "mavi": [
+            "15,49",
+            "15,11",
+            ""
+        ],
+        "gri": [
+            "15,22",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "16,10",
+            "18,73",
+            "22,30"
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "PRKAB": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "34,88",
+            "32,26",
+            ""
+        ],
+        "mavi": [
+            "29,94",
+            "",
+            ""
+        ],
+        "gri": [
+            "29,94",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "PASEU": {
+        "mor": [
+            "275,25",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "232,00",
+            "240,40",
+            ""
+        ],
+        "mavi": [
+            "194,80",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ARDYZ": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "88,70",
+            "",
+            ""
+        ],
+        "mavi": [
+            "83,90",
+            "",
+            ""
+        ],
+        "gri": [
+            "83,90",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "AKFIS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "17,43",
+            "",
+            ""
+        ],
+        "mavi": [
+            "16,40",
+            "",
+            ""
+        ],
+        "gri": [
+            "16,93",
+            "18,41",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "TUPRS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "382,20",
+            "",
+            ""
+        ],
+        "mavi": [
+            "367,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "390,75",
+            "398,25",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "RYGYO": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "46,20",
+            "",
+            ""
+        ],
+        "mavi": [
+            "42,32",
+            "",
+            ""
+        ],
+        "gri": [
+            "48,31",
+            "49,36",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "AYGAZ": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "317,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "295,75",
+            "",
+            ""
+        ],
+        "gri": [
+            "323,75",
+            "329,75",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "OZSUB": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "42,98",
+            "",
+            ""
+        ],
+        "mavi": [
+            "40,88",
+            "",
+            ""
+        ],
+        "gri": [
+            "41,68",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "43,98",
+            "61,75",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "AKCNS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "237,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "233,80",
+            "",
+            ""
+        ],
+        "gri": [
+            "239,10",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "252,00",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "RGYAS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "208,20",
+            "",
+            ""
+        ],
+        "mavi": [
+            "202,50",
+            "",
+            ""
+        ],
+        "gri": [
+            "213,00",
+            "211,00",
+            ""
+        ],
+        "beklenti": [
+            "255,00",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "AKSGY": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "9,85",
+            "",
+            ""
+        ],
+        "mavi": [
+            "9,54",
+            "",
+            ""
+        ],
+        "gri": [
+            "10,00",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "12,67",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KRDMA": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "59,30",
+            "",
+            ""
+        ],
+        "mavi": [
+            "56,35",
+            "",
+            ""
+        ],
+        "gri": [
+            "62,65",
+            "64,50",
+            ""
+        ],
+        "beklenti": [
+            "85,20",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 3,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "AHGAZ": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "36,48",
+            "",
+            ""
+        ],
+        "mavi": [
+            "34,86",
+            "",
+            ""
+        ],
+        "gri": [
+            "36,88",
+            "37,50",
+            ""
+        ],
+        "beklenti": [
+            "51,55",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "TNZTP": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "30,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "29,52",
+            "",
+            ""
+        ],
+        "gri": [
+            "30,92",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "33,54",
+            "46,60",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "DAGI": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "10,70",
+            "",
+            ""
+        ],
+        "mavi": [
+            "9,85",
+            "10,17",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "10,70",
+            "11,36",
+            "17,87"
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "PSDTC": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "162,40",
+            "",
+            ""
+        ],
+        "mavi": [
+            "155,10",
+            "",
+            ""
+        ],
+        "gri": [
+            "166,90",
+            "171,80",
+            ""
+        ],
+        "beklenti": [
+            "190,10",
+            "265,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "TARKM": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "524,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "471,50",
+            "506,00",
+            ""
+        ],
+        "gri": [
+            "541,00",
+            "552,50",
+            ""
+        ],
+        "beklenti": [
+            "603,50",
+            "738,00",
+            "953,00"
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "CATES": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "63,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "57,55",
+            "",
+            ""
+        ],
+        "gri": [
+            "65,25",
+            "66,90",
+            ""
+        ],
+        "beklenti": [
+            "71,65",
+            "94,75",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "SAYAS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "60,05",
+            "",
+            ""
+        ],
+        "mavi": [
+            "56,80",
+            "58,50",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "61,00",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "GESAN": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "89,45",
+            "",
+            ""
+        ],
+        "mavi": [
+            "84,15",
+            "80,00",
+            ""
+        ],
+        "gri": [
+            "91,50",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "116,50",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "EUPWR": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "97,15",
+            "",
+            ""
+        ],
+        "mavi": [
+            "94,05",
+            "",
+            ""
+        ],
+        "gri": [
+            "99,90",
+            "100,90",
+            ""
+        ],
+        "beklenti": [
+            "192,70",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "VBTYZ": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "37,20",
+            "",
+            ""
+        ],
+        "mavi": [
+            "33,90",
+            "",
+            ""
+        ],
+        "gri": [
+            "36,58",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "32,72",
+            "52,75",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KLSYN": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "14,95",
+            "",
+            ""
+        ],
+        "mavi": [
+            "13,60",
+            "",
+            ""
+        ],
+        "gri": [
+            "15,54",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "15,90",
+            "19,99",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KGYO": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "12,35",
+            "",
+            ""
+        ],
+        "mavi": [
+            "11,60",
+            "",
+            ""
+        ],
+        "gri": [
+            "12,85",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "13,33",
+            "16,18",
+            "19,98"
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ETYAT": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "14,49",
+            "",
+            ""
+        ],
+        "mavi": [
+            "13,67",
+            "",
+            ""
+        ],
+        "gri": [
+            "15,30",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "15,77",
+            "21,22",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ATATP": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "287,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "269,75",
+            "",
+            ""
+        ],
+        "gri": [
+            "297,75",
+            "287,00",
+            ""
+        ],
+        "beklenti": [
+            "3122,50",
+            "478,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KRPLS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "10,15",
+            "",
+            ""
+        ],
+        "mavi": [
+            "9,73",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "10,48",
+            "10,95",
+            "11,63"
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BIMAS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "398,25",
+            "",
+            ""
+        ],
+        "mavi": [
+            "382,50",
+            "",
+            ""
+        ],
+        "gri": [
+            "405,25",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "548,50",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "CEMZY": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "15,28",
+            "",
+            ""
+        ],
+        "mavi": [
+            "13,52",
+            "13,90",
+            ""
+        ],
+        "gri": [
+            "13,90",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "17,50",
+            "26,70",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "YGGYO": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "223,50",
+            "2,00",
+            ""
+        ],
+        "mavi": [
+            "223,50",
+            "205,90",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "240,50",
+            "266,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "03.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "AGESA": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "248,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "243,40",
+            "",
+            ""
+        ],
+        "gri": [
+            "254,00",
+            "257,00",
+            ""
+        ],
+        "beklenti": [
+            "264,00",
+            "338,75",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "03.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "DEVA": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "89,60",
+            "",
+            ""
+        ],
+        "mavi": [
+            "85,80",
+            "",
+            ""
+        ],
+        "gri": [
+            "92,15",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "100,70",
+            "153,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "03.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "SKYMD": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "14,38",
+            "14,14",
+            ""
+        ],
+        "mavi": [
+            "14,14",
+            "13,29",
+            ""
+        ],
+        "gri": [
+            "14,77",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "17,25",
+            "19,98",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 1,
+        "tarih": "03.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "MCARD": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "162,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "159,00",
+            "155,70",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "197,50",
+            "18,59",
+            "201,50"
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "MTRKS": {
+        "mor": [
+            "34,56",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "32,84",
+            "",
+            ""
+        ],
+        "mavi": [
+            "31,44",
+            "30,82",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "4,56",
+            "38,68",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "HUNER": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "3,84",
+            "",
+            ""
+        ],
+        "mavi": [
+            "3,70",
+            "",
+            ""
+        ],
+        "gri": [
+            "3,89",
+            "3,97",
+            ""
+        ],
+        "beklenti": [
+            "4,29",
+            "4,81",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 1,
+        "tarih": "03.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "CWENE": {
+        "mor": [
+            "42,42",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "35,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "38,41",
+            "42,42",
+            "44,58"
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KBORU": {
+        "mor": [
+            "25,80",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "23,56",
+            "20,32",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "28,22",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KENT": {
+        "mor": [
+            "673,50",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "352,75",
+            "",
+            ""
+        ],
+        "gri": [
+            "398,50",
+            "502,50",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BLUME": {
+        "mor": [
+            "50,65",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "38,10",
+            "",
+            ""
+        ],
+        "mavi": [
+            "",
+            "",
+            ""
+        ],
+        "gri": [
+            "40,78",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "44,00",
+            "50,65",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "TCELL": {
+        "mor": [
+            "108,90",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "90,10",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "93,85",
+            "100,00",
+            "108,90"
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ENKAI": {
+        "mor": [
+            "95,90",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "85,25",
+            "",
+            ""
+        ],
+        "gri": [
+            "85,25",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "AKHAN": {
+        "mor": [
+            "45,42",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "43,20",
+            "",
+            ""
+        ],
+        "mavi": [
+            "39,88",
+            "40,76",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "43,20",
+            "45,42",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ALCTL": {
+        "mor": [
+            "139,10",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "92,60",
+            "",
+            ""
+        ],
+        "gri": [
+            "114,90",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "129,80",
+            "139,10",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "FORTE": {
+        "mor": [
+            "132,20",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "126,80",
+            "",
+            ""
+        ],
+        "mavi": [
+            "118,40",
+            "109,70",
+            "105,10"
+        ],
+        "gri": [
+            "105,10",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "118,40",
+            "132,20",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "GUBRF": {
+        "mor": [
+            "556,50",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "447,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "447,00",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "507,50",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ODAS": {
+        "mor": [
+            "9,17",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "6,71",
+            "6,91",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "7,96",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "SDTTR": {
+        "mor": [
+            "25,04",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "20,92",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "25,94",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "QUICK": {
+        "mor": [
+            "76,55",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "67,40",
+            "",
+            ""
+        ],
+        "gri": [
+            "67,40",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "76,55",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "TATEN": {
+        "mor": [
+            "9,29",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "7,32",
+            "7,82",
+            ""
+        ],
+        "gri": [
+            "7,82",
+            "7,32",
+            ""
+        ],
+        "beklenti": [
+            "9,29",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "SNPAM": {
+        "mor": [
+            "27,58",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "16,24",
+            "19,29",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "19,29",
+            "21,26",
+            "27,58"
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "EREGL": {
+        "mor": [
+            "42,14",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "36,44",
+            "",
+            ""
+        ],
+        "mavi": [
+            "38,32",
+            "36,44",
+            "37,86"
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "38,32",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "INFO": {
+        "mor": [
+            "7,20",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "6,48",
+            "",
+            ""
+        ],
+        "mavi": [
+            "5,36",
+            "",
+            ""
+        ],
+        "gri": [
+            "5,70",
+            "5,36",
+            ""
+        ],
+        "beklenti": [
+            "6,48",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ESCOM": {
+        "mor": [
+            "6,37",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "5,47",
+            "5,88",
+            ""
+        ],
+        "mavi": [
+            "5,09",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "5,67",
+            "5,88",
+            "6,37"
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "TMPOL": {
+        "mor": [
+            "525,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "421,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "483,50",
+            "525,00",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "EBEBK": {
+        "mor": [
+            "88,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "83,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "80,40",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "88,00",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "EGGUB": {
+        "mor": [
+            "121,80",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "107,90",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "113,00",
+            "117,70",
+            "121,80"
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BESTE": {
+        "mor": [
+            "36,06",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "32,24",
+            "30,50",
+            ""
+        ],
+        "gri": [
+            "30,50",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "35,40",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "DAPGM": {
+        "mor": [
+            "13,96",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "8,36",
+            "7,71",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "8,36",
+            "10,06",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KOCMT": {
+        "mor": [
+            "5,90",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "5,27",
+            "",
+            ""
+        ],
+        "mavi": [
+            "4,95",
+            "4,08",
+            ""
+        ],
+        "gri": [
+            "4,51",
+            "4,08",
+            ""
+        ],
+        "beklenti": [
+            "5,90",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "AYDEM": {
+        "mor": [
+            "30,92",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "23,82",
+            "25,46",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "29,40",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BINHO": {
+        "mor": [
+            "11,84",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "9,67",
+            "9,04",
+            ""
+        ],
+        "gri": [
+            "9,40",
+            "9,04",
+            ""
+        ],
+        "beklenti": [
+            "10,65",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BVSAN": {
+        "mor": [
+            "128,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "99,45",
+            "103,20",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "120,50",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "MACKO": {
+        "mor": [
+            "43,16",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "36,06",
+            "",
+            ""
+        ],
+        "mavi": [
+            "31,92",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "36,06",
+            "43,16",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ULKER": {
+        "mor": [
+            "117,70",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "87,75",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "102,00",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ASTOR": {
+        "mor": [
+            "361,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "336,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "330,75",
+            "314,00",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "336,50",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "NIBAS": {
+        "mor": [
+            "5,70",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "3,87",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "4,39",
+            "4,89",
+            "5,70"
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "01.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "HKTM": {
+        "mor": [
+            "15,85",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "13,41",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "15,29",
+            "15,85",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BRSAN": {
+        "mor": [
+            "734,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "706,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "661,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "720,00",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "784,00",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ERSU": {
+        "mor": [
+            "27,30",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "24,80",
+            "",
+            ""
+        ],
+        "mavi": [
+            "24,06",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "29,80",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "TRALT": {
+        "mor": [
+            "54,70",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "52,20",
+            "",
+            ""
+        ],
+        "mavi": [
+            "48,24",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "60,45",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "HRKET": {
+        "mor": [
+            "102,90",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "98,05",
+            "",
+            ""
+        ],
+        "mavi": [
+            "89,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "102,90",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "UFUK": {
+        "mor": [
+            "1924,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "1400,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "1344,00",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "1700,00",
+            "1780,00",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "OZRDN": {
+        "mor": [
+            "40,08",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "31,10",
+            "",
+            ""
+        ],
+        "mavi": [
+            "27,00",
+            "28,94",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "34,02",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "RODRG": {
+        "mor": [
+            "28,46",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "25,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "23,04",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "27,60",
+            "28,46",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ISVEA": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "79,05",
+            "",
+            ""
+        ],
+        "mavi": [
+            "73,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "85,00",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "132,20",
+            "165,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "VANGD": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "97,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "95,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "99,90",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "101,50",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BIGEN": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "165,20",
+            "1,00",
+            ""
+        ],
+        "mavi": [
+            "141,50",
+            "133,70",
+            ""
+        ],
+        "gri": [
+            "173,50",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "173,50",
+            "291,50",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "SELEC": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "302,50",
+            "318,25",
+            ""
+        ],
+        "mavi": [
+            "282,75",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "391,50",
+            "490,75",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "HATSN": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "78,05",
+            "",
+            ""
+        ],
+        "mavi": [
+            "74,10",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "81,70",
+            "97,50",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "TGSAS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "229,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "214,90",
+            "",
+            ""
+        ],
+        "gri": [
+            "237,50",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "256,50",
+            "302,50",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "MANAS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "31,16",
+            "",
+            ""
+        ],
+        "mavi": [
+            "29,20",
+            "",
+            ""
+        ],
+        "gri": [
+            "32,30",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "35,32",
+            "61,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BRLSM": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "22,84",
+            "",
+            ""
+        ],
+        "mavi": [
+            "19,85",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "24,10",
+            "26,16",
+            "36,76"
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ANELE": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "170,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "144,80",
+            "",
+            ""
+        ],
+        "gri": [
+            "175,00",
+            "180,00",
+            ""
+        ],
+        "beklenti": [
+            "213,20",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "BAHKM": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "150,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "140,30",
+            "",
+            ""
+        ],
+        "gri": [
+            "150,50",
+            "157,30",
+            ""
+        ],
+        "beklenti": [
+            "344,50",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "OZATD": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "4600,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "4337,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "4725,00",
+            "4790,00",
+            ""
+        ],
+        "beklenti": [
+            "5177,00",
+            "7955,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "PRZMA": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "81,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "73,30",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "86,05",
+            "144,70",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ALKLC": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "420,70",
+            "",
+            ""
+        ],
+        "mavi": [
+            "406,50",
+            "",
+            ""
+        ],
+        "gri": [
+            "425,25",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "436,25",
+            "444,25",
+            "542,50"
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "SARAE": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "88,10",
+            "",
+            ""
+        ],
+        "mavi": [
+            "83,65",
+            "80,50",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "109,50",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "RALYH": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "256,25",
+            "",
+            ""
+        ],
+        "mavi": [
+            "246,60",
+            "",
+            ""
+        ],
+        "gri": [
+            "264,00",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "306,00",
+            "401,75",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ATSYH": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "120,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "113,60",
+            "",
+            ""
+        ],
+        "gri": [
+            "125,00",
+            "128,00",
+            ""
+        ],
+        "beklenti": [
+            "131,30",
+            "185,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KRDMB": {
+        "mor": [
+            "140,90",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "136,20",
+            "",
+            ""
+        ],
+        "mavi": [
+            "129,20",
+            "126,70",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KARCL": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "153,80",
+            "",
+            ""
+        ],
+        "mavi": [
+            "131,50",
+            "",
+            ""
+        ],
+        "gri": [
+            "172,50",
+            "161,60",
+            ""
+        ],
+        "beklenti": [
+            "192,60",
+            "253,25",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "IEYHO": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "194,10",
+            "",
+            ""
+        ],
+        "mavi": [
+            "183,80",
+            "",
+            ""
+        ],
+        "gri": [
+            "197,50",
+            "205,40",
+            ""
+        ],
+        "beklenti": [
+            "218,30",
+            "318,50",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KERVN": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "10,40",
+            "",
+            ""
+        ],
+        "mavi": [
+            "9,80",
+            "",
+            ""
+        ],
+        "gri": [
+            "9,13",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "SANFM": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "10,98",
+            "",
+            ""
+        ],
+        "mavi": [
+            "10,53",
+            "",
+            ""
+        ],
+        "gri": [
+            "9,86",
+            "10,14",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "CELHA": {
+        "mor": [
+            "25,48",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "24,52",
+            "",
+            ""
+        ],
+        "mavi": [
+            "23,70",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "PEKGY": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "16,21",
+            "",
+            ""
+        ],
+        "mavi": [
+            "15,25",
+            "15,55",
+            "14,44"
+        ],
+        "gri": [
+            "14,44",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "GIPTA": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "88,25",
+            "",
+            ""
+        ],
+        "mavi": [
+            "73,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "65,45",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "88,25",
+            "10,17",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "GLRMK": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "174,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "167,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "174,00",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "TCKRC": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "162,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "153,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "141,30",
+            "144,80",
+            ""
+        ],
+        "beklenti": [
+            "153,00",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "IZMDC": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "12,98",
+            "",
+            ""
+        ],
+        "mavi": [
+            "12,30",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ISGYO": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "27,42",
+            "",
+            ""
+        ],
+        "mavi": [
+            "26,58",
+            "",
+            ""
+        ],
+        "gri": [
+            "25,88",
+            "25,22",
+            ""
+        ],
+        "beklenti": [
+            "27,42",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "MOGAN": {
+        "mor": [
+            "21,68",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "19,65",
+            "",
+            ""
+        ],
+        "mavi": [
+            "18,79",
+            "17,90",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "SONME": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "140,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "135,70",
+            "",
+            ""
+        ],
+        "gri": [
+            "129,90",
+            "121,70",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KCHOL": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "215,10",
+            "",
+            ""
+        ],
+        "mavi": [
+            "207,90",
+            "211,70",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "215,10",
+            "219,10",
+            "249,40"
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 1,
+        "tarih": "03.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "KORDS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "86,40",
+            "",
+            ""
+        ],
+        "mavi": [
+            "74,80",
+            "",
+            ""
+        ],
+        "gri": [
+            "82,70",
+            "79,00",
+            "74,80"
+        ],
+        "beklenti": [
+            "86,40",
+            "94,30",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "EUKYO": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "13,19",
+            "",
+            ""
+        ],
+        "mavi": [
+            "12,49",
+            "",
+            ""
+        ],
+        "gri": [
+            "12,80",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ARSAN": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "4,28",
+            "",
+            ""
+        ],
+        "mavi": [
+            "4,14",
+            "",
+            ""
+        ],
+        "gri": [
+            "4,14",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "4,51",
+            "4,86",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "ODINE": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "1705,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "2003,00",
+            "2098,00",
+            "1670,00"
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "CRFSA": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "279,75",
+            "",
+            ""
+        ],
+        "mavi": [
+            "254,50",
+            "",
+            ""
+        ],
+        "gri": [
+            "264,00",
+            "293,00",
+            ""
+        ],
+        "beklenti": [
+            "352,50",
+            "682,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "QNBTR": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "192,65",
+            "",
+            ""
+        ],
+        "mavi": [
+            "187,29",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "198,00",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
+    },
+    "SEGMN": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "52,25",
+            "",
+            ""
+        ],
+        "mavi": [
+            "51,50",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "52,25",
+            "",
+            ""
+        ],
+        "yon": "▼ Düşüş",
+        "yildiz": 0,
+        "tarih": "02.09.2026",
+        "favori": true,
+        "tetiklenen_seviyeler": []
+    }
+}
