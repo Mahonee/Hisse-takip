@@ -31,14 +31,14 @@ def arsiv_yukle():
   return {}
 
 
-# Arşiv Verilerini Kaydetme + GitHub Otomatik Senkronizasyon
+# Arşiv Verilerini Kaydetme + GitHub Otomatik Senkronizasyon (Kesin Çözüm)
 def arsiv_kaydet(arsiv):
     try:
         # 1. Önce yerel dosyaya kaydet
         with open(VERI_DOSYASI, "w", encoding="utf-8") as f:
             json.dump(arsiv, f, ensure_ascii=False, indent=4)
 
-        # 2. Ardından GitHub deposuna otomatik commit at
+        # 2. GitHub API ile senkronizasyon
         g = Github(st.secrets["GITHUB_TOKEN"])
         repo = g.get_repo(st.secrets["GITHUB_REPO"])
         file_path = VERI_DOSYASI
@@ -46,21 +46,24 @@ def arsiv_kaydet(arsiv):
         branch_name = "main"
 
         try:
+            # Dosya GitHub'da varsa SHA değerini al ve güncelle
             contents = repo.get_contents(file_path, ref=branch_name)
             repo.update_file(
-                contents.path,
-                "Otomatik hisse güncellemesi (Streamlit)",
-                updated_content,
-                contents.sha,
+                path=contents.path,
+                message="Otomatik hisse güncellemesi (Streamlit)",
+                content=updated_content,
+                sha=contents.sha,
                 branch=branch_name
             )
         except Exception:
+            # Dosya henüz GitHub'da yoksa sıfırdan oluştur
             repo.create_file(
-                file_path,
-                "İlk hisseler.json oluşturma (Streamlit)",
-                updated_content,
+                path=file_path,
+                message="İlk hisseler.json oluşturma (Streamlit)",
+                content=updated_content,
                 branch=branch_name
             )
+            
         st.success("GitHub'a başarıyla senkronize edildi!")
     except Exception as e:
         st.error(f"GitHub senkronizasyon hatası: {str(e)}")
