@@ -33,27 +33,34 @@ def arsiv_yukle():
 
 # Arşiv Verilerini Kaydetme + GitHub Otomatik Senkronizasyon
 def arsiv_kaydet(arsiv):
-  try:
-    # 1. Önce yerel dosyaya kaydet
-    with open(VERI_DOSYASI, "w", encoding="utf-8") as f:
-      json.dump(arsiv, f, ensure_ascii=False, indent=4)
+    try:
+        # 1. Önce yerel dosyaya kaydet
+        with open(VERI_DOSYASI, "w", encoding="utf-8") as f:
+            json.dump(arsiv, f, ensure_ascii=False, indent=4)
 
-    # 2. Ardından GitHub deposuna otomatik commit at
-    g = Github(st.secrets["GITHUB_TOKEN"])
-    repo = g.get_repo(st.secrets["GITHUB_REPO"])
-    file_path = VERI_DOSYASI
+        # 2. Ardından GitHub deposuna otomatik commit at
+        g = Github(st.secrets["GITHUB_TOKEN"])
+        repo = g.get_repo(st.secrets["GITHUB_REPO"])
+        file_path = VERI_DOSYASI
+        updated_content = json.dumps(arsiv, ensure_ascii=False, indent=4)
 
-    contents = repo.get_contents(file_path)
-    updated_content = json.dumps(arsiv, ensure_ascii=False, indent=4)
-
-    repo.update_file(
-        contents.path,
-        "Otomatik hisse güncellemesi (Streamlit)",
-        updated_content,
-        contents.sha,
-    )
-  except Exception as e:
-    st.error(f"GitHub senkronizasyon hatası: {e}")
+        try:
+            contents = repo.get_contents(file_path)
+            repo.update_file(
+                contents.path,
+                "Otomatik hisse güncellemesi (Streamlit)",
+                updated_content,
+                contents.sha,
+            )
+        except Exception:
+            repo.create_file(
+                file_path,
+                "İlk hisseler.json oluşturma (Streamlit)",
+                updated_content
+            )
+        st.success("GitHub'a başarıyla senkronize edildi!")
+    except Exception as e:
+        st.error(f"GitHub senkronizasyon hatası: {e}")
 
 
 def bildirim_durumu_yukle():
