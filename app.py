@@ -8,16 +8,39 @@ import urllib.request
 import streamlit as st
 import streamlit.components.v1 as components
 
-VERI_DOSYASI = "hisse_arsivi.json"
-BILDIRIM_DOSYASI = "bildirim_durumu.json"
-SIFRE_KORUMASI = "1111"  # Buradan istediğin şifreyi belirleyebilirsin
-
+# Sayfa yapılandırması (Dosyadaki ilk ve tek st.set_page_config olmalı)
 st.set_page_config(
     page_title="Canlı Hisse ve Bölge Takip Paneli",
     page_icon="📈",
     layout="wide",
 )
 
+# Sabitler ve Dosya Yolları
+VERI_DOSYASI = "hisseler.json"  # Dosya adını fonksiyonla eşitledik
+BILDIRIM_DOSYASI = "bildirim_durumu.json"
+SIFRE_KORUMASI = "1111"
+
+
+# Hisseleri JSON dosyasından yükleme fonksiyonu
+def hisseleri_yukle():
+  dosya_adaylari = ["hisselers.json", "hisseler.json", "hisse_arsivi.json"]
+
+  for dosya_adi in dosya_adaylari:
+    if os.path.exists(dosya_adi):
+      with open(dosya_adi, "r", encoding="utf-8") as f:
+        veri = json.load(f)
+        if veri:  # İçinde veri varsa bunu kullan
+          return veri
+
+  return {}
+
+# Hisse listesini belleğe yükle
+hisse_listesi = hisseleri_yukle()
+
+# Test satırı (Sözlük uzunluğunu .keys() ile alıyoruz)
+st.write(f"Yüklenen hisse sayısı: {len(hisse_listesi.keys())}")
+
+# Mobil görünüm ve zoom engelleme ayarı (Tek ve eksiksiz blok)
 components.html(
     """
     <script>
@@ -33,13 +56,6 @@ components.html(
     }, { passive: false });
 
     let lastTouchEnd = 0;
-    window.parent.document.addEventListener('touchend', function(event) {
-        const now = (new Date()).getTime();
-        if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-        }
-        lastTouchEnd = now;
-    }, { passive: false });
     </script>
     """,
     height=0,
@@ -215,7 +231,7 @@ st.markdown(
         min-height: 100dvh !important;
         max-height: 100dvh !important;
         overflow-y: auto !important;
-        padding-bottom: 420px !important;
+        padding-bottom: 220px !important;
         -webkit-overflow-scrolling: touch !important;
     }
 }
@@ -1359,6 +1375,7 @@ def form_icerigini_olustur():
         autocomplete="off"
     )
 
+
     gri_defaults = get_val_list("gri")
 
     st.markdown(
@@ -1724,7 +1741,6 @@ def canli_veri_ve_tablo_alani():
         yeni_tetiklenenler = list(
             tetiklenenler
         )
-
         if is_alarmli and not veri_yok and fiyat > 0:
 
             for af in alarm_floats:
