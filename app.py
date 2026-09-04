@@ -1649,6 +1649,8 @@ def form_icerigini_olustur():
                 f"'{hisse_input}' kaydedildi ve güncellendi!"
             )
 
+            st.rerun()
+
             components.html(
                 """
                 <script>
