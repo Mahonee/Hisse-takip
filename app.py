@@ -1525,12 +1525,12 @@ def form_icerigini_olustur():
         "<div style='margin-top: 8px;'></div>",
         unsafe_allow_html=True
     )
-if st.button(
+    if st.button(
         "KAYDET / GÜNCELLE",
         key="btn_kaydet_sabit",
         use_container_width=True
 ):
-if hisse_input:
+    if hisse_input:
         current_arsiv = arsiv_yukle()
         bugun = datetime.now().strftime("%d.%m.%Y")
         eski_favori = current_arsiv.get(
