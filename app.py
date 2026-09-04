@@ -1527,7 +1527,7 @@ def form_icerigini_olustur():
     )
     if st.button(
         "KAYDET / GÜNCELLE",
-        key=f"btn_kaydet_{hisse_input}",
+        key="btn_kaydet_sabit",
         use_container_width=True
     ):
         if hisse_input:
