@@ -57,7 +57,8 @@ def arsiv_kaydet(arsiv):
         if response.status_code == 200:
             st.toast("Buluta başarıyla kaydedildi!", icon="🚀")
         else:
-            st.error(f"Kayıt hatası: {response.text}")
+            # Hata kodunu ve mesajını ekrana basalım ki sebebi görelim
+            st.error(f"JSONBin Kayıt Hatası ({response.status_code}): {response.text}")
     except Exception as e:
         st.error(f"Bağlantı hatası: {e}")
 
