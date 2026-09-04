@@ -1526,11 +1526,18 @@ def form_icerigini_olustur():
         unsafe_allow_html=True
     )
 
-    if st.button("KAYDET / GÜNCELLE", key="btn_kaydet_sabit", use_container_width=True):
-    if hisse_input:
+        if st.button(
+        "KAYDET / GÜNCELLE",
+        key="btn_kaydet_sabit",
+        use_container_width=True
+):
+        if hisse_input:
         current_arsiv = arsiv_yukle()
         bugun = datetime.now().strftime("%d.%m.%Y")
-        eski_favori = current_arsiv.get(hisse_input, {}).get("favori", False)
+        eski_favori = current_arsiv.get(
+            hisse_input,
+            {}
+        ).get("favori", False)
         
         # Buraya kendi kayıt kodlarını ekleyip arsiv_kaydet(arsiv) fonksiyonunu çağırabilirsin
         # Örnek:
