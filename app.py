@@ -1526,11 +1526,7 @@ def form_icerigini_olustur():
         unsafe_allow_html=True
     )
 
-    if st.button(
-    "KAYDET / GÜNCELLE",
-    key="btn_kaydet_sabit",
-    use_container_width=True
-):
+    if st.button("KAYDET / GÜNCELLE", key="btn_kaydet_sabit", use_container_width=True):
     if hisse_input:
         current_arsiv = arsiv_yukle()
         bugun = datetime.now().strftime("%d.%m.%Y")
@@ -1538,6 +1534,9 @@ def form_icerigini_olustur():
             hisse_input,
             {}
         ).get("favori", False)
+        
+        # Buradan sonraki kayıt işlemlerin (arsiv_kaydet çağrısı vb.) 
+        # aynı hizada içeride devam etmeli
 
             current_arsiv[hisse_input] = {
                 "mor": [
