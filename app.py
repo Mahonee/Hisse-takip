@@ -43,27 +43,29 @@ def arsiv_kaydet(arsiv):
         repo = g.get_repo(st.secrets["GITHUB_REPO"])
         file_path = VERI_DOSYASI
         updated_content = json.dumps(arsiv, ensure_ascii=False, indent=4)
+        branch_name = "main"
 
         try:
-            contents = repo.get_contents(file_path)
+            contents = repo.get_contents(file_path, ref=branch_name)
             repo.update_file(
                 contents.path,
                 "Otomatik hisse güncellemesi (Streamlit)",
                 updated_content,
                 contents.sha,
+                branch=branch_name
             )
         except Exception:
             repo.create_file(
                 file_path,
                 "İlk hisseler.json oluşturma (Streamlit)",
-                updated_content
+                updated_content,
+                branch=branch_name
             )
         st.success("GitHub'a başarıyla senkronize edildi!")
     except Exception as e:
         st.error(f"GitHub senkronizasyon hatası: {str(e)}")
         import traceback
         st.code(traceback.format_exc())
-
 
 def bildirim_durumu_yukle():
   if os.path.exists(BILDIRIM_DOSYASI):
