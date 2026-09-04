@@ -1663,12 +1663,12 @@ def form_icerigini_olustur():
                 if k in st.session_state:
                     del st.session_state[k]
 
-            st.success(
-                f"'{hisse_input}' kaydedildi ve güncellendi!"
-            )
+            st.success(f"'{hisse_input}' kaydedildi ve güncellendi!")
             
+            # time.sleep komutunu st.rerun()'dan ÖNCEYE alıyoruz ki 
+            # GitHub API sunucuyla iletişim kurmak için yeterli süre bulabilsin.
             import time
-            time.sleep(2) # GitHub API'nin veriyi işlemesine 2 saniye tanıyoruz
+            time.sleep(2) 
 
             st.rerun()
 
