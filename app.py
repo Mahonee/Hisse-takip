@@ -1,5 +1,6 @@
 import concurrent.futures
 from datetime import datetime
+from github import Github
 import html
 import json
 import os
@@ -8,39 +9,105 @@ import urllib.request
 import streamlit as st
 import streamlit.components.v1 as components
 
-# Sayfa yapılandırması (Dosyadaki ilk ve tek st.set_page_config olmalı)
+# Sayfa yapılandırması
 st.set_page_config(
-    page_title="Canlı Hisse ve Bölge Takip Paneli",
-    page_icon="📈",
-    layout="wide",
+    page_title="Canlı Hisse ve Bölge Takip Paneli", page_icon="📈", layout="wide"
 )
 
 # Sabitler ve Dosya Yolları
-VERI_DOSYASI = "hisseler.json"  # Dosya adını fonksiyonla eşitledik
+VERI_DOSYASI = "hisseler.json"
 BILDIRIM_DOSYASI = "bildirim_durumu.json"
 SIFRE_KORUMASI = "1111"
 
 
-# Hisseleri JSON dosyasından yükleme fonksiyonu
-def hisseleri_yukle():
-  dosya_adaylari = ["hisselers.json", "hisseler.json", "hisse_arsivi.json"]
-
-  for dosya_adi in dosya_adaylari:
-    if os.path.exists(dosya_adi):
-      with open(dosya_adi, "r", encoding="utf-8") as f:
-        veri = json.load(f)
-        if veri:  # İçinde veri varsa bunu kullan
-          return veri
-
+# Arşiv (Hisse) Verilerini Yükleme
+def arsiv_yukle():
+  if os.path.exists(VERI_DOSYASI):
+    try:
+      with open(VERI_DOSYASI, "r", encoding="utf-8") as f:
+        return json.load(f)
+    except Exception:
+      pass
   return {}
 
-# Hisse listesini belleğe yükle
-hisse_listesi = hisseleri_yukle()
 
-# Test satırı (Sözlük uzunluğunu .keys() ile alıyoruz)
+# Arşiv Verilerini Kaydetme + GitHub Otomatik Senkronizasyon
+def arsiv_kaydet(arsiv):
+  try:
+    # 1. Önce yerel dosyaya kaydet
+    with open(VERI_DOSYASI, "w", encoding="utf-8") as f:
+      json.dump(arsiv, f, ensure_ascii=False, indent=4)
+
+    # 2. Ardından GitHub deposuna otomatik commit at
+    g = Github(st.secrets["GITHUB_TOKEN"])
+    repo = g.get_repo(st.secrets["GITHUB_REPO"])
+    file_path = VERI_DOSYASI
+
+    contents = repo.get_contents(file_path)
+    updated_content = json.dumps(arsiv, ensure_ascii=False, indent=4)
+
+    repo.update_file(
+        contents.path,
+        "Otomatik hisse güncellemesi (Streamlit)",
+        updated_content,
+        contents.sha,
+    )
+  except Exception as e:
+    st.error(f"GitHub senkronizasyon hatası: {e}")
+
+
+def bildirim_durumu_yukle():
+  if os.path.exists(BILDIRIM_DOSYASI):
+    try:
+      with open(BILDIRIM_DOSYASI, "r", encoding="utf-8") as f:
+        return json.load(f)
+    except Exception:
+      pass
+  return {
+      "temizlendi": False,
+      "son_kiran_sayisi": 0,
+      "son_temizlenen_kiranlar": [],
+  }
+
+
+def bildirim_durumu_kaydet(durum):
+  try:
+    with open(BILDIRIM_DOSYASI, "w", encoding="utf-8") as f:
+      json.dump(durum, f, ensure_ascii=False, indent=4)
+  except Exception:
+    pass
+
+
+@st.cache_data(ttl=60, show_spinner=False)
+def fiyat_cek(hisse_kodu):
+  if not hisse_kodu:
+    return None, None
+  try:
+    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{hisse_kodu}.IS?interval=1m"
+    req = urllib.request.Request(
+        url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+    )
+    with urllib.request.urlopen(req, timeout=1.5) as response:
+      data = json.loads(response.read().decode())
+      results = data.get("chart", {}).get("result")
+      if not results:
+        return None, None
+      meta = results[0]["meta"]
+      fiyat = meta.get("regularMarketPrice")
+      if fiyat is None:
+        return None, None
+      onceki = meta.get("chartPreviousClose", meta.get("previousClose", fiyat))
+      yuzde = ((fiyat - onceki) / onceki) * 100 if onceki else 0.0
+      return float(fiyat), float(yuzde)
+  except Exception:
+    return None, None
+
+
+# Hisse listesini belleğe yükle
+hisse_listesi = arsiv_yukle()
 st.write(f"Yüklenen hisse sayısı: {len(hisse_listesi.keys())}")
 
-# Mobil görünüm ve zoom engelleme ayarı (Tek ve eksiksiz blok)
+# Mobil görünüm ve zoom engelleme ayarı
 components.html(
     """
     <script>
