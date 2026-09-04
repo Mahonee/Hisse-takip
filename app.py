@@ -60,7 +60,9 @@ def arsiv_kaydet(arsiv):
             )
         st.success("GitHub'a başarıyla senkronize edildi!")
     except Exception as e:
-        st.error(f"GitHub senkronizasyon hatası: {e}")
+        st.error(f"GitHub senkronizasyon hatası: {str(e)}")
+        import traceback
+        st.code(traceback.format_exc())
 
 
 def bildirim_durumu_yukle():
