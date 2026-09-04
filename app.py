@@ -1527,17 +1527,17 @@ def form_icerigini_olustur():
     )
 
     if st.button(
-        "KAYDET / GÜNCELLE",
-        key=f"btn_kaydet_{hisse_input}",
-        use_container_width=True
-    ):
-        if hisse_input:
-            current_arsiv = arsiv_yukle()
-            bugun = datetime.now().strftime("%d.%m.%Y")
-            eski_favori = current_arsiv.get(
-                hisse_input,
-                {}
-            ).get("favori", False)
+    "KAYDET / GÜNCELLE",
+    key="btn_kaydet_sabit",
+    use_container_width=True
+):
+    if hisse_input:
+        current_arsiv = arsiv_yukle()
+        bugun = datetime.now().strftime("%d.%m.%Y")
+        eski_favori = current_arsiv.get(
+            hisse_input,
+            {}
+        ).get("favori", False)
 
             current_arsiv[hisse_input] = {
                 "mor": [
