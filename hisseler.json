@@ -3806,37 +3806,5 @@
         "tarih": "02.09.2026",
         "favori": true,
         "tetiklenen_seviyeler": []
-    },
-    "CEMAS": {
-        "mor": [
-            "",
-            "",
-            ""
-        ],
-        "turuncu": [
-            "",
-            "",
-            ""
-        ],
-        "mavi": [
-            "",
-            "",
-            ""
-        ],
-        "gri": [
-            "",
-            "",
-            ""
-        ],
-        "beklenti": [
-            "",
-            "",
-            ""
-        ],
-        "yon": "⏳ Beklemede",
-        "yildiz": 0,
-        "tarih": "07.09.2026",
-        "favori": false,
-        "tetiklenen_seviyeler": []
     }
 }
