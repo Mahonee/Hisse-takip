@@ -1,119 +1,107 @@
 import concurrent.futures
+import base64
 from datetime import datetime
-from github import Github
 import html
 import json
 import os
 import urllib.parse
 import urllib.request
+import requests
 import streamlit as st
 import streamlit.components.v1 as components
 
-# Sayfa yapılandırması
-st.set_page_config(
-    page_title="Canlı Hisse ve Bölge Takip Paneli", page_icon="📈", layout="wide"
-)
-
-# Sabitler ve Dosya Yolları
 VERI_DOSYASI = "hisseler.json"
 BILDIRIM_DOSYASI = "bildirim_durumu.json"
-SIFRE_KORUMASI = "1111"
+SIFRE_KORUMASI = "1111"  # Buradan istediğin şifreyi belirleyebilirsin
 
 
-# Arşiv (Hisse) Verilerini Yükleme
-def arsiv_yukle():
-  if os.path.exists(VERI_DOSYASI):
+def ayar_al(anahtar, varsayilan=""):
+    deger = os.getenv(anahtar)
+    if deger:
+        return deger
     try:
-      with open(VERI_DOSYASI, "r", encoding="utf-8") as f:
-        return json.load(f)
+        return st.secrets.get(anahtar, varsayilan)
     except Exception:
-      pass
-  return {}
+        return varsayilan
 
 
-import requests
-
-def arsiv_yukle():
-    try:
-        url = f"https://api.jsonbin.io/v3/b/{st.secrets['BIN_ID']}/latest"
-        headers = {
-            "X-Master-Key": st.secrets["JSONBIN_KEY"]
-        }
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            return response.json().get("record", {})
-    except Exception as e:
-        st.error(f"Veri yüklenemedi: {e}")
-    return {}
-
-def arsiv_kaydet(arsiv):
-    try:
-        url = f"https://api.jsonbin.io/v3/b/{st.secrets['BIN_ID']}"
-        headers = {
-            "Content-Type": "application/json",
-            "X-Master-Key": st.secrets["JSONBIN_KEY"]
-        }
-        response = requests.put(url, json=arsiv, headers=headers)
-        if response.status_code == 200:
-            st.toast("Buluta başarıyla kaydedildi!", icon="🚀")
-        else:
-            # Hata kodunu ve mesajını ekrana basalım ki sebebi görelim
-            st.error(f"JSONBin Kayıt Hatası ({response.status_code}): {response.text}")
-    except Exception as e:
-        st.error(f"Bağlantı hatası: {e}")
-
-def bildirim_durumu_yukle():
-  if os.path.exists(BILDIRIM_DOSYASI):
-    try:
-      with open(BILDIRIM_DOSYASI, "r", encoding="utf-8") as f:
-        return json.load(f)
-    except Exception:
-      pass
-  return {
-      "temizlendi": False,
-      "son_kiran_sayisi": 0,
-      "son_temizlenen_kiranlar": [],
-  }
+GITHUB_TOKEN = ayar_al("GITHUB_TOKEN")
+GITHUB_REPOSITORY = ayar_al("GITHUB_REPOSITORY")
+GITHUB_BRANCH = ayar_al("GITHUB_BRANCH", "main")
+GITHUB_DATA_PREFIX = ayar_al("GITHUB_DATA_PREFIX", "")
 
 
-def bildirim_durumu_kaydet(durum):
-  try:
-    with open(BILDIRIM_DOSYASI, "w", encoding="utf-8") as f:
-      json.dump(durum, f, ensure_ascii=False, indent=4)
-  except Exception:
-    pass
+def github_aktif_mi():
+    return bool(GITHUB_TOKEN and GITHUB_REPOSITORY)
 
 
-@st.cache_data(ttl=60, show_spinner=False)
-def fiyat_cek(hisse_kodu):
-  if not hisse_kodu:
-    return None, None
-  try:
-    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{hisse_kodu}.IS?interval=1m"
-    req = urllib.request.Request(
-        url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+def github_dosya_yolu(dosya_adi):
+    if GITHUB_DATA_PREFIX:
+        return f"{GITHUB_DATA_PREFIX.strip('/')}/{dosya_adi}"
+    return dosya_adi
+
+
+def github_dosyasi_oku(dosya_adi):
+    url = (
+        "https://api.github.com/repos/"
+        f"{GITHUB_REPOSITORY}/contents/{github_dosya_yolu(dosya_adi)}"
     )
-    with urllib.request.urlopen(req, timeout=1.5) as response:
-      data = json.loads(response.read().decode())
-      results = data.get("chart", {}).get("result")
-      if not results:
-        return None, None
-      meta = results[0]["meta"]
-      fiyat = meta.get("regularMarketPrice")
-      if fiyat is None:
-        return None, None
-      onceki = meta.get("chartPreviousClose", meta.get("previousClose", fiyat))
-      yuzde = ((fiyat - onceki) / onceki) * 100 if onceki else 0.0
-      return float(fiyat), float(yuzde)
-  except Exception:
-    return None, None
+    response = requests.get(
+        url,
+        headers={"Authorization": f"Bearer {GITHUB_TOKEN}"},
+        params={"ref": GITHUB_BRANCH},
+        timeout=8,
+    )
+    if response.status_code != 200:
+        return None
+    icerik = response.json().get("content", "")
+    return json.loads(base64.b64decode(icerik).decode("utf-8"))
 
 
-# Hisse listesini belleğe yükle
-hisse_listesi = arsiv_yukle()
-st.write(f"Yüklenen hisse sayısı: {len(hisse_listesi.keys())}")
+def github_dosyasi_kaydet(dosya_adi, veri):
+    yol = github_dosya_yolu(dosya_adi)
+    url = f"https://api.github.com/repos/{GITHUB_REPOSITORY}/contents/{yol}"
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json",
+    }
+    mevcut = requests.get(
+        url,
+        headers=headers,
+        params={"ref": GITHUB_BRANCH},
+        timeout=8,
+    )
+    mevcut_sha = None
+    if mevcut.status_code == 200:
+        mevcut_sha = mevcut.json().get("sha")
+        mevcut_icerik = mevcut.json().get("content", "")
+        try:
+            mevcut_veri = json.loads(
+                base64.b64decode(mevcut_icerik).decode("utf-8")
+            )
+            if mevcut_veri == veri:
+                return True
+        except Exception:
+            pass
 
-# Mobil görünüm ve zoom engelleme ayarı
+    payload = {
+        "message": f"Veri güncelle: {dosya_adi}",
+        "content": base64.b64encode(
+            json.dumps(veri, ensure_ascii=False, indent=4).encode("utf-8")
+        ).decode("ascii"),
+        "branch": GITHUB_BRANCH,
+    }
+    if mevcut_sha:
+        payload["sha"] = mevcut_sha
+    response = requests.put(url, headers=headers, json=payload, timeout=8)
+    return response.status_code in (200, 201)
+
+st.set_page_config(
+    page_title="Canlı Hisse ve Bölge Takip Paneli",
+    page_icon="📈",
+    layout="wide",
+)
+
 components.html(
     """
     <script>
@@ -129,6 +117,13 @@ components.html(
     }, { passive: false });
 
     let lastTouchEnd = 0;
+    window.parent.document.addEventListener('touchend', function(event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, { passive: false });
     </script>
     """,
     height=0,
@@ -824,6 +819,13 @@ st.markdown(
 
 
 def arsiv_yukle():
+    if github_aktif_mi():
+        try:
+            uzak_veri = github_dosyasi_oku(VERI_DOSYASI)
+            if isinstance(uzak_veri, dict):
+                return uzak_veri
+        except Exception:
+            pass
     if os.path.exists(VERI_DOSYASI):
         try:
             with open(VERI_DOSYASI, "r", encoding="utf-8") as f:
@@ -834,6 +836,12 @@ def arsiv_yukle():
 
 
 def arsiv_kaydet(arsiv):
+    if github_aktif_mi():
+        try:
+            if github_dosyasi_kaydet(VERI_DOSYASI, arsiv):
+                return
+        except Exception:
+            pass
     try:
         with open(VERI_DOSYASI, "w", encoding="utf-8") as f:
             json.dump(arsiv, f, ensure_ascii=False, indent=4)
@@ -842,6 +850,13 @@ def arsiv_kaydet(arsiv):
 
 
 def bildirim_durumu_yukle():
+    if github_aktif_mi():
+        try:
+            uzak_veri = github_dosyasi_oku(BILDIRIM_DOSYASI)
+            if isinstance(uzak_veri, dict):
+                return uzak_veri
+        except Exception:
+            pass
     if os.path.exists(BILDIRIM_DOSYASI):
         try:
             with open(BILDIRIM_DOSYASI, "r", encoding="utf-8") as f:
@@ -856,6 +871,12 @@ def bildirim_durumu_yukle():
 
 
 def bildirim_durumu_kaydet(durum):
+    if github_aktif_mi():
+        try:
+            if github_dosyasi_kaydet(BILDIRIM_DOSYASI, durum):
+                return
+        except Exception:
+            pass
     try:
         with open(BILDIRIM_DOSYASI, "w", encoding="utf-8") as f:
             json.dump(durum, f, ensure_ascii=False, indent=4)
@@ -873,7 +894,7 @@ def fiyat_cek(hisse_kodu):
             url,
             headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
         )
-        with urllib.request.urlopen(req, timeout=1.5) as response:
+        with urllib.request.urlopen(req, timeout=0.8) as response:
             data = json.loads(response.read().decode())
             results = data.get("chart", {}).get("result")
             if not results:
@@ -969,19 +990,6 @@ if "secilen_hisse" in query_params:
 arsiv = arsiv_yukle()
 
 anlik_fiyatlar_cache = {}
-if arsiv:
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
-        futures = {
-            executor.submit(fiyat_cek, h): h
-            for h in arsiv.keys()
-        }
-        for future in concurrent.futures.as_completed(futures):
-            h = futures[future]
-            try:
-                f, y = future.result()
-                anlik_fiyatlar_cache[h] = (f, y)
-            except Exception:
-                anlik_fiyatlar_cache[h] = (None, None)
 
 tum_hisseler_metin = ""
 if arsiv:
@@ -1061,9 +1069,33 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+kopyalanacak_veriler = {}
+for hisse_kodu, hisse_verisi in arsiv.items():
+    kopyalanacak_veriler[hisse_kodu] = {
+        "mor": hisse_verisi.get("mor", ["", "", ""]),
+        "turuncu": hisse_verisi.get("turuncu", ["", "", ""]),
+        "mavi": hisse_verisi.get("mavi", ["", "", ""]),
+        "gri": hisse_verisi.get("gri", ["", "", ""]),
+        "beklenti": hisse_verisi.get("beklenti", ["", "", ""]),
+        "yon": hisse_verisi.get("yon", ""),
+        "yildiz": hisse_verisi.get("yildiz", 0),
+        "tarih": hisse_verisi.get("tarih", ""),
+        "favori": hisse_verisi.get("favori", False),
+        "tetiklenen_seviyeler": hisse_verisi.get(
+            "tetiklenen_seviyeler",
+            []
+        ),
+    }
+
+copy_json_metni = json.dumps(
+    kopyalanacak_veriler,
+    ensure_ascii=False,
+    indent=4,
+)
+
 safe_js_metin = json.dumps(
-    tum_hisseler_metin,
-    ensure_ascii=False
+    copy_json_metni,
+    ensure_ascii=False,
 )
 
 kopyala_js_kodu = f"""
@@ -1079,7 +1111,7 @@ function metniKopyala() {{
     }});
 }}
 </script>
-<button onclick="metniKopyala()" id="copyBtn" style="
+<button type="button" onclick="event.preventDefault(); metniKopyala();" id="copyBtn" style="
     background-color: #1a1c21;
     color: #e9e6df;
     border: 1.5px solid #ff7a1a;
@@ -1525,9 +1557,10 @@ def form_icerigini_olustur():
         "<div style='margin-top: 8px;'></div>",
         unsafe_allow_html=True
     )
+
     if st.button(
         "KAYDET / GÜNCELLE",
-        key="btn_kaydet_sabit",
+        key=f"btn_kaydet_{hisse_input}",
         use_container_width=True
     ):
         if hisse_input:
@@ -1537,14 +1570,6 @@ def form_icerigini_olustur():
                 hisse_input,
                 {}
             ).get("favori", False)
-        
-        # Buraya kendi kayıt kodlarını ekleyip arsiv_kaydet(arsiv) fonksiyonunu çağırabilirsin
-        # Örnek:
-        # current_arsiv[hisse_input] = {...}
-        # arsiv_kaydet(current_arsiv)
-        
-        # Buradan sonraki kayıt işlemlerin (arsiv_kaydet çağrısı vb.) 
-        # aynı hizada içeride devam etmeli
 
             current_arsiv[hisse_input] = {
                 "mor": [
@@ -1658,14 +1683,9 @@ def form_icerigini_olustur():
                 if k in st.session_state:
                     del st.session_state[k]
 
-            st.success(f"'{hisse_input}' kaydedildi ve güncellendi!")
-            
-            # time.sleep komutunu st.rerun()'dan ÖNCEYE alıyoruz ki 
-            # GitHub API sunucuyla iletişim kurmak için yeterli süre bulabilsin.
-            import time
-            time.sleep(2) 
-
-            st.rerun()
+            st.success(
+                f"'{hisse_input}' kaydedildi ve güncellendi!"
+            )
 
             components.html(
                 """
@@ -1712,7 +1732,9 @@ def canli_veri_ve_tablo_alani():
 
     guncel_fiyatlar_cache = {}
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=min(50, max(1, len(guncel_arsiv)))
+    ) as executor:
         futures = {
             executor.submit(fiyat_cek, h): h
             for h in guncel_arsiv.keys()
