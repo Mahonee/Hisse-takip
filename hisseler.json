@@ -3806,39 +3806,5 @@
         "tarih": "07.09.2026",
         "favori": true,
         "tetiklenen_seviyeler": []
-    },
-    "CEMAS": {
-        "mor": [
-            "",
-            "1,22",
-            ""
-        ],
-        "turuncu": [
-            "",
-            "",
-            ""
-        ],
-        "mavi": [
-            "",
-            "",
-            ""
-        ],
-        "gri": [
-            "",
-            "",
-            ""
-        ],
-        "beklenti": [
-            "",
-            "",
-            ""
-        ],
-        "yon": "▲ Yükseliş",
-        "yildiz": 0,
-        "tarih": "07.09.2026",
-        "favori": false,
-        "tetiklenen_seviyeler": [
-            1.22
-        ]
     }
 }
