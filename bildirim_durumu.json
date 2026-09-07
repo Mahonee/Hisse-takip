@@ -1,5 +1,7 @@
 {
-    "temizlendi": true,
-    "son_kiran_sayisi": 0,
-    "son_temizlenen_kiranlar": []
+    "temizlendi": false,
+    "son_kiran_sayisi": 1,
+    "son_temizlenen_kiranlar": [
+        "CEMAS"
+    ]
 }
