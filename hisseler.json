@@ -305,17 +305,17 @@
         ],
         "gri": [
             "16,93",
-            "18,41",
+            "",
             ""
         ],
         "beklenti": [
-            "",
-            "",
+            "18,41",
+            "34,40",
             ""
         ],
         "yon": "▲ Yükseliş",
         "yildiz": 3,
-        "tarih": "02.09.2026",
+        "tarih": "07.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
     },
