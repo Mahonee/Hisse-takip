@@ -974,7 +974,7 @@ def pine_script_testi_uret(arsiv_verileri, aktif_hisse="", aktif_seviyeler=None)
         satirlar.extend(
             [
                 f"    if not na({degisken})",
-                f"        array.push(cizgiler, line.new(x1=bar_index - 50, y1={degisken}, x2=bar_index, y2={degisken}, color={renk}, style=line.style_dashed, width=1, extend=extend.right))",
+                f"        array.push(cizgiler, line.new(x1=bar_index - 500, y1={degisken}, x2=bar_index, y2={degisken}, color={renk}, style=line.style_dashed, width=1, extend=extend.right))",
             ]
         )
 
@@ -1834,31 +1834,83 @@ def form_icerigini_olustur():
 
             st.rerun(scope="app")
 
-    pine_test_key = f"pine_test_kodu_{hisse_input}"
+    guncel_pine_kodu = pine_script_testi_uret(
+        arsiv,
+        hisse_input,
+        {
+            "mor": [mor_1, mor_2, mor_3],
+            "turuncu": [sari_1, sari_2, sari_3],
+            "mavi": [mavi_1, mavi_2, mavi_3],
+            "gri": [gri_1, gri_2, gri_3],
+            "beklenti": [beklenti_1, beklenti_2, beklenti_3],
+        },
+    )
+    guvenli_pine_kodu = json.dumps(
+        guncel_pine_kodu,
+        ensure_ascii=False,
+    )
+    components.html(
+        f"""
+        <style>
+            html, body {{ margin: 0; background: transparent; }}
+            button {{
+                background-color: #1a1c21;
+                color: #e9e6df;
+                border: 1.5px solid #ff7a1a;
+                border-radius: 6px;
+                padding: 8px 12px;
+                font-weight: 600;
+                font-family: 'Inter', sans-serif;
+                font-size: 12px;
+                cursor: pointer;
+                width: 100%;
+                height: 40px;
+                box-shadow: 0 0 6px rgba(255, 122, 26, 0.45);
+            }}
+            button:hover {{
+                color: #ff9a4d;
+                border-color: #ff9a4d;
+                box-shadow: 0 0 14px rgba(255, 122, 26, 0.85);
+            }}
+        </style>
+        <script>
+            const pineKodu = {guvenli_pine_kodu};
+            let buton = null;
 
-    if st.button(
-        "Pine Script Testi",
-        key=f"pine_test_btn_{hisse_input}",
-        use_container_width=True,
-    ):
-        if hisse_input:
-            st.session_state[pine_test_key] = pine_script_testi_uret(
-                arsiv,
-                hisse_input,
-                {
-                    "mor": [mor_1, mor_2, mor_3],
-                    "turuncu": [sari_1, sari_2, sari_3],
-                    "mavi": [mavi_1, mavi_2, mavi_3],
-                    "gri": [gri_1, gri_2, gri_3],
-                    "beklenti": [beklenti_1, beklenti_2, beklenti_3],
-                },
-            )
+            function basarili() {{
+                buton.innerText = 'Kopyalandı';
+                setTimeout(() => {{ buton.innerText = 'Pine Scripti Kopyala'; }}, 1800);
+            }}
 
-    if st.session_state.get(pine_test_key):
-        st.code(
-            st.session_state[pine_test_key],
-            language="pinescript",
-        )
+            function yedekKopyalama() {{
+                const alan = document.createElement('textarea');
+                alan.value = pineKodu;
+                alan.setAttribute('readonly', '');
+                alan.style.position = 'fixed';
+                alan.style.opacity = '0';
+                document.body.appendChild(alan);
+                alan.select();
+                const kopyalandi = document.execCommand('copy');
+                alan.remove();
+                if (kopyalandi) basarili();
+                else buton.innerText = 'Kopyalanamadı';
+            }}
+
+            function kopyala() {{
+                buton = document.getElementById('pineKopyala');
+                if (navigator.clipboard && window.isSecureContext) {{
+                    navigator.clipboard.writeText(pineKodu)
+                        .then(basarili)
+                        .catch(yedekKopyalama);
+                }} else {{
+                    yedekKopyalama();
+                }}
+            }}
+        </script>
+        <button id="pineKopyala" type="button" onclick="kopyala()">Pine Scripti Kopyala</button>
+        """,
+        height=45,
+    )
 
 
 with st.sidebar:
