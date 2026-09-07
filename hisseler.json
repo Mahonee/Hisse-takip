@@ -3837,6 +3837,8 @@
         "yildiz": 0,
         "tarih": "07.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            4.2
+        ]
     }
 }
