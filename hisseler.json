@@ -3838,5 +3838,37 @@
         "tarih": "07.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "ENERY": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "10,50",
+            "",
+            ""
+        ],
+        "mavi": [
+            "9,93",
+            "",
+            ""
+        ],
+        "gri": [
+            "10,71",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "10,95",
+            "11,91",
+            "14,33"
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "07.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
