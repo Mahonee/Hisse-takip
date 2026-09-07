@@ -908,22 +908,22 @@
         ],
         "mavi": [
             "13,60",
-            "",
+            "12,80",
             ""
         ],
         "gri": [
             "15,54",
-            "",
+            "15,90",
             ""
         ],
         "beklenti": [
-            "15,90",
+            "",
             "19,99",
             ""
         ],
         "yon": "▲ Yükseliş",
-        "yildiz": 2,
-        "tarih": "02.09.2026",
+        "yildiz": 3,
+        "tarih": "07.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
     },
