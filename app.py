@@ -888,6 +888,101 @@ def bildirim_durumu_kaydet(durum):
         pass
 
 
+def pine_script_testi_uret(arsiv_verileri, aktif_hisse="", aktif_seviyeler=None):
+    renkler = {
+        "mor": "color.purple",
+        "turuncu": "color.orange",
+        "mavi": "color.blue",
+        "gri": "color.gray",
+        "beklenti": "color.fuchsia",
+    }
+    hisse_kodu = str(aktif_hisse).upper().strip()
+
+    def pine_sayiya_cevir(deger):
+        metin = str(deger).strip()
+        if not metin or metin in {"-", "None"}:
+            return None
+
+        if "," in metin:
+            metin = metin.replace(".", "").replace(",", ".")
+
+        try:
+            return f"{float(metin):.10f}".rstrip("0").rstrip(".")
+        except ValueError:
+            return None
+
+    arsiv_kopyasi = {
+        str(hisse).upper().strip(): dict(veri)
+        for hisse, veri in arsiv_verileri.items()
+        if isinstance(veri, dict)
+    }
+    if hisse_kodu:
+        arsiv_kopyasi.setdefault(hisse_kodu, {})
+        if aktif_seviyeler:
+            arsiv_kopyasi[hisse_kodu].update(aktif_seviyeler)
+
+    seviye_tanimlari = []
+    for grup, renk in renkler.items():
+        for sira in range(1, 4):
+            degisken = f"{grup}_{sira}"
+            secimler = []
+            for hisse, veri in arsiv_kopyasi.items():
+                degerler = veri.get(grup, [])
+                if not isinstance(degerler, list):
+                    degerler = [degerler]
+                deger = degerler[sira - 1] if len(degerler) >= sira else ""
+                pine_deger = pine_sayiya_cevir(deger)
+                if pine_deger is not None:
+                    secimler.append((hisse, pine_deger))
+            seviye_tanimlari.append((degisken, grup, sira, renk, secimler))
+
+    satirlar = [
+        "//@version=5",
+        'indicator("VideoTakip - Hisse Seviyeleri", overlay=true, scale=scale.right)',
+        "",
+        "sembol = syminfo.ticker",
+        "map<string, float> seviyeler = map.new<string, float>()",
+        "",
+    ]
+    for _, grup, sira, _, secimler in seviye_tanimlari:
+        for hisse, deger in secimler:
+            satirlar.append(
+                f'map.put(seviyeler, "{hisse}|{grup}|{sira}", {deger})'
+            )
+
+    satirlar.append("")
+    for degisken, grup, sira, renk, _ in seviye_tanimlari:
+        satirlar.append(
+            f'float {degisken} = map.get(seviyeler, sembol + "|{grup}|{sira}")'
+        )
+        satirlar.append(
+            f'plot({degisken}, title="{grup} {sira} fiyat", color={renk}, '
+            "trackprice=true, display=display.price_scale)"
+        )
+
+    satirlar.extend(
+        [
+            "",
+            "var array<line> cizgiler = array.new_line()",
+            "if barstate.islast",
+            "    for eski_cizgi in cizgiler",
+            "        line.delete(eski_cizgi)",
+            "    array.clear(cizgiler)",
+        ]
+    )
+    for degisken, grup, sira, renk, secimler in seviye_tanimlari:
+        satirlar.extend(
+            [
+                f"    if not na({degisken})",
+                f"        array.push(cizgiler, line.new(x1=bar_index - 50, y1={degisken}, x2=bar_index, y2={degisken}, color={renk}, style=line.style_dashed, width=1, extend=extend.right))",
+            ]
+        )
+
+    if not any(secimler for _, _, _, _, secimler in seviye_tanimlari):
+        satirlar.append("// Girilen sayisal seviye bulunamadi.")
+    return "\n".join(satirlar)
+
+
 @st.cache_data(ttl=60, show_spinner=False)
 def fiyat_cek(hisse_kodu):
     if not hisse_kodu:
@@ -1207,11 +1302,36 @@ def form_icerigini_olustur():
     yon_state_key = "secilen_yon"
     yildiz_state_key = "secilen_yildiz_form"
     son_hisse_key = "son_yuklenen_hisse"
+    alan_on_ekleri = (
+        "m1_",
+        "m2_",
+        "m3_",
+        "s1_",
+        "s2_",
+        "s3_",
+        "mv1_",
+        "mv12_",
+        "mv3_",
+        "g1_",
+        "g2_",
+        "g3_",
+        "bk1_",
+        "bk2_",
+        "bk3_",
+    )
 
     if son_hisse_key not in st.session_state:
         st.session_state[son_hisse_key] = ""
 
     if hisse_input != st.session_state[son_hisse_key]:
+        eski_hisse = st.session_state[son_hisse_key]
+        for anahtar in list(st.session_state.keys()):
+            if any(
+                anahtar == f"{on_ek}{eski_hisse}"
+                for on_ek in alan_on_ekleri
+            ):
+                del st.session_state[anahtar]
+
         st.session_state[yon_state_key] = get_single_val(
             "yon",
             "▲ Yükseliş"
@@ -1220,6 +1340,7 @@ def form_icerigini_olustur():
             existing.get("yildiz", 0)
         )
         st.session_state[son_hisse_key] = hisse_input
+        st.rerun()
 
     if yon_state_key not in st.session_state:
         st.session_state[yon_state_key] = "▲ Yükseliş"
@@ -1712,6 +1833,32 @@ def form_icerigini_olustur():
             )
 
             st.rerun(scope="app")
+
+    pine_test_key = f"pine_test_kodu_{hisse_input}"
+
+    if st.button(
+        "Pine Script Testi",
+        key=f"pine_test_btn_{hisse_input}",
+        use_container_width=True,
+    ):
+        if hisse_input:
+            st.session_state[pine_test_key] = pine_script_testi_uret(
+                arsiv,
+                hisse_input,
+                {
+                    "mor": [mor_1, mor_2, mor_3],
+                    "turuncu": [sari_1, sari_2, sari_3],
+                    "mavi": [mavi_1, mavi_2, mavi_3],
+                    "gri": [gri_1, gri_2, gri_3],
+                    "beklenti": [beklenti_1, beklenti_2, beklenti_3],
+                },
+            )
+
+    if st.session_state.get(pine_test_key):
+        st.code(
+            st.session_state[pine_test_key],
+            language="pinescript",
+        )
 
 
 with st.sidebar:
@@ -2451,6 +2598,16 @@ def canli_veri_ve_tablo_alani():
                         d["Hisse"]
                     )
 
+                    tradingview_url = (
+                        "https://www.tradingview.com/chart/?symbol="
+                        f"{urllib.parse.quote(f'BIST:{d["Hisse"]}', safe='')}"
+                    )
+
+                    tradingview_app_url = (
+                        "tradingview://chart/?symbol="
+                        f"{urllib.parse.quote(f'BIST:{d["Hisse"]}', safe='')}"
+                    )
+
                     favori_aktif_class = (
                         " aktif"
                         if d["favori"]
@@ -2514,9 +2671,21 @@ def canli_veri_ve_tablo_alani():
                         f'target="_self" '
                         f'class="favori-btn{favori_aktif_class}" '
                         f'title="Favori">{favori_ikon}</a>'
-                        f'<span class="hisse-kod">'
+                        f'<a href="{tradingview_url}" '
+                        f'target="_blank" rel="noopener noreferrer" '
+                        f'data-tradingview-app="{tradingview_app_url}" '
+                        f'onclick="if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {{ '
+                        f'event.preventDefault(); const link=this; const web=link.href; '
+                        f'let uygulamaAcildi=false; '
+                        f'const uygulamaKontrolu=function(){{uygulamaAcildi=true;}}; '
+                        f'document.addEventListener("visibilitychange", uygulamaKontrolu, {{once:true}}); '
+                        f'(window.top || window).location.href=link.dataset.tradingviewApp; '
+                        f'setTimeout(function(){{if (!uygulamaAcildi && document.visibilityState === "visible") '
+                        f'{{(window.top || window).location.href=web;}}}}, 2500); }}" '
+                        f'class="hisse-kod" '
+                        f'style="color: inherit; text-decoration: none;">'
                         f'{hisse_guvenli}'
-                        f'</span>'
+                        f'</a>'
                         f'{fiyat_satiri}'
                         f'</div>'
                         f'<div class="hisse-aksiyonlar">'
