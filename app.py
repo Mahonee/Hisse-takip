@@ -41,6 +41,7 @@ def github_dosya_yolu(dosya_adi):
     return dosya_adi
 
 
+@st.cache_data(ttl=5, show_spinner=False)
 def github_dosyasi_oku(dosya_adi):
     url = (
         "https://api.github.com/repos/"
@@ -94,7 +95,10 @@ def github_dosyasi_kaydet(dosya_adi, veri):
     if mevcut_sha:
         payload["sha"] = mevcut_sha
     response = requests.put(url, headers=headers, json=payload, timeout=8)
-    return response.status_code in (200, 201)
+    basarili = response.status_code in (200, 201)
+    if basarili:
+        github_dosyasi_oku.clear()
+    return basarili
 
 st.set_page_config(
     page_title="Canlı Hisse ve Bölge Takip Paneli",
@@ -1719,7 +1723,7 @@ with st.sidebar:
     sidebar_render()
 
 
-@st.fragment(run_every=3)
+@st.fragment(run_every=10)
 def canli_veri_ve_tablo_alani():
 
     guncel_arsiv = arsiv_yukle()
