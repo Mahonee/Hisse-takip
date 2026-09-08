@@ -3936,7 +3936,7 @@
         "yon": "▲ Yükseliş",
         "yildiz": 2,
         "tarih": "08.09.2026",
-        "favori": true,
+        "favori": false,
         "tetiklenen_seviyeler": []
     },
     "SOKM": {
@@ -4000,7 +4000,7 @@
         "yon": "▲ Yükseliş",
         "yildiz": 1,
         "tarih": "08.09.2026",
-        "favori": true,
+        "favori": false,
         "tetiklenen_seviyeler": []
     },
     "TRENJ": {
