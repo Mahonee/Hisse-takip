@@ -4066,5 +4066,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "BURVA": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "620,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "685,50",
+            "575,00",
+            "664,00"
+        ],
+        "beklenti": [
+            "744,00",
+            "840,00",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
