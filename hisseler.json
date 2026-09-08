@@ -3970,5 +3970,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "BORSK": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "6,46",
+            "",
+            ""
+        ],
+        "mavi": [
+            "6,30",
+            "6,18",
+            ""
+        ],
+        "gri": [
+            "6,59",
+            "6,73",
+            ""
+        ],
+        "beklenti": [
+            "7,65",
+            "8,70",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
