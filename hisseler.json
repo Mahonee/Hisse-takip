@@ -4390,5 +4390,37 @@
         "tetiklenen_seviyeler": [
             35.44
         ]
+    },
+    "PNSUT": {
+        "mor": [
+            "12,60",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "11,38",
+            "",
+            ""
+        ],
+        "mavi": [
+            "10,93",
+            "",
+            ""
+        ],
+        "gri": [
+            "12,07",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "15,00",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
