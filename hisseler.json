@@ -124,7 +124,7 @@
         "yon": "⏳ Beklemede",
         "yildiz": 4,
         "tarih": "07.09.2026",
-        "favori": false,
+        "favori": true,
         "tetiklenen_seviyeler": [
             47.9
         ]
