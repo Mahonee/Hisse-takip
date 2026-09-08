@@ -4550,5 +4550,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "NETAS": {
+        "mor": [
+            "106,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "94,95",
+            "",
+            ""
+        ],
+        "mavi": [
+            "87,45",
+            "",
+            ""
+        ],
+        "gri": [
+            "97,90",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "184,60",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
