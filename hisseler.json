@@ -4486,5 +4486,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "ENJSA": {
+        "mor": [
+            "116,90",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "106,03",
+            "",
+            ""
+        ],
+        "gri": [
+            "110,60",
+            "112,60",
+            ""
+        ],
+        "beklenti": [
+            "123,60",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
