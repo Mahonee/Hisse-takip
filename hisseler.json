@@ -4714,5 +4714,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "TERA": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "190,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "207,50",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
