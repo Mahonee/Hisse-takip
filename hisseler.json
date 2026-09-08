@@ -4322,5 +4322,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "AYCES": {
+        "mor": [
+            "581,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "429,50",
+            "439,25",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "492,00",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
