@@ -1,8 +1,7 @@
 {
     "temizlendi": true,
-    "son_kiran_sayisi": 2,
+    "son_kiran_sayisi": 1,
     "son_temizlenen_kiranlar": [
-        "GMTAS",
-        "CELHA"
+        "GMTAS"
     ]
 }
