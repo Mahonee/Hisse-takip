@@ -4130,5 +4130,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "MNDRS": {
+        "mor": [
+            "13,10",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "10,57",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "11,23",
+            "12,92",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
