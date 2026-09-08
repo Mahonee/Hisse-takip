@@ -3284,22 +3284,20 @@
             ""
         ],
         "gri": [
-            "",
+            "25,02",
             "",
             ""
         ],
         "beklenti": [
-            "",
+            "31,10",
             "",
             ""
         ],
         "yon": "⏳ Beklemede",
         "yildiz": 0,
-        "tarih": "02.09.2026",
+        "tarih": "08.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": [
-            25.48
-        ]
+        "tetiklenen_seviyeler": []
     },
     "PEKGY": {
         "mor": [
