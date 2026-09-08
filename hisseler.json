@@ -4194,5 +4194,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "HUBVC": {
+        "mor": [
+            "3,30",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "3,06",
+            "",
+            ""
+        ],
+        "mavi": [
+            "2,39",
+            "",
+            ""
+        ],
+        "gri": [
+            "2,51",
+            "2,59",
+            "2,45"
+        ],
+        "beklenti": [
+            "4,03",
+            "4,40",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
