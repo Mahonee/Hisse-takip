@@ -4226,5 +4226,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "AEFES": {
+        "mor": [
+            "21,48",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "18,62",
+            "",
+            ""
+        ],
+        "mavi": [
+            "18,16",
+            "",
+            ""
+        ],
+        "gri": [
+            "19,08",
+            "19,55",
+            ""
+        ],
+        "beklenti": [
+            "20,02",
+            "21,32",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
