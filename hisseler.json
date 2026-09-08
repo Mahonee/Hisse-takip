@@ -4098,5 +4098,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "BAYRK": {
+        "mor": [
+            "4,56",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "4,14",
+            "",
+            ""
+        ],
+        "mavi": [
+            "",
+            "",
+            ""
+        ],
+        "gri": [
+            "4,04",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "4,40",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
