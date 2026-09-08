@@ -2258,18 +2258,18 @@
             ""
         ],
         "gri": [
-            "",
-            "",
-            ""
+            "89,25",
+            "92,25",
+            "86,00"
         ],
         "beklenti": [
             "102,00",
-            "",
+            "107,30",
             ""
         ],
         "yon": "⏳ Beklemede",
         "yildiz": 0,
-        "tarih": "01.09.2026",
+        "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
     },
