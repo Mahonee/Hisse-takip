@@ -4002,5 +4002,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "TRENJ": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "101,90",
+            "",
+            ""
+        ],
+        "mavi": [
+            "97,35",
+            "",
+            ""
+        ],
+        "gri": [
+            "106,90",
+            "104,20",
+            ""
+        ],
+        "beklenti": [
+            "122,80",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 1,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
