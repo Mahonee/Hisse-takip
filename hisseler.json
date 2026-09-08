@@ -4354,5 +4354,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "VAKBN": {
+        "mor": [
+            "35,44",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "32,56",
+            "",
+            ""
+        ],
+        "mavi": [
+            "31,62",
+            "",
+            ""
+        ],
+        "gri": [
+            "33,38",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "40,30",
+            "41,10",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
