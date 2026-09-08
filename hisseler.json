@@ -4616,5 +4616,37 @@
         "tetiklenen_seviyeler": [
             44.4
         ]
+    },
+    "PETKM": {
+        "mor": [
+            "23,32",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "21,26",
+            "",
+            ""
+        ],
+        "mavi": [
+            "23,30",
+            "",
+            ""
+        ],
+        "gri": [
+            "24,90",
+            "21,78",
+            ""
+        ],
+        "beklenti": [
+            "26,20",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
