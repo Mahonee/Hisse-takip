@@ -259,12 +259,12 @@
     },
     "ARDYZ": {
         "mor": [
-            "",
+            "88,70",
             "",
             ""
         ],
         "turuncu": [
-            "88,70",
+            "",
             "",
             ""
         ],
@@ -279,13 +279,13 @@
             ""
         ],
         "beklenti": [
-            "",
-            "",
+            "90,10",
+            "91,10",
             ""
         ],
-        "yon": "▲ Yükseliş",
-        "yildiz": 3,
-        "tarih": "02.09.2026",
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
     },
