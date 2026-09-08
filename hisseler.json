@@ -4518,5 +4518,37 @@
         "tarih": "08.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "TRCAS": {
+        "mor": [
+            "51,50",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "47,24",
+            "50,45",
+            ""
+        ],
+        "gri": [
+            "49,06",
+            "45,22",
+            ""
+        ],
+        "beklenti": [
+            "53,30",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "08.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
