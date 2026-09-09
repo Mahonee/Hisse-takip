@@ -125,9 +125,7 @@
         "yildiz": 4,
         "tarih": "07.09.2026",
         "favori": true,
-        "tetiklenen_seviyeler": [
-            47.9
-        ]
+        "tetiklenen_seviyeler": []
     },
     "BIGTK": {
         "mor": [
@@ -2207,7 +2205,9 @@
         "yildiz": 0,
         "tarih": "01.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            128.0
+        ]
     },
     "MACKO": {
         "mor": [
@@ -2847,9 +2847,7 @@
         "yildiz": 4,
         "tarih": "08.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": [
-            19.85
-        ]
+        "tetiklenen_seviyeler": []
     },
     "ANELE": {
         "mor": [
@@ -4421,7 +4419,9 @@
         "yildiz": 0,
         "tarih": "08.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            12.6
+        ]
     },
     "ISDMR": {
         "mor": [
@@ -4517,7 +4517,9 @@
         "yildiz": 0,
         "tarih": "08.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            116.9
+        ]
     },
     "TRCAS": {
         "mor": [
