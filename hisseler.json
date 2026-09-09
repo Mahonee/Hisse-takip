@@ -445,9 +445,7 @@
         "yildiz": 0,
         "tarih": "08.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": [
-            42.98
-        ]
+        "tetiklenen_seviyeler": []
     },
     "AKCNS": {
         "mor": [
@@ -4421,7 +4419,9 @@
         "yildiz": 0,
         "tarih": "08.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            60.45
+        ]
     },
     "DOHOL": {
         "mor": [
