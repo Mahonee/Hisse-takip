@@ -1,11 +1,12 @@
 {
     "temizlendi": false,
-    "son_kiran_sayisi": 6,
+    "son_kiran_sayisi": 7,
     "son_temizlenen_kiranlar": [
-        "GMTAS",
-        "BRLSM",
+        "BVSAN",
         "CELHA",
         "VAKBN",
+        "PNSUT",
+        "ENJSA",
         "SISE",
         "PETKM"
     ]
