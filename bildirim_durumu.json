@@ -1,14 +1,11 @@
 {
     "temizlendi": false,
-    "son_kiran_sayisi": 10,
+    "son_kiran_sayisi": 7,
     "son_temizlenen_kiranlar": [
-        "TARKM",
+        "OZSUB",
         "BVSAN",
-        "BRLSM",
         "CELHA",
         "VAKBN",
-        "PNSUT",
-        "ISDMR",
         "ENJSA",
         "SISE",
         "PETKM"
