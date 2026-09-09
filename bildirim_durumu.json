@@ -1,8 +1,9 @@
 {
-    "temizlendi": true,
-    "son_kiran_sayisi": 8,
+    "temizlendi": false,
+    "son_kiran_sayisi": 9,
     "son_temizlenen_kiranlar": [
         "GMTAS",
+        "TARKM",
         "BVSAN",
         "CELHA",
         "VAKBN",
