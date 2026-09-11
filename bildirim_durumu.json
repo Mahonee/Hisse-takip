@@ -1,11 +1,11 @@
 {
-    "temizlendi": false,
+    "temizlendi": true,
     "son_kiran_sayisi": 5,
     "son_temizlenen_kiranlar": [
         "GMTAS",
         "BVSAN",
         "CELHA",
-        "ENJSA",
+        "VAKBN",
         "PETKM"
     ]
 }
