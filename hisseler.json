@@ -3137,7 +3137,9 @@
         "yildiz": 0,
         "tarih": "08.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            10.4
+        ]
     },
     "SANFM": {
         "mor": [
@@ -4487,7 +4489,9 @@
         "yildiz": 0,
         "tarih": "08.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            44.4
+        ]
     },
     "PETKM": {
         "mor": [
