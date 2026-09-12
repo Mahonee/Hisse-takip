@@ -4752,5 +4752,37 @@
         "tarih": "12.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "KOCMT": {
+        "mor": [
+            "5,90",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "5,27",
+            "",
+            ""
+        ],
+        "mavi": [
+            "4,95",
+            "4,08",
+            ""
+        ],
+        "gri": [
+            "4,51",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "5,90",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "12.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
