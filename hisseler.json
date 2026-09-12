@@ -4688,5 +4688,37 @@
         "tarih": "12.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "SDTTR": {
+        "mor": [
+            "25,04",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "20,92",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "25,94",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "12.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
