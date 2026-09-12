@@ -4720,5 +4720,37 @@
         "tarih": "12.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "PRZMA": {
+        "mor": [
+            "86,05",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "81,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "73,30",
+            "",
+            ""
+        ],
+        "gri": [
+            "77,10",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "144,70",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "12.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
