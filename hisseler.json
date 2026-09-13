@@ -4752,5 +4752,37 @@
         "tarih": "13.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "GOZDE": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "22,72",
+            "",
+            ""
+        ],
+        "mavi": [
+            "",
+            "",
+            ""
+        ],
+        "gri": [
+            "23,08",
+            "23,50",
+            ""
+        ],
+        "beklenti": [
+            "24,72",
+            "25,92",
+            "26,90"
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "13.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
