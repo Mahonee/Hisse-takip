@@ -1,36 +1,4 @@
 {
-    "KTLEV": {
-        "mor": [
-            "57,35",
-            "",
-            ""
-        ],
-        "turuncu": [
-            "",
-            "",
-            ""
-        ],
-        "mavi": [
-            "",
-            "",
-            ""
-        ],
-        "gri": [
-            "37,32",
-            "34,74",
-            "34,30"
-        ],
-        "beklenti": [
-            "47,44",
-            "",
-            ""
-        ],
-        "yon": "⏳ Beklemede",
-        "yildiz": 0,
-        "tarih": "08.09.2026",
-        "favori": true,
-        "tetiklenen_seviyeler": []
-    },
     "TRHOL": {
         "mor": [
             "",
