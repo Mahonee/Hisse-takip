@@ -4720,5 +4720,37 @@
         "tarih": "12.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "KTLEV": {
+        "mor": [
+            "57,35",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "",
+            "",
+            ""
+        ],
+        "gri": [
+            "37,32",
+            "34,74",
+            "34,30"
+        ],
+        "beklenti": [
+            "47,44",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "13.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
