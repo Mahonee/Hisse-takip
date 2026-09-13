@@ -93,7 +93,9 @@
         "yildiz": 4,
         "tarih": "13.09.2026",
         "favori": true,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            47.9
+        ]
     },
     "BIGTK": {
         "mor": [
