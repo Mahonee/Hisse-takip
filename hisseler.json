@@ -4197,7 +4197,9 @@
         "yildiz": 0,
         "tarih": "13.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            35.44
+        ]
     },
     "PNSUT": {
         "mor": [
