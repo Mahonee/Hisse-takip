@@ -835,7 +835,7 @@
     },
     "VBTYZ": {
         "mor": [
-            "",
+            "39,72",
             "",
             ""
         ],
@@ -855,13 +855,13 @@
             ""
         ],
         "beklenti": [
-            "39,72",
+            "",
             "51,75",
             ""
         ],
-        "yon": "▲ Yükseliş",
-        "yildiz": 2,
-        "tarih": "08.09.2026",
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
     },
