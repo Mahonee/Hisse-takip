@@ -4902,5 +4902,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "RNPOL": {
+        "mor": [
+            "2,93",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "2,18",
+            "",
+            ""
+        ],
+        "gri": [
+            "2,28",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
