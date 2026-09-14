@@ -4868,5 +4868,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "TURGG": {
+        "mor": [
+            "36,92",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "29,02",
+            "",
+            ""
+        ],
+        "mavi": [
+            "26,80",
+            "25,62",
+            ""
+        ],
+        "gri": [
+            "30,26",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "33,56",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
