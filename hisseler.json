@@ -2638,7 +2638,7 @@
         ],
         "mavi": [
             "34,24",
-            "",
+            "31,16",
             ""
         ],
         "gri": [
@@ -2651,9 +2651,9 @@
             "",
             ""
         ],
-        "yon": "▲ Yükseliş",
+        "yon": "⏳ Beklemede",
         "yildiz": 4,
-        "tarih": "08.09.2026",
+        "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
     },
