@@ -10,7 +10,43 @@ import requests
 import streamlit as st
 import streamlit.components.v1 as components
 st.set_page_config(page_title="Hisse-takip", page_icon="logo.png")
+import concurrent.futures
+import base64
+from datetime import datetime
+import html
+import json
+import os
+import urllib.parse
+import urllib.request
+import requests
+import streamlit as st
+import streamlit.components.v1 as components
 
+st.set_page_config(page_title="Hisse Takip", page_icon="logo.png")
+
+# --- iOS Ana Ekran İkon Kodu (Buraya Ekliyoruz) ---
+try:
+    with open("logo.png", "rb") as f:
+        b64_logo = base64.b64encode(f.read()).decode()
+
+    st.markdown(
+        f"""
+        <script>
+        const link = document.createElement('link');
+        link.rel = 'apple-touch-icon';
+        link.href = 'data:image/png;base64,{b64_logo}';
+        document.getElementsByTagName('head')[0].appendChild(link);
+        </script>
+        """,
+        unsafe_allow_html=True,
+    )
+except Exception as e:
+    pass
+# --------------------------------------------------
+
+VERI_DOSYASI = "hisseler.json"
+BILDIRIM_DOSYASI = "bildirim_durumu.json"
+SIFRE_KORUMASI = "1111"
 VERI_DOSYASI = "hisseler.json"
 BILDIRIM_DOSYASI = "bildirim_durumu.json"
 SIFRE_KORUMASI = "1111"  # Buradan istediğin şifreyi belirleyebilirsin
