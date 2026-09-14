@@ -5062,5 +5062,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "KZGYO": {
+        "mor": [
+            "30,68",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "29,48",
+            "",
+            ""
+        ],
+        "mavi": [
+            "28,86",
+            "",
+            ""
+        ],
+        "gri": [
+            "29,78",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "34,08",
+            "39,90",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 4,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
