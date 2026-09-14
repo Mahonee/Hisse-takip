@@ -109,8 +109,8 @@
             ""
         ],
         "mavi": [
+            "300,00",
             "285,50",
-            "273,75",
             ""
         ],
         "gri": [
@@ -125,7 +125,7 @@
         ],
         "yon": "⏳ Beklemede",
         "yildiz": 0,
-        "tarih": "08.09.2026",
+        "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
     },
