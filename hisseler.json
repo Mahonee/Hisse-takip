@@ -5093,6 +5093,8 @@
         "yildiz": 4,
         "tarih": "14.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": []
+        "tetiklenen_seviyeler": [
+            30.68
+        ]
     }
 }
