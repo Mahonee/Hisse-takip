@@ -89,13 +89,11 @@
             "54,90",
             ""
         ],
-        "yon": "⏳ Beklemede",
+        "yon": "▲ Yükseliş",
         "yildiz": 4,
         "tarih": "14.09.2026",
         "favori": true,
-        "tetiklenen_seviyeler": [
-            47.9
-        ]
+        "tetiklenen_seviyeler": []
     },
     "BIGTK": {
         "mor": [
