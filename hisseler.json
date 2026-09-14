@@ -5256,5 +5256,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "DSTKF": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "2.397,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "2.325,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "2.600,00",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "2.842,00",
+            "3.487,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
