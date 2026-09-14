@@ -4900,5 +4900,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "MRSHL": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "1.627,00",
+            "",
+            ""
+        ],
+        "mavi": [
+            "1.599,00",
+            "",
+            ""
+        ],
+        "gri": [
+            "1.680,00",
+            "1.732,00",
+            ""
+        ],
+        "beklenti": [
+            "1.951,00",
+            "2.143,00",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 1,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
