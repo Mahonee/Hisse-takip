@@ -3075,23 +3075,23 @@
     },
     "CELHA": {
         "mor": [
-            "25,48",
+            "",
             "",
             ""
         ],
         "turuncu": [
-            "24,52",
+            "26,28",
             "",
             ""
         ],
         "mavi": [
-            "23,70",
+            "25,02",
             "",
             ""
         ],
         "gri": [
-            "25,02",
-            "",
+            "26,98",
+            "27,82",
             ""
         ],
         "beklenti": [
@@ -3099,13 +3099,11 @@
             "",
             ""
         ],
-        "yon": "⏳ Beklemede",
-        "yildiz": 0,
-        "tarih": "08.09.2026",
+        "yon": "▲ Yükseliş",
+        "yildiz": 4,
+        "tarih": "14.09.2026",
         "favori": false,
-        "tetiklenen_seviyeler": [
-            25.48
-        ]
+        "tetiklenen_seviyeler": []
     },
     "PEKGY": {
         "mor": [
