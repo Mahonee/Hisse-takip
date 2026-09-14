@@ -4774,5 +4774,37 @@
         "tarih": "13.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "KRGYO": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "3,37",
+            "",
+            ""
+        ],
+        "mavi": [
+            "3,07",
+            "",
+            ""
+        ],
+        "gri": [
+            "3,55",
+            "3,63",
+            ""
+        ],
+        "beklenti": [
+            "4,24",
+            "6,42",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
