@@ -5224,5 +5224,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "BJKAS": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "2,44",
+            "",
+            ""
+        ],
+        "mavi": [
+            "2,24",
+            "",
+            ""
+        ],
+        "gri": [
+            "2,56",
+            "2,65",
+            ""
+        ],
+        "beklenti": [
+            "3,06",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
