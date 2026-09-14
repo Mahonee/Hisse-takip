@@ -5288,5 +5288,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "TTKOM": {
+        "mor": [
+            "57,90",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "56,20",
+            "",
+            ""
+        ],
+        "mavi": [
+            "55,15",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "67,50",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 4,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
