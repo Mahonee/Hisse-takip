@@ -4806,5 +4806,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "FORTE": {
+        "mor": [
+            "132,20",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "126,80",
+            "",
+            ""
+        ],
+        "mavi": [
+            "109,70",
+            "",
+            ""
+        ],
+        "gri": [
+            "116,20",
+            "111,00",
+            "113,20"
+        ],
+        "beklenti": [
+            "121,80",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
