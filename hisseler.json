@@ -5128,5 +5128,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "PATEK": {
+        "mor": [
+            "29,50",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "21,22",
+            "22,60",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
