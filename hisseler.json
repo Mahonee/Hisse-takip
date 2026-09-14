@@ -4966,5 +4966,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "RYSAS": {
+        "mor": [
+            "28,34",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "27,52",
+            "",
+            ""
+        ],
+        "mavi": [
+            "26,16",
+            "",
+            ""
+        ],
+        "gri": [
+            "",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
