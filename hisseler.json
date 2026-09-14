@@ -3653,7 +3653,7 @@
     },
     "ALARK": {
         "mor": [
-            "",
+            "118,50",
             "",
             ""
         ],
@@ -3677,8 +3677,8 @@
             "125,60",
             "13,56"
         ],
-        "yon": "▲ Yükseliş",
-        "yildiz": 2,
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
