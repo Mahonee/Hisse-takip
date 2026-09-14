@@ -2337,38 +2337,6 @@
         "favori": false,
         "tetiklenen_seviyeler": []
     },
-    "HRKET": {
-        "mor": [
-            "102,90",
-            "",
-            ""
-        ],
-        "turuncu": [
-            "98,05",
-            "",
-            ""
-        ],
-        "mavi": [
-            "89,00",
-            "",
-            ""
-        ],
-        "gri": [
-            "",
-            "",
-            ""
-        ],
-        "beklenti": [
-            "102,90",
-            "",
-            ""
-        ],
-        "yon": "⏳ Beklemede",
-        "yildiz": 0,
-        "tarih": "02.09.2026",
-        "favori": false,
-        "tetiklenen_seviyeler": []
-    },
     "UFUK": {
         "mor": [
             "1924,00",
