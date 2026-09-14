@@ -5096,5 +5096,37 @@
         "tetiklenen_seviyeler": [
             30.68
         ]
+    },
+    "AKFGY": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "2,87",
+            "3,02",
+            ""
+        ],
+        "mavi": [
+            "2,95",
+            "",
+            ""
+        ],
+        "gri": [
+            "2,77",
+            "2,92",
+            "2,88"
+        ],
+        "beklenti": [
+            "3,17",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
