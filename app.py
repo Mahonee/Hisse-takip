@@ -9,6 +9,7 @@ import urllib.request
 import requests
 import streamlit as st
 import streamlit.components.v1 as components
+st.set_page_config(page_title="Hisse Takip", page_icon="logo.png")
 
 VERI_DOSYASI = "hisseler.json"
 BILDIRIM_DOSYASI = "bildirim_durumu.json"
