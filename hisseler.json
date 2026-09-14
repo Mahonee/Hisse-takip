@@ -4998,5 +4998,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "EKGYO": {
+        "mor": [
+            "22,00",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "20,80",
+            "",
+            ""
+        ],
+        "mavi": [
+            "19,83",
+            "",
+            ""
+        ],
+        "gri": [
+            "21,34",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
