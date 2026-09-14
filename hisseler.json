@@ -4838,5 +4838,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "EUREN": {
+        "mor": [
+            "5,05",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "4,08",
+            "",
+            ""
+        ],
+        "gri": [
+            "3,71",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "4,49",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
