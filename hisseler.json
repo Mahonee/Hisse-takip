@@ -4836,5 +4836,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "ARASE": {
+        "mor": [
+            "",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "118,70",
+            "",
+            ""
+        ],
+        "mavi": [
+            "114,50",
+            "",
+            ""
+        ],
+        "gri": [
+            "116,90",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "126,00",
+            "165,30",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 2,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
