@@ -5030,5 +5030,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "MERCN": {
+        "mor": [
+            "25,02",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "",
+            "",
+            ""
+        ],
+        "mavi": [
+            "18,53",
+            "",
+            ""
+        ],
+        "gri": [
+            "17,30",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "▲ Yükseliş",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
