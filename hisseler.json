@@ -5320,5 +5320,37 @@
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
+    },
+    "HALKB": {
+        "mor": [
+            "52,85",
+            "",
+            ""
+        ],
+        "turuncu": [
+            "49,28",
+            "",
+            ""
+        ],
+        "mavi": [
+            "46,58",
+            "",
+            ""
+        ],
+        "gri": [
+            "48,08",
+            "",
+            ""
+        ],
+        "beklenti": [
+            "",
+            "",
+            ""
+        ],
+        "yon": "⏳ Beklemede",
+        "yildiz": 0,
+        "tarih": "14.09.2026",
+        "favori": false,
+        "tetiklenen_seviyeler": []
     }
 }
