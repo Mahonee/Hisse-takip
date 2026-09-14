@@ -1123,7 +1123,7 @@
     },
     "AGESA": {
         "mor": [
-            "",
+            "264,00",
             "",
             ""
         ],
@@ -1143,12 +1143,12 @@
             ""
         ],
         "beklenti": [
-            "264,00",
+            "",
             "338,75",
             ""
         ],
         "yon": "▲ Yükseliş",
-        "yildiz": 1,
+        "yildiz": 0,
         "tarih": "14.09.2026",
         "favori": false,
         "tetiklenen_seviyeler": []
