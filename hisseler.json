@@ -545,38 +545,6 @@
         "favori": false,
         "tetiklenen_seviyeler": []
     },
-    "AHGAZ": {
-        "mor": [
-            "",
-            "",
-            ""
-        ],
-        "turuncu": [
-            "38,16",
-            "",
-            ""
-        ],
-        "mavi": [
-            "36,48",
-            "",
-            ""
-        ],
-        "gri": [
-            "36,88",
-            "37,50",
-            ""
-        ],
-        "beklenti": [
-            "51,55",
-            "",
-            ""
-        ],
-        "yon": "▲ Yükseliş",
-        "yildiz": 2,
-        "tarih": "07.09.2026",
-        "favori": false,
-        "tetiklenen_seviyeler": []
-    },
     "TNZTP": {
         "mor": [
             "",
