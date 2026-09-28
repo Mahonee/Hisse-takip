@@ -63,38 +63,6 @@
         "favori": true,
         "tetiklenen_seviyeler": []
     },
-    "GMTAS": {
-        "mor": [
-            "47,90",
-            "",
-            ""
-        ],
-        "turuncu": [
-            "48,44",
-            "",
-            ""
-        ],
-        "mavi": [
-            "46,62",
-            "",
-            ""
-        ],
-        "gri": [
-            "49,50",
-            "48,76",
-            ""
-        ],
-        "beklenti": [
-            "52,15",
-            "54,90",
-            ""
-        ],
-        "yon": "▲ Yükseliş",
-        "yildiz": 4,
-        "tarih": "14.09.2026",
-        "favori": true,
-        "tetiklenen_seviyeler": []
-    },
     "BIGTK": {
         "mor": [
             "375,00",
